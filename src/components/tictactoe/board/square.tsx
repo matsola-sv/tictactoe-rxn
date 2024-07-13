@@ -1,21 +1,20 @@
-import React, {FC, FormEvent} from "react";
-
-export enum T3SquareType {
-    O = "O",
-    X = "X",
-    Empty = ""
-}
+import React, {FC, ReactElement, FormEvent} from "react";
 
 type T3SquareProps =  {
     id: number,
-    value?: T3SquareType,
+    content?: ReactElement | null,
     selected?: boolean,
     selectedLine?: boolean,
     onClick: (event: React.FormEvent) => void
 };
 
 export const T3Square: FC<T3SquareProps> = (props) => {
-    const { value, selected = false, selectedLine = false, onClick }: T3SquareProps = props;
+    const {
+        content = null,
+        selected = false,
+        selectedLine = false,
+        onClick
+    }: T3SquareProps = props;
 
     /**
      * This syntax provides binding `this` inside
@@ -41,7 +40,7 @@ export const T3Square: FC<T3SquareProps> = (props) => {
         <button className={getClassName()}
                 onClick={handlerClick}
         >
-            {value}
+            {content}
         </button>
     );
 }

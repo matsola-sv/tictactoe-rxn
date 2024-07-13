@@ -1,21 +1,29 @@
-import '../../assets/css/TicTacToe.css';
-import {T3Board} from "./board";
-import {T3SquareType} from "./board/square";
 import {FC, useState} from "react";
+import '../../assets/css/TicTacToe.css';
+import {T3SquareType, T3Board} from "./board";
 
-interface T3GameState {
+interface T3PlayerI {
+    name: string
+}
+
+interface T3GameStateI {
     squareId: number | null, // current square id
-    squares: T3SquareType[]
+    squares: T3PlayerI[]
 }
 
 export const T3Game: FC = () =>  {
-    const boardColumns = 3;                      // number of columns on the game board
-    const defaultState: T3GameState = {
-        squareId: 4,                             // current square id
-        squares: Array(9).fill(T3SquareType.X)   // list of squares and moves in them
+    const boardColumns: number = 3;                  // number of columns on the game board
+    const players: T3PlayerI[] = [                   // player with the index (0) goes first
+        { name: "X" },
+        { name: "O" }
+    ];
+    const defaultState: T3GameStateI = {
+        squareId: null,                              // current square id
+        squares: Array(9).fill(null)   // list of squares and moves in them
     };
 
-    const [moveState, setMoveState] = useState<T3GameState>(defaultState);
+    const [move, setMove] = useState(0);              // current move id
+    const [moveState, setMoveState] = useState<T3GameStateI>(defaultState);
 
     /**
      * This syntax provides binding `this` inside
@@ -29,39 +37,64 @@ export const T3Game: FC = () =>  {
      * Get current square ID on the current move
      * @returns {null|*}
      */
-    const getSquareID = () => {
+    const getCurrentSquareID = () => {
         return moveState.squareId;
     }
 
     /**
      * Get squares on current move or for the passed move
      */
-    const getSquares = (): T3SquareType[] => {
+    const getSquares = (): T3PlayerI[] => {
         return moveState.squares;
+    }
+
+    /**
+     * Get player name on the current move
+     */
+    const getPlayer = (): T3PlayerI => {
+        return getMoveID() %2 === 0 ?
+            players[0] : players[1];
+    }
+
+    /**
+     * Get current move id (from 0-9).
+     * 0 - starting position, 2 - two players have already completed 1 move
+     */
+    const getMoveID = (): number => {
+        return move;
     }
 
     /**
      * @param squareId
      */
     const makeMove = (squareId: number): void => {
-        // Update selected square in game state
-        setMoveState({
-            ...moveState,
-            ...{ squareId: squareId }
+        // Overwrite the history to the current move (including)
+        let nextMove = getMoveID() + 1;
+        let squares = getSquares().slice();
+        squares[squareId] = getPlayer();
+
+        // Update state game
+        setMove(nextMove);   // update current move number. Will be needed for move history
+        setMoveState({       // update the value in the current square
+            squares: squares,
+            squareId: squareId
         });
     }
+
+    // Prepare squares before rendering
+    const preparedSquares: T3SquareType[] = getSquares()
+        .map(player => player === null ? player: player.name);
 
     return (
         <div className="game">
             <div className="game-board">
                 <T3Board columns={boardColumns}
-                         squares={getSquares()}
-                         selected={getSquareID()}
+                         squares={preparedSquares}
+                         selected={getCurrentSquareID()}
                          onClick={handlerClick}
                          selectedLine={[]}
                 />
             </div>
-
         </div>
     );
 }

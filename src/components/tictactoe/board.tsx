@@ -1,8 +1,10 @@
 import React, {FC, ReactElement} from "react";
 import {T3BoardRow} from "./board/row";
-import {T3Square, T3SquareType} from "./board/square";
+import {T3Square} from "./board/square";
 
-interface T3BoardProps {
+export type T3SquareType = string | null;
+
+interface T3BoardPropsI {
     columns: number,
     selected: number | null,
     selectedLine: number[],
@@ -10,8 +12,8 @@ interface T3BoardProps {
     squares: T3SquareType[]
 }
 
-export const T3Board: FC<T3BoardProps> = (props) => {
-    const { selectedLine = [] } : T3BoardProps = props; // default value of props
+export const T3Board: FC<T3BoardPropsI> = (props) => {
+    const { selectedLine = [] } : T3BoardPropsI = props; // default value of props
 
     /**
      * This syntax provides binding `this` inside
@@ -28,12 +30,13 @@ export const T3Board: FC<T3BoardProps> = (props) => {
     const renderSquare = (id: number): ReactElement => {
         const renderLine = selectedLine.indexOf(id) !== -1;
         const unselected = id !== props.selected || renderLine;
+        const content: ReactElement = <span>{props.squares[id]}</span>
 
         return <T3Square id={id}
                          key={id}
                          selected={!unselected}
                          selectedLine={renderLine}
-                         value={props.squares[id]}
+                         content={content}
                          onClick={handlerClickSquare.bind(this, id)}
         />;
     }
