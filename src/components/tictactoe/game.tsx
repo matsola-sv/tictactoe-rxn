@@ -34,8 +34,15 @@ export const T3Game: FC = () =>  {
     }
 
     /**
+     * Get the square value (player name or null) on current move
+     * @param id
+     */
+    const getSquare = (id: number) => {
+        return getSquares()[id];
+    }
+
+    /**
      * Get current square ID on the current move
-     * @returns {null|*}
      */
     const getCurrentSquareID = () => {
         return moveState.squareId;
@@ -68,6 +75,10 @@ export const T3Game: FC = () =>  {
      * @param squareId
      */
     const makeMove = (squareId: number): void => {
+        if (getSquare(squareId)) {
+            return;
+        }
+
         // Overwrite the history to the current move (including)
         let nextMove = getMoveID() + 1;
         let squares = getSquares().slice();
