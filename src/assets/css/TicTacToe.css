@@ -1,9 +1,3 @@
-.game {
-    display: flex;
-    flex-direction: row;
-    margin: 20px;
-}
-
 .board-row:after {
     clear: both;
     content: "";
@@ -37,3 +31,42 @@
     background-color: green;
 }
 
+.game {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+
+.game-info {
+    margin-left: 20px;
+    border: 1px solid;
+    width: 300px;
+}
+
+.game-info .status {
+    width: 100%;
+    padding: 2px 0;
+}
+
+.game-info .status .text {
+    text-align: center;
+}
+
+.status {
+    margin-bottom: 10px;
+}
+
+.status .victory {
+    background-color: #c2fbd7;
+    color: green;
+}
+
+.status .draw {
+    background-color: #6E6D70;
+    color: #DFDEDF;
+}
+
+.status .next {
+    background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+    color: #FFFFFF;
+}

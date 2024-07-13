@@ -1,8 +1,9 @@
-import {FC, useState} from "react";
+import {FC, ReactElement, useState} from "react";
 import '../../assets/css/TicTacToe.css';
 import {T3SquareType, T3Board} from "./board";
+import {T3NextMoveStatus} from "./game/status/nextMove";
 
-interface T3PlayerI {
+export interface T3PlayerI {
     name: string
 }
 
@@ -92,6 +93,13 @@ export const T3Game: FC = () =>  {
         });
     }
 
+    /**
+     * The status of the game on the current move changes when moving through the history of moves
+     */
+    const renderStatus = (): ReactElement => {
+        return <T3NextMoveStatus player={getPlayer()}/>
+    }
+
     // Prepare squares before rendering
     const preparedSquares: T3SquareType[] = getSquares()
         .map(player => player === null ? player: player.name);
@@ -105,6 +113,13 @@ export const T3Game: FC = () =>  {
                          onClick={handlerClick}
                          selectedLine={[]}
                 />
+            </div>
+            <div className="game-info">
+                <div className="status">
+                    <div className="text">
+                        {renderStatus()}
+                    </div>
+                </div>
             </div>
         </div>
     );
