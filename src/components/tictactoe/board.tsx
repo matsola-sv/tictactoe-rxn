@@ -7,13 +7,14 @@ export type T3SquareType = string | null;
 interface T3BoardPropsI {
     columns: number,
     selected: number | null,
-    selectedLine: number[],
+    selectedLine?: number[],
     onClick: (squareID: number) => void,
     squares: T3SquareType[]
 }
 
 export const T3Board: FC<T3BoardPropsI> = (props) => {
-    const { selectedLine = [] } : T3BoardPropsI = props; // default value of props
+    // Default value of props
+    const { selectedLine = [] } : T3BoardPropsI = props;
 
     /**
      * This syntax provides binding `this` inside
