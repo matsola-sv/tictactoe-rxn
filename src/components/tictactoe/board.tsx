@@ -4,11 +4,15 @@ import {T3Square} from "./board/square";
 
 export type T3SquareType = string | null;
 
-interface T3BoardPropsI {
+export type T3BoardElHandlerI = {
+    (squareID: number): void
+}
+
+export interface T3BoardPropsI {
     columns: number,
     selected: number | null,
     selectedLine?: number[],
-    onClick: (squareID: number) => void,
+    onClick: T3BoardElHandlerI,
     squares: T3SquareType[]
 }
 
@@ -20,7 +24,7 @@ export const T3Board: FC<T3BoardPropsI> = (props) => {
      * This syntax provides binding `this` inside
      * @param id
      */
-    const handlerClickSquare = (id: number) => {
+    const handlerClickSquare: T3BoardElHandlerI = (id: number) => {
         props.onClick(id);
     }
 

@@ -1,3 +1,12 @@
+#t3-game {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+}
+
+ol, ul {
+    padding-left: 30px;
+}
+
 .board-row:after {
     clear: both;
     content: "";
@@ -31,10 +40,17 @@
     background-color: green;
 }
 
+.kbd-navigation .square:focus {
+    background: #ddd;
+}
+
+.status {
+    margin-bottom: 10px;
+}
+
 .game {
     display: flex;
     flex-direction: row;
-    margin: 20px;
 }
 
 .game-info {
@@ -52,10 +68,6 @@
     text-align: center;
 }
 
-.status {
-    margin-bottom: 10px;
-}
-
 .status .victory {
     background-color: #c2fbd7;
     color: green;
@@ -69,4 +81,50 @@
 .status .next {
     background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
     color: #FFFFFF;
+}
+
+#moves-history {
+    text-align: initial;
+}
+
+#moves-history ol {
+    list-style: none;
+    counter-reset: history-counter;
+}
+
+#moves-history li {
+    margin: 0 0 0.1rem 0;
+    counter-increment: history-counter;
+    position: relative;
+}
+
+#moves-history li::before {
+    content: counter(history-counter);
+    color: #fcd000;
+    font-size: 1.1rem;
+    font-weight: bold;
+    position: absolute;
+    --size: 20px;
+    left: calc(-1 * var(--size) - 5px);
+    line-height: var(--size);
+    width: var(--size);
+    height: var(--size);
+    top: 0;
+    transform: rotate(-10deg);
+    background: black;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 1px 1px 0 #999;
+}
+
+#moves-history li.selected::before {
+    background: green;
+    color: white;
+}
+
+#moves-history .move-id {
+    background-color: #911414;
+    color: yellow;
+    padding: 1px;
+    margin: 0 2px;
 }

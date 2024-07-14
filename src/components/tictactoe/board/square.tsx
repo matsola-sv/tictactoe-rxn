@@ -1,11 +1,15 @@
 import React, {FC, ReactElement, FormEvent} from "react";
 
-type T3SquareProps =  {
+export type T3SquareHandlerI = {
+    (event: React.FormEvent): void
+}
+
+export type T3SquareProps =  {
     id: number,
     content?: ReactElement | null,
     selected?: boolean,
     selectedLine?: boolean,
-    onClick: (event: React.FormEvent) => void
+    onClick: T3SquareHandlerI
 };
 
 export const T3Square: FC<T3SquareProps> = (props) => {

@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {T3PlayerI} from "../../game";
 
-interface NextStatusPropsI {
+type NextStatusPropsI = {
     player: T3PlayerI
 }
 

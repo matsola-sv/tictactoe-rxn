@@ -1,10 +1,22 @@
 import {FC, ReactElement, useState} from "react";
 import '../../assets/css/TicTacToe.css';
 
-import {T3Board, T3SquareType} from "./board";
+import {T3Board, T3BoardElHandlerI, T3SquareType} from "./board";
 import {T3NextMoveStatus} from "./game/status/nextMove";
 import {T3VictoryStatus} from "./game/status/victory";
 import {T3DrawStatus} from "./game/status/draw";
+import {T3History, T3HistoryHandlerI} from "./history";
+
+/**
+ * You can use the date as the id, but there is one plus in using the id as a sequence number:
+ * It is easy to find the first element (id = 0)
+ */
+export interface T3GameMoveI {
+    id: number,
+    date: number,
+    squareID: number,
+    player: T3PlayerI
+}
 
 export interface T3PlayerI {
     id: number,
@@ -12,8 +24,9 @@ export interface T3PlayerI {
 }
 
 interface T3GameStateI {
-    squareId: number | null,                              // current square id
-    squares: T3SquareStateI[],                            // squares state
+    date: number,                                    // the timestamp
+    squareID: number | null,                         // current square id === null - start of game without player moves
+    squares: T3SquareStateI[],                       // squares state
     winner:  T3WinnerI,
 }
 
@@ -30,28 +43,38 @@ export const T3Game: FC = () =>  {
         { id: 1, name: "X" },
         { id: 2, name: "O" }
     ];
-    const defaultState: T3GameStateI = {
-        squareId: null,                              // current square id
+    const moveState: T3GameStateI = {
+        date: Date.now(),                            // the date(timestamp) of the move
+        squareID: null,                              // current square id
         squares: Array(9).fill(null),                // list of squares and moves in them
         winner: null
     };
 
-    const [move, setMove] = useState(0);             // current move id
-    const [moveState, setMoveState] = useState<T3GameStateI>(defaultState);
+    const [move, setMove] = useState<number>(0);     // current move id
+    const [movesHistory, setMovesHistory] = useState<T3GameStateI[]>([moveState]);
 
     /**
+     * Element selection handler on the board
      * This syntax provides binding `this` inside
      * @param squareID
      */
-    const handlerClick = (squareID: number): void => {
+    const boardHandler : T3BoardElHandlerI = (squareID: number): void => {
         makeMove(squareID);
+    }
+
+    /**
+     * @param moveID
+     */
+    const historyMoveHandler: T3HistoryHandlerI = (moveID: number): void => {
+        //TODO jump to move
     }
 
     /**
      * Get squares on current move or for the passed move
      */
-    const getSquares = (): T3SquareStateI[] => {
-        return moveState.squares;
+    const getSquares = (move?: T3GameStateI): T3SquareStateI[] => {
+        return (move ?? getMove())
+            .squares;
     }
 
     /**
@@ -66,7 +89,7 @@ export const T3Game: FC = () =>  {
      * Get current square ID on the current move
      */
     const getCurrentSquareID = (): number | null => {
-        return moveState.squareId;
+        return moveState.squareID;
     }
 
     /**
@@ -89,7 +112,7 @@ export const T3Game: FC = () =>  {
      * Return game state of the current move
      */
     const getMove = (): T3GameStateI => {
-        return moveState;
+        return getHistory()[getMoveID()]
     }
 
     /**
@@ -100,25 +123,36 @@ export const T3Game: FC = () =>  {
     }
 
     /**
-     * @param squareId
+     * Get moves history
      */
-    const makeMove = (squareId: number): void => {
-        if (getWinner() || getSquare(squareId)) {
+    const getHistory = (): T3GameStateI[] => {
+        return movesHistory;
+    }
+
+    /**
+     * @param squareID
+     */
+    const makeMove = (squareID: number): void => {
+        if (getWinner() || getSquare(squareID)) {
             return;
         }
 
         // Overwrite the history to the current move (including)
         let nextMove = getMoveID() + 1;
+        let history = getHistory().slice(0, nextMove);
         let squares = getSquares().slice();
-        squares[squareId] = getPlayer();
+        squares[squareID] = getPlayer();
 
         // Update state game
-        setMove(nextMove);                   // update current move number. Will be needed for move history
-        setMoveState({                       // update the value in the current square
-            squares: squares,
-            squareId: squareId,
-            winner: calculateWinner(squares) // we calculate the winner on each
-        });
+        setMove(nextMove);                        // update current move number. Will be needed for move history
+        setMovesHistory(                          // add the state of the step to the game history
+            history.concat([{
+                date: Date.now(),
+                squareID: squareID,
+                squares: squares,
+                winner: calculateWinner(squares)  // we calculate the winner on each
+            }])
+        );
     }
 
     /**
@@ -179,13 +213,24 @@ export const T3Game: FC = () =>  {
     const preparedSquares: T3SquareType[] = getSquares()
         .map(player => player === null ? player: player.name);
 
+    // Prepare history moves before rendering
+    const moves: T3GameMoveI[] = getHistory()
+        .map((move, index) => Object.assign({
+            id: index,
+            date: move.date,
+            squareID: move.squareID,
+            player: getSquare(
+                move.squareID ?? 0 // squareID = null - start of game without player moves
+            )
+        }));
+
     return (
-        <div className="game">
+        <div id="t3-game" className="game">
             <div className="game-board">
                 <T3Board columns={boardColumns}
                          squares={preparedSquares}
                          selected={getCurrentSquareID()}
-                         onClick={handlerClick}
+                         onClick={boardHandler}
                          selectedLine={getWinner()?.winnerLine}
                 />
             </div>
@@ -195,6 +240,11 @@ export const T3Game: FC = () =>  {
                         {renderStatus()}
                     </div>
                 </div>
+                <T3History moves={moves}
+                           hasStartMove={true}
+                           currentMove={getMoveID()}
+                           onClick={historyMoveHandler}
+                />
             </div>
         </div>
     );
