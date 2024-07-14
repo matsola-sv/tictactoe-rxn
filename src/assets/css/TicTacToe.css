@@ -128,3 +128,8 @@ ol, ul {
     padding: 1px;
     margin: 0 2px;
 }
+
+#moves-history .sort-bar {
+    margin: 10px 2px 0 2px;
+}
+
