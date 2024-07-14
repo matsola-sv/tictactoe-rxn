@@ -19,6 +19,10 @@ export const T3HistoryMove: FC<T3MovePropsI> = (props) => {
     const date: string = new Date(props.date)
         .toLocaleTimeString();
 
+    const handleClick = () => {
+        props.onClick(props.id);
+    };
+
     const getCoordinates = (): string => {
         let col: number = squareID % 3;
         let row: number = Math.floor(squareID / 3);
@@ -29,7 +33,7 @@ export const T3HistoryMove: FC<T3MovePropsI> = (props) => {
     return (
         <li className={classes}>
             <span>Go to move  </span>
-            <a href="#">
+            <a href="#" onClick={handleClick}>
                     <span className="move-id">
                         #{props.id}
                     </span>

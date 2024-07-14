@@ -30,7 +30,7 @@ interface T3GameStateI {
     winner:  T3WinnerI,
 }
 
-type T3SquareStateI = T3PlayerI | null;
+type T3SquareStateI = T3PlayerI | null;              // interface of the contents (void or player) of the square in the game
 
 type T3WinnerI = null | {
     player: T3PlayerI,
@@ -66,7 +66,7 @@ export const T3Game: FC = () =>  {
      * @param moveID
      */
     const historyMoveHandler: T3HistoryHandlerI = (moveID: number): void => {
-        //TODO jump to move
+        jumpToMove(moveID);
     }
 
     /**
@@ -153,6 +153,16 @@ export const T3Game: FC = () =>  {
                 winner: calculateWinner(squares)  // we calculate the winner on each
             }])
         );
+    }
+
+    /**
+     * Jump to the game state by move number
+     * @param moveId
+     */
+    const jumpToMove = (moveId: number): void => {
+        if (getMoveID() !== moveId) {
+            setMove( moveId );
+        }
     }
 
     /**

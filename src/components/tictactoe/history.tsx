@@ -19,6 +19,7 @@ export const T3History: FC<T3HistoryPropsI> = (props) => {
     const { hasStartMove = false }: T3HistoryPropsI = props;
 
     const moveHandler: T3HistoryHandlerI = (id: number) => {
+        props.onClick(id);
     }
 
     /**
@@ -44,6 +45,7 @@ export const T3History: FC<T3HistoryPropsI> = (props) => {
         return (
             <T3DefaultMove key={0}
                            selected={props.currentMove === 0}
+                           onClick={moveHandler}
             />
         );
     };
