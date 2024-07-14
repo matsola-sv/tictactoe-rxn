@@ -12,10 +12,12 @@ export interface T3PlayerI {
 }
 
 interface T3GameStateI {
-    squareId: number | null,                         // current square id
-    squares: T3PlayerI[],                            // squares state
+    squareId: number | null,                              // current square id
+    squares: T3SquareStateI[],                            // squares state
     winner:  T3WinnerI,
 }
+
+type T3SquareStateI = T3PlayerI | null;
 
 type T3WinnerI = null | {
     player: T3PlayerI,
@@ -48,7 +50,7 @@ export const T3Game: FC = () =>  {
     /**
      * Get squares on current move or for the passed move
      */
-    const getSquares = (): T3PlayerI[] => {
+    const getSquares = (): T3SquareStateI[] => {
         return moveState.squares;
     }
 
@@ -56,14 +58,14 @@ export const T3Game: FC = () =>  {
      * Get the square value (player name or null) on current move
      * @param id
      */
-    const getSquare = (id: number) => {
+    const getSquare = (id: number): T3SquareStateI => {
         return getSquares()[id];
     }
 
     /**
      * Get current square ID on the current move
      */
-    const getCurrentSquareID = () => {
+    const getCurrentSquareID = (): number | null => {
         return moveState.squareId;
     }
 
@@ -123,7 +125,7 @@ export const T3Game: FC = () =>  {
      * Calculates the game winner on the field
      * @param squares
      */
-    const calculateWinner = (squares: T3PlayerI[]): T3WinnerI => {
+    const calculateWinner = (squares: T3SquareStateI[]): T3WinnerI => {
         const lines = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8],
             [0, 3, 6], [1, 4, 7], [2, 5, 8],
@@ -134,11 +136,11 @@ export const T3Game: FC = () =>  {
             const [a, b, c] = lines[i];
 
             if (squares[a] &&
-                squares[a].id === squares[b]?.id &&
-                squares[a].id === squares[c]?.id
+                squares[a]?.id === squares[b]?.id &&
+                squares[a]?.id === squares[c]?.id
             ) {
                 return {
-                    player: squares[a],
+                    player: squares[a] as T3PlayerI,
                     winnerLine: lines[i]
                 };
             }
