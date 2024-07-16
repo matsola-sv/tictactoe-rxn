@@ -1,6 +1,6 @@
 import React, {FC, ReactElement} from "react";
-import {T3BoardRow} from "./board/row";
-import {T3Square} from "./board/square";
+import T3BoardRow from "./board/Row";
+import T3Square from "./board/Square";
 
 export type T3SquareType = string | null;
 
@@ -16,7 +16,7 @@ export interface T3BoardPropsI {
     squares: T3SquareType[]
 }
 
-export const T3Board: FC<T3BoardPropsI> = (props) => {
+const T3Board: FC<T3BoardPropsI> = (props) => {
     // Default value of props
     const { selectedLine = [] } : T3BoardPropsI = props;
 
@@ -90,3 +90,5 @@ export const T3Board: FC<T3BoardPropsI> = (props) => {
         </div>
     );
 }
+
+export default T3Board;

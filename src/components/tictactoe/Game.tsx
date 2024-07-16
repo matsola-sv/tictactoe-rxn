@@ -1,11 +1,11 @@
 import {FC, ReactElement, useState} from "react";
 import '../../assets/css/TicTacToe.css';
 
-import {T3Board, T3BoardElHandlerI, T3SquareType} from "./board";
-import {T3NextMoveStatus} from "./game/status/nextMove";
-import {T3VictoryStatus} from "./game/status/victory";
-import {T3DrawStatus} from "./game/status/draw";
-import {T3History, T3HistoryHandlerI} from "./history";
+import T3Board, {T3BoardElHandlerI, T3SquareType} from "./Board";
+import T3NextMoveStatus from "./game/status/NextMove";
+import T3DrawStatus from "./game/status/Draw";
+import T3VictoryStatus from "./game/status/Victory";
+import T3History, {T3HistoryHandlerI} from "./History";
 
 /**
  * You can use the date as the id, but there is one plus in using the id as a sequence number:
@@ -37,7 +37,7 @@ type T3WinnerI = null | {
     winnerLine: number[]                             // [square1, square2, square3]
 };
 
-export const T3Game: FC = () =>  {
+const T3Game: FC = () =>  {
     const boardColumns: number = 3;                  // number of columns on the game board
     const players: T3PlayerI[] = [                   // player with the index (0) goes first
         { id: 1, name: "X" },
@@ -259,3 +259,4 @@ export const T3Game: FC = () =>  {
         </div>
     );
 }
+export default T3Game;

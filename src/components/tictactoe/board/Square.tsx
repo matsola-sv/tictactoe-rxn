@@ -12,7 +12,7 @@ export type T3SquareProps =  {
     onClick: T3SquareHandlerI
 };
 
-export const T3Square: FC<T3SquareProps> = (props) => {
+const T3Square: FC<T3SquareProps> = (props) => {
     const {
         content = null,
         selected = false,
@@ -48,3 +48,4 @@ export const T3Square: FC<T3SquareProps> = (props) => {
         </button>
     );
 }
+export default T3Square;

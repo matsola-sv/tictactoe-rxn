@@ -1,12 +1,12 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 
-import {Navigator} from "../components/common/navigator";
-import {NotFoundPage} from "../pages/errors/notFound";
-import {HomePage} from "../pages/home";
-import {GamesPage} from "../pages/games";
+import HomePage from "../pages/Home";
+import GamesPage from "../pages/Games";
+import NotFoundPage from "../pages/errors/NotFound";
+import Navigator from "../components/common/Navigator";
 
-export function AppRouter() {
+function AppRouter() {
     return (
         <BrowserRouter>
             <Navigator/>
@@ -18,3 +18,4 @@ export function AppRouter() {
         </BrowserRouter>
     );
 }
+export default AppRouter;

@@ -2,7 +2,7 @@ import {FC} from "react";
 import {Link} from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 
-export const Navigator: FC = () => {
+const Navigator: FC = () => {
     return (
         <nav className="menu">
             <ul className="horizontal">
@@ -12,3 +12,4 @@ export const Navigator: FC = () => {
         </nav>
     );
 }
+export default Navigator;

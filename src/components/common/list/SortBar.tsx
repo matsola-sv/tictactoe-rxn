@@ -1,5 +1,5 @@
 import {FC} from "react";
-import {SortTypes} from "./sortTypes";
+import {SortTypes} from "../../../utils/sort";
 
 export type SortBarHandlerI = {
     (order: SortTypes): void
@@ -12,7 +12,7 @@ interface SortBarProps {
     onSort: SortBarHandlerI
 }
 
-export const SortBar: FC<SortBarProps> = (props) => {
+const SortBar: FC<SortBarProps> = (props) => {
     const asc: SortTypes = SortTypes.Asc;
     const desc: SortTypes = SortTypes.Desc;
 
@@ -46,3 +46,4 @@ export const SortBar: FC<SortBarProps> = (props) => {
         </div>
     )
 }
+export default SortBar;

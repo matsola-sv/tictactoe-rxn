@@ -1,5 +1,5 @@
 import './assets/css/App.css';
-import {AppRouter} from "./routers/appRouter";
+import AppRouter from "./routers/AppRouter";
 
 function App() {
    return (
@@ -8,5 +8,4 @@ function App() {
         </div>
     );
 }
-
 export default App;

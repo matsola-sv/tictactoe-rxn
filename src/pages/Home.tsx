@@ -1,10 +1,10 @@
-import React from "react";
-import {T3Game} from "../components/tictactoe/game";
+import React, {FC} from "react";
 
-export function HomePage() {
+const HomePage: FC = () => {
     return (
         <React.Fragment>
             <div>Under development</div>
         </React.Fragment>
     );
 }
+export default HomePage;

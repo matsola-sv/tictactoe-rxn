@@ -5,10 +5,11 @@ export type T3BoardRowProps = {
     children?: ReactNode
 };
 
-export const T3BoardRow: FC<T3BoardRowProps> = ({squares = null, children}) => {
+const T3BoardRow: FC<T3BoardRowProps> = ({squares = null, children}) => {
     return (
         <div className="board-row">
             {squares ?? children}
         </div>
     );
 }
+export default T3BoardRow;

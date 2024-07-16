@@ -1,7 +1,6 @@
 import {FC} from "react";
-
-import {T3PlayerI} from "../game";
-import {T3HistoryHandlerI} from "../history";
+import {T3PlayerI} from "../Game";
+import {T3HistoryHandlerI} from "../History";
 
 export interface T3MovePropsI {
     id: number,
@@ -12,7 +11,7 @@ export interface T3MovePropsI {
     onClick: T3HistoryHandlerI
 }
 
-export const T3HistoryMove: FC<T3MovePropsI> = (props) => {
+const T3HistoryMove: FC<T3MovePropsI> = (props) => {
     // Set default props
     const { squareID, selected = false } = props;
 
@@ -46,3 +45,4 @@ export const T3HistoryMove: FC<T3MovePropsI> = (props) => {
         </li>
     );
 }
+export default T3HistoryMove;

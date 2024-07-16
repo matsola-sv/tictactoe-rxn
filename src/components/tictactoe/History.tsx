@@ -1,9 +1,10 @@
 import {FC, ReactElement, useState} from "react";
-import {T3GameMoveI as T3MoveI} from "./game";
-import {T3HistoryMove} from "./history/move";
-import {T3HistoryDefaultMove as T3DefaultMove} from "./history/defaultMove";
-import {SortTypes} from "../common/list/sortTypes";
-import {SortBar, SortBarHandlerI} from "../common/list/sortBar";
+import {SortTypes} from "../../utils/sort";
+
+import {T3GameMoveI as T3MoveI} from "./Game";
+import T3HistoryMove from "./history/Move";
+import T3HistoryDefaultMove from "./history/DefaultMove";
+import SortBar, {SortBarHandlerI} from "../common/list/SortBar";
 
 export type T3HistoryHandlerI = {
     (moveID: number): void
@@ -16,7 +17,7 @@ export interface T3HistoryPropsI {
     onClick: T3HistoryHandlerI
 }
 
-export const T3History: FC<T3HistoryPropsI> = (props) => {
+const T3History: FC<T3HistoryPropsI> = (props) => {
     // Set default props
     const { hasStartMove = false }: T3HistoryPropsI = props;
 
@@ -61,9 +62,9 @@ export const T3History: FC<T3HistoryPropsI> = (props) => {
      */
     const renderDefaultMove = (): ReactElement => {
         return (
-            <T3DefaultMove key={0}
-                           selected={props.currentMove === 0}
-                           onClick={moveHandler}
+            <T3HistoryDefaultMove key={0}
+                                  selected={props.currentMove === 0}
+                                  onClick={moveHandler}
             />
         );
     };
@@ -99,3 +100,4 @@ export const T3History: FC<T3HistoryPropsI> = (props) => {
         </div>
     )
 }
+export default T3History;

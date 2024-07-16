@@ -1,6 +1,7 @@
 import {useNavigate} from "react-router-dom";
+import {FC} from "react";
 
-export const BackButton = () => {
+const BackButton: FC = () => {
     const navigator = useNavigate();
     const backHandler = () => navigator(-1);
 
@@ -12,3 +13,4 @@ export const BackButton = () => {
         </button>
     );
 };
+export default BackButton;
