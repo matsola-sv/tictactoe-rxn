@@ -3,7 +3,6 @@ import T3BoardRow from "./board/Row";
 import T3Square from "./board/Square";
 
 export type T3SquareType = string | null;
-
 export type T3BoardElHandlerI = {
     (squareID: number): void
 }
