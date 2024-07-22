@@ -1,8 +1,8 @@
 import {FC} from "react";
-import {T3PlayerI} from "../../Game";
+import {PlayerI} from "../../../../models/player";
 
 type T3VictoryStatusProps = {
-    player: T3PlayerI
+    player: PlayerI
 }
 
 const T3VictoryStatus: FC<T3VictoryStatusProps> = (props) => {

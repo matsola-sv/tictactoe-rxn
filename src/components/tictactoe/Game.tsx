@@ -1,16 +1,12 @@
-import {FC, ReactElement, useMemo, useState} from "react";
+import {FC, ReactElement, useEffect, useMemo, useState} from "react";
 import '../../assets/css/TicTacToe.css';
 
+import {PlayerI} from "../../models/player";
 import T3Board, {T3BoardElHandlerI, T3SquareType} from "./Board";
 import T3History, {T3HistoryHandlerI, T3HistoryMoveI} from "./History";
 import T3NextMoveStatus from "./game/status/NextMove";
 import T3DrawStatus from "./game/status/Draw";
 import T3VictoryStatus from "./game/status/Victory";
-
-export interface T3PlayerI {
-    id: number,
-    name: string
-}
 
 export interface T3GameProps {
     gameState?: T3GameStateI | null
@@ -29,16 +25,16 @@ interface T3GameMoveI {
 }
 
 interface T3WinnerI {
-    player: T3PlayerI,
+    player: PlayerI,
     winnerLine: number[]
 }
 
-type T3SquareState = T3PlayerI | null;
+type T3SquareState = PlayerI | null;
 type T3WinnerIState = T3WinnerI | null;
 
 const T3Game: FC = () =>  {
     const boardColumns: number = 3;                  // number of columns on the game board
-    const players: T3PlayerI[] = [                   // player with the index (0) goes first
+    const players: PlayerI[] = [                   // player with the index (0) goes first
         { id: 1, name: "X" },
         { id: 2, name: "O" }
     ];
@@ -51,7 +47,7 @@ const T3Game: FC = () =>  {
 
     const [move, setMove] = useState<number>(0);                                    // current move number
     const [moveHistory, setMoveHistory] = useState<T3GameMoveI[]>([defaultMove]);
-
+    const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);     // required to cache the move history render
 
     /**
      * Element selection handler on the board
@@ -117,7 +113,7 @@ const T3Game: FC = () =>  {
     /**
      * Get player name on the current move
      */
-    const getPlayer = (): T3PlayerI => {
+    const getPlayer = (): PlayerI => {
         return getMoveID() %2 === 0 ?
             players[0] : players[1];
     }
@@ -145,6 +141,7 @@ const T3Game: FC = () =>  {
 
         // Update state game
         setMove(nextMove);                        // update current move number. Will be needed for move history
+        setNumberMoves(history.length + 1);       // used to cache the move history render
         setMoveHistory(                           // add the state of the step to the game history
             history.concat([{
                 date: new Date(),
@@ -184,7 +181,7 @@ const T3Game: FC = () =>  {
                 squares[a]?.id === squares[c]?.id
             ) {
                 return {
-                    player: squares[a] as T3PlayerI,
+                    player: squares[a] as PlayerI,
                     winnerLine: lines[i]
                 };
             }
@@ -246,8 +243,10 @@ const T3Game: FC = () =>  {
     const squaresDisplay = useMemo<T3SquareType[]>(
         prepareSquaresDisplay, [moveHistory, move]
     );
+
+    // Rerender only when the number of moves changes
     const historyDisplay = useMemo<T3HistoryMoveI[]>(
-        prepareHistoryDisplay, [moveHistory, move]
+        prepareHistoryDisplay, [numberMoves]
     );
 
     return (

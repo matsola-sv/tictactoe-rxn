@@ -1,4 +1,4 @@
-import {FC, ReactElement, useState} from "react";
+import {FC, ReactElement, useMemo, useState} from "react";
 import {SortTypes} from "../../utils/sort";
 
 import T3HistoryMove from "./history/Move";
@@ -88,8 +88,13 @@ const T3History: FC<T3HistoryPropsI> = (props) => {
             );
     };
 
+    // We sort when changing the list or sorting method
+    const sortedItems = useMemo<T3HistoryMoveI[]>(
+        getSortedMoves, [sortOrder, props.moves]
+    );
+
     // Render list history moves
-    const moves: ReactElement[] = getSortedMoves()
+    const moves: ReactElement[] = sortedItems
         .map(move => !move.id && hasStartMove ?
             renderDefaultMove() :
             renderMove(move)

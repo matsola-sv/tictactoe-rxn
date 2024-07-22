@@ -1,5 +1,4 @@
 import {FC} from "react";
-import {T3PlayerI} from "../Game";
 import {T3HistoryHandlerI} from "../History";
 
 export interface T3MovePropsI {

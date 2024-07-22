@@ -1,8 +1,8 @@
 import React, {FC} from "react";
-import {T3PlayerI} from "../../Game";
+import {PlayerI} from "../../../../models/player";
 
 type NextStatusPropsI = {
-    player: T3PlayerI
+    player: PlayerI
 }
 
 const T3NextMoveStatus: FC<NextStatusPropsI> = (props) => {
