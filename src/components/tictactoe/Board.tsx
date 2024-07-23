@@ -79,7 +79,6 @@ const T3Board: FC<T3BoardPropsI> = (props) => {
             }
             step--;
         });
-
         return rows;
     }
 

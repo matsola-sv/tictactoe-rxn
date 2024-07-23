@@ -1,0 +1,101 @@
+{
+	"states": [
+		{
+			"activeMove": 3,
+			"history": [
+				{
+					"date": 1721685694625,
+					"squareID": null,
+					"squares": [null, null, null, null, null, null, null, null, null],
+					"winner": null
+				},
+				{
+					"date": 1721685695891,
+					"squareID": 7,
+					"squares": [null, null, null, null, null, null, null,{"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"date": 1721685696250,
+					"squareID": 6,
+					"squares": [null, null, null, null, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"date": 1721685696664,
+					"squareID": 3,
+					"squares": [null, null, null, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				}
+			]
+		},
+		{
+			"activeMove": 9,
+			"history": [
+				{
+					"date": 1721685694625,
+					"squareID": null,
+					"squares": [null, null, null, null, null, null, null, null, null],
+					"winner": null
+				},
+				{
+					"date": 1721685695891,
+					"squareID": 7,
+					"squares": [null, null, null, null, null, null, null,{"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"date": 1721685696250,
+					"squareID": 6,
+					"squares": [null, null, null, null, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"date": 1721685696664,
+					"squareID": 3,
+					"squares": [null, null, null, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"date": 1721685708694,
+					"squareID": 0,
+					"squares": [{ "id": 2,"name": "O"}, null, null, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"date": 1721685709072,
+					"squareID": 2,
+					"squares": [{ "id": 2,"name": "O"}, null, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"date": 1721685709406,
+					"squareID": 8,
+					"squares": [{ "id": 2,"name": "O"}, null, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, {"id": 2,"name": "O"}],
+					"winner": null
+				},
+				{
+					"date": 1721685709782,
+					"squareID": 5,
+					"squares": [{ "id": 2,"name": "O"}, null, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, null, {"id": 1,"name": "X"}, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, {"id": 2,"name": "O"}],
+					"winner": null
+				},
+				{
+					"date": 1721685710120,
+					"squareID": 1,
+					"squares": [{ "id": 2,"name": "O"}, { "id": 2,"name": "O"}, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, null, {"id": 1,"name": "X"}, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, {"id": 2,"name": "O"}],
+					"winner": null
+				},
+				{
+					"date": 1721685710526,
+					"squareID": 4,
+					"squares": [{ "id": 2,"name": "O"}, { "id": 2,"name": "O"}, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, {"id": 2,"name": "O"}],
+					"winner": {
+						"player": { "id": 1, "name": "X" },
+						"winnerLine": [ 3, 4, 5 ]
+					}
+				}
+			]
+		}
+	]
+}

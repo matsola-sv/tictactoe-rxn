@@ -12,16 +12,16 @@ export interface T3GameProps {
     gameState?: T3GameStateI | null
 }
 
-interface T3GameStateI {
+export interface T3GameStateI {
     history: T3GameMoveI[]
-    activeMove: number                     // number of the current move. Default = 0
+    activeMove: number                              // number of the current move. Default = 0
 }
 
 interface T3GameMoveI {
-    date: Date                             // the timestamp when the move occurred
-    squares: T3SquareState[]               // the state of the squares on the current move
-    squareID: number | null		           // in which square the move is made (ID). You can find out who made the move squares[squareID]
-    winner: T3WinnerIState                 // game winner if there is one
+    date: number                                    // the timestamp when the move occurred
+    squares: T3SquareState[]                        // the state of the squares on the current move
+    squareID: number | null		                    // in which square the move is made (ID). You can find out who made the move squares[squareID]
+    winner: T3WinnerIState                          // game winner if there is one
 }
 
 interface T3WinnerI {
@@ -32,22 +32,40 @@ interface T3WinnerI {
 type T3SquareState = PlayerI | null;
 type T3WinnerIState = T3WinnerI | null;
 
-const T3Game: FC = () =>  {
+const T3Game: FC<T3GameProps> = (props) =>  {
     const boardColumns: number = 3;                  // number of columns on the game board
-    const players: PlayerI[] = [                   // player with the index (0) goes first
+    const players: PlayerI[] = [                     // player with the index (0) goes first
         { id: 1, name: "X" },
         { id: 2, name: "O" }
     ];
     const defaultMove: T3GameMoveI = {
-        date: new Date(),                            // the date of the move
+        date: Date.now(),                            // the date of the move
         squareID: null,                              // current square id
         squares: Array(9).fill(null),                // list of squares and moves in them
         winner: null
     };
 
-    const [move, setMove] = useState<number>(0);                                    // current move number
-    const [moveHistory, setMoveHistory] = useState<T3GameMoveI[]>([defaultMove]);
-    const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);     // required to cache the move history render
+    /**
+     * Returned the passed or the default state
+     */
+    const loadedState: T3GameStateI = useMemo(() => {
+        return props?.gameState ?? {
+            history: [defaultMove], activeMove: 0
+        }
+    }, [props.gameState]);
+
+    const [move, setMove] = useState<number>(loadedState.activeMove);                       // current move number
+    const [moveHistory, setMoveHistory] = useState<T3GameMoveI[]>(loadedState.history);
+    const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);             // required to cache the move history render
+
+    /**
+     * Update game states
+     */
+    useEffect(() => {
+        setMove(loadedState.activeMove);
+        setMoveHistory(loadedState.history);
+        setNumberMoves(loadedState.history.length);
+    }, [props.gameState]);
 
     /**
      * Element selection handler on the board
@@ -144,7 +162,7 @@ const T3Game: FC = () =>  {
         setNumberMoves(history.length + 1);       // used to cache the move history render
         setMoveHistory(                           // add the state of the step to the game history
             history.concat([{
-                date: new Date(),
+                date: Date.now(),
                 squareID: squareID,
                 squares: squares,
                 winner: calculateWinner(squares)  // we calculate the winner on each
@@ -234,7 +252,7 @@ const T3Game: FC = () =>  {
         return getHistory()
             .map((move, index) => Object.assign({
                 id: index,
-                date: move.date,
+                date: new Date(move.date),
                 squareID: move.squareID
             }));
     };
