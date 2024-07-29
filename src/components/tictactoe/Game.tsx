@@ -13,15 +13,15 @@ export interface T3GameProps {
 }
 
 export interface T3GameStateI {
-    history: T3GameMoveI[]
+    history: T3GameMoveI[],
     activeMove: number                              // number of the current move. Default = 0
 }
 
 interface T3GameMoveI {
-    date: number                                    // the timestamp when the move occurred
-    squares: T3SquareState[]                        // the state of the squares on the current move
-    squareID: number | null		                    // in which square the move is made (ID). You can find out who made the move squares[squareID]
-    winner: T3WinnerIState                          // game winner if there is one
+    date: number,                                   // the timestamp when the move occurred
+    squares: T3SquareState[],                       // the state of the squares on the current move
+    squareID: number | null,		                // in which square the move is made (ID). You can find out who made the move squares[squareID]
+    winner: T3WinnerState                           // game winner if there is one
 }
 
 interface T3WinnerI {
@@ -30,7 +30,7 @@ interface T3WinnerI {
 }
 
 type T3SquareState = PlayerI | null;
-type T3WinnerIState = T3WinnerI | null;
+type T3WinnerState = T3WinnerI | null;
 
 const T3Game: FC<T3GameProps> = (props) =>  {
     const boardColumns: number = 3;                  // number of columns on the game board
@@ -139,7 +139,7 @@ const T3Game: FC<T3GameProps> = (props) =>  {
     /**
      * Return the winner data or null from the game state
      */
-    const getWinner = (): T3WinnerIState => {
+    const getWinner = (): T3WinnerState => {
         return getMove().winner;
     }
 
@@ -184,7 +184,7 @@ const T3Game: FC<T3GameProps> = (props) =>  {
      * Calculates the game winner on the field
      * @param squares
      */
-    const calculateWinner = (squares: T3SquareState[]): T3WinnerIState => {
+    const calculateWinner = (squares: T3SquareState[]): T3WinnerState => {
         const lines = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8],
             [0, 3, 6], [1, 4, 7], [2, 5, 8],

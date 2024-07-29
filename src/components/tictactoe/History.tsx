@@ -8,7 +8,7 @@ import SortBar, {SortBarHandlerI} from "../common/list/SortBar";
 export interface T3HistoryMoveI {
     id: number,
     date: Date,
-    squareID: number,
+    squareID: number
 }
 
 export type T3HistoryHandlerI = {
