@@ -37,14 +37,30 @@ const useStopwatch = (config: StopwatchConfig): StopwatchResult => {
     }, [isActive]);
 
     /**
+     * Changes the timer activity if the new value is different from the old one.
+     * If force = true, then the activity is necessarily updated
+     * @param newActivity
+     * @param force
+     */
+    const updateActivity = (newActivity: boolean, force: boolean = false): void => {
+        if (force || isActive !== newActivity) {
+            setIsActive(newActivity);
+        }
+    }
+
+    /**
      * To be called to start/resume stopwatch
      */
-    const start = (): void => setIsActive(true);
+    const start = (): void => {
+        updateActivity(true);
+    };
 
     /**
      * To be called to pause stopwatch
      */
-    const pause = (): void => setIsActive(false);
+    const pause = (): void => {
+        updateActivity(false);
+    }
 
     /**
      * To reset stopwatch to 0:0:0 (h:m:s) or use to reset stopwatch with offset of times
@@ -54,7 +70,7 @@ const useStopwatch = (config: StopwatchConfig): StopwatchResult => {
      * @param offsetMills
      */
     const reset = (autoRestart: boolean = false, offsetMills = 0): void => {
-        setIsActive(autoRestart);
+        updateActivity(autoRestart, true);
         setSecondsStamp(offsetMills / 1000);
     };
 
