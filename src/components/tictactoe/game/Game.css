@@ -1,0 +1,49 @@
+#t3-game {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+}
+
+ol, ul {
+    padding-left: 30px;
+}
+
+.game {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.status {
+    margin-bottom: 10px;
+}
+
+
+.game-info {
+    margin-left: 20px;
+    border: 1px solid;
+    width: 300px;
+}
+
+.game-info .status {
+    width: 100%;
+    padding: 2px 0;
+}
+
+.game-info .status .text {
+    text-align: center;
+}
+
+.status .victory {
+    background-color: #c2fbd7;
+    color: green;
+}
+
+.status .draw {
+    background-color: #6E6D70;
+    color: #DFDEDF;
+}
+
+.status .next {
+    background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+    color: #FFFFFF;
+}

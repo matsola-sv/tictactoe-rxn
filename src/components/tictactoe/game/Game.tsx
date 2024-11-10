@@ -1,12 +1,16 @@
 import {FC, ReactElement, useEffect, useMemo, useState} from "react";
-import '../../assets/css/TicTacToe.css';
 
-import {PlayerI} from "../../models/player";
-import T3Board, {T3BoardElHandlerI, T3SquareType} from "./Board";
-import T3History, {T3HistoryHandlerI, T3HistoryMoveI} from "./History";
-import T3NextMoveStatus from "./game/status/NextMove";
-import T3DrawStatus from "./game/status/Draw";
-import T3VictoryStatus from "./game/status/Victory";
+import {PlayerI} from "../../../models/player";
+
+import T3Board, {T3BoardElHandlerI, T3SquareType} from "../Board/Board";
+import T3History, {T3HistoryHandlerI, T3HistoryMoveI} from "../History/History";
+import T3NextMoveStatus from "./Status/NextMove";
+import T3DrawStatus from "./Status/Draw";
+import T3VictoryStatus from "./Status/Victory";
+
+import './Game.css';
+
+//import '../../../assets/css/TicTacToe.css';
 
 export interface T3GameProps {
     gameState?: T3GameStateI | null
@@ -21,7 +25,7 @@ interface T3GameMoveI {
     date: number,                                   // the timestamp when the move occurred
     squares: T3SquareState[],                       // the state of the squares on the current move
     squareID: number | null,		                // in which square the move is made (ID). You can find out who made the move squares[squareID]
-    winner: T3WinnerState                           // game winner if there is one
+    winner: T3WinnerState                           // Game winner if there is one
 }
 
 interface T3WinnerI {
@@ -33,7 +37,7 @@ type T3SquareState = PlayerI | null;
 type T3WinnerState = T3WinnerI | null;
 
 const T3Game: FC<T3GameProps> = (props) =>  {
-    const boardColumns: number = 3;                  // number of columns on the game board
+    const boardColumns: number = 3;                  // number of columns on the Game Board
     const players: PlayerI[] = [                     // player with the index (0) goes first
         { id: 1, name: "X" },
         { id: 2, name: "O" }
@@ -41,7 +45,7 @@ const T3Game: FC<T3GameProps> = (props) =>  {
     const defaultMove: T3GameMoveI = {
         date: Date.now(),                            // the date of the move
         squareID: null,                              // current square id
-        squares: Array(9).fill(null),                // list of squares and moves in them
+        squares: Array(9).fill(null),                // List of squares and moves in them
         winner: null
     };
 
@@ -56,10 +60,10 @@ const T3Game: FC<T3GameProps> = (props) =>  {
 
     const [move, setMove] = useState<number>(loadedState.activeMove);                       // current move number
     const [moveHistory, setMoveHistory] = useState<T3GameMoveI[]>(loadedState.history);
-    const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);             // required to cache the move history render
+    const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);             // required to cache the move History render
 
     /**
-     * Update game states
+     * Update Game states
      */
     useEffect(() => {
         setMove(loadedState.activeMove);
@@ -68,7 +72,7 @@ const T3Game: FC<T3GameProps> = (props) =>  {
     }, [props.gameState]);
 
     /**
-     * Element selection handler on the board
+     * Element selection handler on the Board
      * This syntax provides binding `this` inside
      * @param squareID
      */
@@ -84,7 +88,7 @@ const T3Game: FC<T3GameProps> = (props) =>  {
     }
 
     /**
-     * Get moves history
+     * Get moves History
      */
     const getHistory = (): T3GameMoveI[] => {
         return moveHistory;
@@ -99,7 +103,7 @@ const T3Game: FC<T3GameProps> = (props) =>  {
     }
 
     /**
-     * Return game state of the current move
+     * Return Game state of the current move
      */
     const getMove = (): T3GameMoveI => {
         return getHistory()[getMoveID()]
@@ -137,7 +141,7 @@ const T3Game: FC<T3GameProps> = (props) =>  {
     }
 
     /**
-     * Return the winner data or null from the game state
+     * Return the winner data or null from the Game state
      */
     const getWinner = (): T3WinnerState => {
         return getMove().winner;
@@ -151,16 +155,16 @@ const T3Game: FC<T3GameProps> = (props) =>  {
             return;
         }
 
-        // Overwrite the history to the current move (including)
+        // Overwrite the History to the current move (including)
         let nextMove = getMoveID() + 1;
         let history = getHistory().slice(0, nextMove);
         let squares = getSquares().slice();
         squares[squareID] = getPlayer();
 
-        // Update state game
-        setMove(nextMove);                        // update current move number. Will be needed for move history
-        setNumberMoves(history.length + 1);       // used to cache the move history render
-        setMoveHistory(                           // add the state of the step to the game history
+        // Update state Game
+        setMove(nextMove);                        // update current move number. Will be needed for move History
+        setNumberMoves(history.length + 1);       // used to cache the move History render
+        setMoveHistory(                           // add the state of the step to the Game History
             history.concat([{
                 date: Date.now(),
                 squareID: squareID,
@@ -171,7 +175,7 @@ const T3Game: FC<T3GameProps> = (props) =>  {
     }
 
     /**
-     * Jump to the game state by move number
+     * Jump to the Game state by move number
      * @param moveId
      */
     const jumpToMove = (moveId: number): void => {
@@ -181,7 +185,7 @@ const T3Game: FC<T3GameProps> = (props) =>  {
     }
 
     /**
-     * Calculates the game winner on the field
+     * Calculates the Game winner on the field
      * @param squares
      */
     const calculateWinner = (squares: T3SquareState[]): T3WinnerState => {
@@ -208,7 +212,7 @@ const T3Game: FC<T3GameProps> = (props) =>  {
     }
 
     /**
-     * The status of the game on the current move changes when moving through the history of moves
+     * The Status of the Game on the current move changes when moving through the History of moves
      */
     const renderStatus = (): ReactElement => {
         if (checkDraw()) {
@@ -223,11 +227,11 @@ const T3Game: FC<T3GameProps> = (props) =>  {
 
     /**
      * Checks if there is currently a draw
-     * The game status changes when moving through the history of moves
+     * The Game Status changes when moving through the History of moves
      */
     const checkDraw = (): boolean => {
         // moves end when current move-id(from 0-9) == the number of all squares on the field (9)
-        // there may be only 10 moves, but we moved history to current move(2), so moves won't be finished
+        // there may be only 10 moves, but we moved History to current move(2), so moves won't be finished
         const movesEnded: boolean = getSquares().length
             === getMoveID();
 
@@ -246,7 +250,7 @@ const T3Game: FC<T3GameProps> = (props) =>  {
     }
 
     /*
-    * Prepare the state of history moves for display
+    * Prepare the state of History moves for display
     */
     const prepareHistoryDisplay: () => T3HistoryMoveI[] = () => {
         return getHistory()
@@ -257,7 +261,7 @@ const T3Game: FC<T3GameProps> = (props) =>  {
             }));
     };
 
-    // Data for display is cached and updates when the state changes (moves history, current move)
+    // Data for display is cached and updates when the state changes (moves History, current move)
     const squaresDisplay = useMemo<T3SquareType[]>(
         prepareSquaresDisplay, [moveHistory, move]
     );

@@ -1,4 +1,5 @@
-import React, { FC, ReactElement, ReactNode } from "react";
+import React, {FC, ReactElement, ReactNode} from "react";
+import './Row.css';
 
 export type T3BoardRowProps = {
     squares?: ReactElement[],

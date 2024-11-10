@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from "react";
-import T3Game, {T3GameStateI} from "../components/tictactoe/Game";
+import T3Game, {T3GameStateI} from "../components/Tictactoe/Game/Game";
 import {T3Storage} from "../services/tictactoe/storage";
-import Preloader from "../components/common/Preloader";
+import Preloader from "../components/Common/Preloader/Preloader";
 
 const GamesPage: FC = () => {
     const gameID: number = 1; // Temp
@@ -9,7 +9,7 @@ const GamesPage: FC = () => {
 
     const [gameState, setGameState] = useState<T3GameStateI>();
 
-    // Loading game state only once
+    // Loading Game state only once
     useEffect(() => {
         storageService.getLastState(gameID)
             .then(lastGame => {

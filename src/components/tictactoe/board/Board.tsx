@@ -1,6 +1,6 @@
 import React, {FC, ReactElement} from "react";
-import T3BoardRow from "./board/Row";
-import T3Square from "./board/Square";
+import T3BoardRow from "./Row/Row";
+import T3Square from "./Square/Square";
 
 export type T3SquareType = string | null;
 export type T3BoardElHandlerI = {
@@ -28,7 +28,7 @@ const T3Board: FC<T3BoardPropsI> = (props) => {
     }
 
     /**
-     * Render square of the playing board
+     * Render square of the playing Board
      * @param id
      */
     const renderSquare = (id: number): ReactElement => {
@@ -58,7 +58,7 @@ const T3Board: FC<T3BoardPropsI> = (props) => {
     }
 
     /**
-     * Render all rows of the playing board
+     * Render all rows of the playing Board
      */
     const renderRows = (): ReactElement[] => {
         let rows: ReactElement[] = [];

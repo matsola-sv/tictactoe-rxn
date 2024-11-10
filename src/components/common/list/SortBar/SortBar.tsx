@@ -1,5 +1,6 @@
 import {FC} from "react";
-import {SortTypes} from "../../../utils/sort";
+import {SortTypes} from "../../../../utils/sort";
+import './SortBar.css';
 
 export type SortBarHandlerI = {
     (order: SortTypes): void

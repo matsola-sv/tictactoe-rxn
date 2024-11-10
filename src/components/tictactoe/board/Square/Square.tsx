@@ -1,4 +1,5 @@
-import React, {FC, ReactElement, FormEvent} from "react";
+import React, {FC, FormEvent, ReactElement} from "react";
+import './Square.css';
 
 export type T3SquareHandlerI = {
     (event: React.FormEvent): void

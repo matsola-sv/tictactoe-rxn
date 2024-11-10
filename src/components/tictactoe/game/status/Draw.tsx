@@ -6,7 +6,7 @@ type T3DrawStatusProps = {
 
 const T3DrawStatus: FC<T3DrawStatusProps> = (props) => {
     const {
-        value = "Draw in tic-tac-toe game"
+        value = "Draw in tic-tac-toe Game"
     }: T3DrawStatusProps = props;
 
     return (

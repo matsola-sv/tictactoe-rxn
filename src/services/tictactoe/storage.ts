@@ -1,10 +1,10 @@
-import {T3GameStateI} from "../../components/tictactoe/Game";
+import {T3GameStateI} from "../../components/Tictactoe/Game/Game";
 
 export class T3Storage {
     protected readonly sourceUrl = "/database/t3Storage.json";
 
     /**
-     * Get all states of a specific game
+     * Get all states of a specific Game
      * @param gameID
      */
     public getStates(gameID: number): Promise<T3GameStateI[]> {
@@ -14,7 +14,7 @@ export class T3Storage {
     }
 
     /**
-     * Get the last state of the game
+     * Get the last state of the Game
      * @param gameID
      */
     public getLastState(gameID: number): Promise<T3GameStateI> {

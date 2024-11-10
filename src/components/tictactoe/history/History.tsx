@@ -1,9 +1,11 @@
 import {FC, ReactElement, useMemo, useState} from "react";
-import {SortTypes} from "../../utils/sort";
+import {SortTypes} from "../../../utils/sort";
 
-import T3HistoryMove from "./history/Move";
-import T3HistoryDefaultMove from "./history/DefaultMove";
-import SortBar, {SortBarHandlerI} from "../common/list/SortBar";
+import T3HistoryMove from "./Move/Move";
+import T3HistoryDefaultMove from "./DefaultMove/DefaultMove";
+import SortBar, {SortBarHandlerI} from "../../Common/List/SortBar/SortBar";
+
+import './History.css';
 
 export interface T3HistoryMoveI {
     id: number,
@@ -16,7 +18,7 @@ export type T3HistoryHandlerI = {
 }
 
 export interface T3HistoryPropsI {
-    hasStartMove?: boolean,             // start of game without player moves
+    hasStartMove?: boolean,             // start of Game without player moves
     currentMove: number,
     moves: T3HistoryMoveI[],
     onClick: T3HistoryHandlerI
@@ -29,7 +31,7 @@ const T3History: FC<T3HistoryPropsI> = (props) => {
     const [sortOrder, setSortOrder] = useState<SortTypes>(SortTypes.Asc);
 
     /**
-     * Handler on change the history move
+     * Handler on change the History move
      * @param id
      */
     const moveHandler: T3HistoryHandlerI = (id: number) => {
@@ -62,7 +64,7 @@ const T3History: FC<T3HistoryPropsI> = (props) => {
     };
 
     /**
-     * Start of the game, players haven't yet walked
+     * Start of the Game, players haven't yet walked
      */
     const renderDefaultMove = (): ReactElement => {
         return (
@@ -74,7 +76,7 @@ const T3History: FC<T3HistoryPropsI> = (props) => {
     };
 
     /**
-     * Returns a sorted history of moves
+     * Returns a sorted History of moves
      */
     const getSortedMoves = (): T3HistoryMoveI[] => {
         let asc = (prev: T3HistoryMoveI, next: T3HistoryMoveI) =>
@@ -88,12 +90,12 @@ const T3History: FC<T3HistoryPropsI> = (props) => {
             );
     };
 
-    // We sort when changing the list or sorting method
+    // We sort when changing the List or sorting method
     const sortedItems = useMemo<T3HistoryMoveI[]>(
         getSortedMoves, [sortOrder, props.moves]
     );
 
-    // Render list history moves
+    // Render List History moves
     const moves: ReactElement[] = sortedItems
         .map(move => !move.id && hasStartMove ?
             renderDefaultMove() :
