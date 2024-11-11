@@ -10,8 +10,6 @@ import T3VictoryStatus from "./Status/Victory";
 
 import './Game.css';
 
-//import '../../../assets/css/TicTacToe.css';
-
 export interface T3GameProps {
     gameState?: T3GameStateI | null
 }

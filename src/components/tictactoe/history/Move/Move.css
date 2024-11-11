@@ -1,0 +1,8 @@
+.move-id {
+    display: inline-block;
+    background-color: #911414;
+    color: yellow;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin: 0 5px 0 2px;
+}

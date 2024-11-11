@@ -1,5 +1,7 @@
 import {FC} from "react";
 import {T3HistoryHandlerI} from "../History";
+import './Move.css';
+
 
 export interface T3MovePropsI {
     id: number,
