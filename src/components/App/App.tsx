@@ -1,8 +1,9 @@
+import {FC} from "react";
 import AppRouter from "../../routers/AppRouter";
 import './App.css';
 
-function App() {
-   return (
+const App: FC = () => {
+    return (
         <div className="App">
             <AppRouter/>
         </div>

@@ -2,9 +2,9 @@ import React, {FC} from "react";
 
 const HomePage: FC = () => {
     return (
-        <React.Fragment>
+        <div>
             <div>Under development</div>
-        </React.Fragment>
+        </div>
     );
 }
 export default HomePage;
