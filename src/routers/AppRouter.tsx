@@ -8,7 +8,12 @@ import Navigator from "../components/Common/Navigator/Navigator";
 
 function AppRouter() {
     return (
-        <BrowserRouter>
+        <BrowserRouter
+            future={{
+                v7_startTransition: true,   // Enables React`s transition API for Router v7
+                v7_relativeSplatPath: true  // Updates relative path behavior for splat routes (*)
+            }}
+        >
             <Navigator/>
             <Routes>
                 <Route path="*" element={<NotFoundPage/>}/>
