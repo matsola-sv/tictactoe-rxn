@@ -2,12 +2,12 @@ import {FC, ReactElement, useMemo, useState} from "react";
 import {useDispatch} from "react-redux";
 
 import {PlayerI} from "../../../models/player";
-import {T3GameMoveI, T3GameStateI, T3SquareState, T3WinnerState} from "../../../models/tictactoe/game";
+import {GameMoveI, GameStateI, SquareState, WinnerState} from "../../../models/tictactoe/game";
 import {updateCurrentMove, updateHistoryMove} from "../../../redux/tictactoe/game/gameSlice";
 import {AppDispatch} from "../../../redux/store";
 
 import T3Board, {T3BoardElHandlerI, T3SquareType} from "../Board/Board";
-import T3History, {T3HistoryMoveI} from "../History/History";
+import T3History, {HistoryMoveI} from "../History/History";
 import T3NextMoveStatus from "./Status/NextMove";
 import T3DrawStatus from "./Status/Draw";
 import T3VictoryStatus from "./Status/Victory";
@@ -15,7 +15,7 @@ import T3VictoryStatus from "./Status/Victory";
 import './Game.css';
 
 export interface T3GamePropsI {
-    gameState: T3GameStateI
+    gameState: GameStateI
 }
 
 const T3Game: FC<T3GamePropsI> = ({gameState}) =>  {
@@ -38,7 +38,7 @@ const T3Game: FC<T3GamePropsI> = ({gameState}) =>  {
     /**
      * Get moves History
      */
-    const getHistory = (): T3GameMoveI[] => {
+    const getHistory = (): GameMoveI[] => {
         return moveHistory;
     }
 
@@ -53,14 +53,14 @@ const T3Game: FC<T3GamePropsI> = ({gameState}) =>  {
     /**
      * Return Game state of the current move
      */
-    const getMove = (): T3GameMoveI => {
+    const getMove = (): GameMoveI => {
         return getHistory()[getMoveID()]
     }
 
     /**
      * Get squares on current move or for the passed move
      */
-    const getSquares = (move?: T3GameMoveI): T3SquareState[] => {
+    const getSquares = (move?: GameMoveI): SquareState[] => {
         return (move ?? getMove())
             .squares;
     }
@@ -69,7 +69,7 @@ const T3Game: FC<T3GamePropsI> = ({gameState}) =>  {
      * Get the square value (player name or null) on current move
      * @param id
      */
-    const getSquare = (id: number): T3SquareState => {
+    const getSquare = (id: number): SquareState => {
         return getSquares()[id];
     }
 
@@ -92,7 +92,7 @@ const T3Game: FC<T3GamePropsI> = ({gameState}) =>  {
     /**
      * Return the winner data or null from the Game state
      */
-    const getWinner = (): T3WinnerState => {
+    const getWinner = (): WinnerState => {
         return getMove().winner;
     }
 
@@ -127,7 +127,7 @@ const T3Game: FC<T3GamePropsI> = ({gameState}) =>  {
      * Calculates the Game winner on the field
      * @param squares
      */
-    const calculateWinner = (squares: T3SquareState[]): T3WinnerState => {
+    const calculateWinner = (squares: SquareState[]): WinnerState => {
         const lines = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8],
             [0, 3, 6], [1, 4, 7], [2, 5, 8],
@@ -191,7 +191,7 @@ const T3Game: FC<T3GamePropsI> = ({gameState}) =>  {
     /*
     * Prepare the state of History moves for display
     */
-    const prepareHistoryDisplay: () => T3HistoryMoveI[] = () => {
+    const prepareHistoryDisplay: () => HistoryMoveI[] = () => {
         return getHistory()
             .map((move, index) => Object.assign({
                 id: index,
@@ -206,7 +206,7 @@ const T3Game: FC<T3GamePropsI> = ({gameState}) =>  {
     );
 
     // Rerender only when the number of moves changes
-    const historyDisplay = useMemo<T3HistoryMoveI[]>(
+    const historyDisplay = useMemo<HistoryMoveI[]>(
         prepareHistoryDisplay, [numberMoves]
     );
 

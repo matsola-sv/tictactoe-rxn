@@ -9,7 +9,7 @@ import {AppDispatch} from "../../redux/store";
 
 import {useTypedSelector} from "../useTypedSelector";
 
-import {T3Storage} from "../../services/tictactoe/storage";
+import {GameStateService} from "../../services/tictactoe/gameState";
 import {normalizeError} from "../../utils/error";
 
 export interface GameStateResultI extends AsyncStateI {
@@ -27,7 +27,7 @@ const useGameState = <T>(gameID: T): GameStateResultI => {
         setError(null);
 
         try {
-            const gameService = new T3Storage();
+            const gameService = new GameStateService();
             const lastState = await gameService.getLastState<T>(gameID);
 
             if (lastState) {

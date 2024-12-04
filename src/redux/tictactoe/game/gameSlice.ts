@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {T3GameMoveI, T3GameStateI} from "../../../models/tictactoe/game";
+import {GameMoveI, GameStateI} from "../../../models/tictactoe/game";
 import {GameStateContainerI, GameStateMetaI} from "./types";
 
-export const initialGameState: T3GameStateI = {
+export const initialGameState: GameStateI = {
     // Player with the index (0) goes first
     players: [
         { id: 1, name: "X" },
@@ -29,7 +29,7 @@ const gameSlice = createSlice({
     },
     reducers: {
         // Restores the previous state (once) if the game was paused
-        restoreGameState(state: GameStateContainerI, action: PayloadAction<T3GameStateI>) {
+        restoreGameState(state: GameStateContainerI, action: PayloadAction<GameStateI>) {
             if (!state.meta.isRestored) {
                 state.state.history = action.payload.history;
                 state.state.currentMove = action.payload.currentMove;
@@ -39,7 +39,7 @@ const gameSlice = createSlice({
         updateCurrentMove(state: GameStateContainerI, action: PayloadAction<number>) {
             state.state.currentMove = action.payload;
         },
-        updateHistoryMove(state: GameStateContainerI, action: PayloadAction<T3GameMoveI[]>) {
+        updateHistoryMove(state: GameStateContainerI, action: PayloadAction<GameMoveI[]>) {
             state.state.history = action.payload;
         },
         // Go to the Game state by move number

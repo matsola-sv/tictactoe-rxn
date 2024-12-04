@@ -11,7 +11,7 @@ import SortBar, {SortBarHandlerI} from "../../Common/List/SortBar/SortBar";
 
 import './History.css';
 
-export interface T3HistoryMoveI {
+export interface HistoryMoveI {
     id: number,
     date: Date,
     squareID: number
@@ -24,7 +24,7 @@ export type T3HistoryHandlerI = {
 export interface T3HistoryPropsI {
     hasStartMove?: boolean,             // start of Game without player moves
     currentMove: number,
-    moves: T3HistoryMoveI[],
+    moves: HistoryMoveI[],
 }
 
 const T3History: FC<T3HistoryPropsI> = (props) => {
@@ -55,7 +55,7 @@ const T3History: FC<T3HistoryPropsI> = (props) => {
     /**
      * @param move
      */
-    const renderMove = (move: T3HistoryMoveI): ReactElement => {
+    const renderMove = (move: HistoryMoveI): ReactElement => {
         return (
             <T3HistoryMove id={move.id}
                          key={move.id}
@@ -82,10 +82,10 @@ const T3History: FC<T3HistoryPropsI> = (props) => {
     /**
      * Returns a sorted History of moves
      */
-    const getSortedMoves = (): T3HistoryMoveI[] => {
-        let asc = (prev: T3HistoryMoveI, next: T3HistoryMoveI) =>
+    const getSortedMoves = (): HistoryMoveI[] => {
+        let asc = (prev: HistoryMoveI, next: HistoryMoveI) =>
             prev.date.getTime() - next.date.getTime();
-        let desc = (prev: T3HistoryMoveI, next: T3HistoryMoveI) =>
+        let desc = (prev: HistoryMoveI, next: HistoryMoveI) =>
             next.date.getTime() - prev.date.getTime();
 
         return props.moves.slice()
@@ -95,7 +95,7 @@ const T3History: FC<T3HistoryPropsI> = (props) => {
     };
 
     // We sort when changing the List or sorting method
-    const sortedItems = useMemo<T3HistoryMoveI[]>(
+    const sortedItems = useMemo<HistoryMoveI[]>(
         getSortedMoves, [sortOrder, props.moves]
     );
 
