@@ -1,13 +1,13 @@
 import {FC} from "react";
 
-type T3DrawStatusProps = {
+type DrawStatusProps = {
     value?: string
 }
 
-const T3DrawStatus: FC<T3DrawStatusProps> = (props) => {
+const DrawStatus: FC<DrawStatusProps> = (props) => {
     const {
-        value = "Draw in tic-tac-toe Game"
-    }: T3DrawStatusProps = props;
+        value = "Draw in tic-tac-toe game"
+    }: DrawStatusProps = props;
 
     return (
         <div className="draw">
@@ -15,4 +15,4 @@ const T3DrawStatus: FC<T3DrawStatusProps> = (props) => {
         </div>
     );
 }
-export default T3DrawStatus;
+export default DrawStatus;

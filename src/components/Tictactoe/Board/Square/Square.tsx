@@ -1,25 +1,25 @@
 import React, {FC, FormEvent, ReactElement} from "react";
 import './Square.css';
 
-export type T3SquareHandlerI = {
+export type SquareHandlerType = {
     (event: React.FormEvent): void
 }
 
-export type T3SquareProps =  {
+export type SquareProps =  {
     id: number,
     content?: ReactElement | null,
     selected?: boolean,
     selectedLine?: boolean,
-    onClick: T3SquareHandlerI
+    onClick: SquareHandlerType
 };
 
-const T3Square: FC<T3SquareProps> = (props) => {
+const Square: FC<SquareProps> = (props) => {
     const {
         content = null,
         selected = false,
         selectedLine = false,
         onClick
-    }: T3SquareProps = props;
+    }: SquareProps = props;
 
     /**
      * This syntax provides binding `this` inside
@@ -49,4 +49,4 @@ const T3Square: FC<T3SquareProps> = (props) => {
         </button>
     );
 }
-export default T3Square;
+export default Square;

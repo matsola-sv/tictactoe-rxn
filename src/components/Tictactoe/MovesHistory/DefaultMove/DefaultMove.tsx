@@ -1,13 +1,13 @@
 import {FC} from "react";
-import {T3HistoryHandlerI} from "../History";
+import {MovesHistoryHandlerI} from "../MovesHistory";
 
-export interface T3DefaultMovePropsI {
+export interface DefaultMovePropsI {
     selected: boolean,
-    onClick: T3HistoryHandlerI
+    onClick: MovesHistoryHandlerI
 }
 
-const T3HistoryDefaultMove: FC<T3DefaultMovePropsI> = (props) => {
-    const { selected = false }: T3DefaultMovePropsI = props;
+const MovesHistoryDefaultMove: FC<DefaultMovePropsI> = (props) => {
+    const { selected = false }: DefaultMovePropsI = props;
     const classes: string  = selected ? 'selected' : "";
 
     const clickHandler = () => {
@@ -21,4 +21,4 @@ const T3HistoryDefaultMove: FC<T3DefaultMovePropsI> = (props) => {
         </li>
     );
 }
-export default T3HistoryDefaultMove;
+export default MovesHistoryDefaultMove;

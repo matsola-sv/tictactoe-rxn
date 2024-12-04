@@ -5,11 +5,11 @@ import {useDispatch} from "react-redux";
 import {AppDispatch} from "../../../redux/store";
 import {goToMove} from "../../../redux/tictactoe/game/gameSlice";
 
-import T3HistoryMove from "./Move/Move";
-import T3HistoryDefaultMove from "./DefaultMove/DefaultMove";
+import Move from "./Move/Move";
+import MovesHistoryDefaultMove from "./DefaultMove/DefaultMove";
 import SortBar, {SortBarHandlerI} from "../../Common/List/SortBar/SortBar";
 
-import './History.css';
+import './MovesHistory.css';
 
 export interface HistoryMoveI {
     id: number,
@@ -17,28 +17,28 @@ export interface HistoryMoveI {
     squareID: number
 }
 
-export type T3HistoryHandlerI = {
+export type MovesHistoryHandlerI = {
     (moveID: number): void
 }
 
-export interface T3HistoryPropsI {
+export interface MovesHistoryPropsI {
     hasStartMove?: boolean,             // start of Game without player moves
     currentMove: number,
     moves: HistoryMoveI[],
 }
 
-const T3History: FC<T3HistoryPropsI> = (props) => {
+const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
     // Set default props
-    const { hasStartMove = false }: T3HistoryPropsI = props;
+    const { hasStartMove = false }: MovesHistoryPropsI = props;
 
     const dispatch = useDispatch<AppDispatch>();
     const [sortOrder, setSortOrder] = useState<SortTypes>(SortTypes.Asc);
 
     /**
-     * Handler on change the History move
+     * Handler on change the history move
      * @param id
      */
-    const moveHandler: T3HistoryHandlerI = (id: number) => {
+    const moveHandler: MovesHistoryHandlerI = (id: number) => {
         dispatch(goToMove(id));
     }
 
@@ -57,7 +57,7 @@ const T3History: FC<T3HistoryPropsI> = (props) => {
      */
     const renderMove = (move: HistoryMoveI): ReactElement => {
         return (
-            <T3HistoryMove id={move.id}
+            <Move id={move.id}
                          key={move.id}
                          date={move.date}
                          squareID={move.squareID}
@@ -72,7 +72,7 @@ const T3History: FC<T3HistoryPropsI> = (props) => {
      */
     const renderDefaultMove = (): ReactElement => {
         return (
-            <T3HistoryDefaultMove key={0}
+            <MovesHistoryDefaultMove key={0}
                                   selected={props.currentMove === 0}
                                   onClick={moveHandler}
             />
@@ -80,7 +80,7 @@ const T3History: FC<T3HistoryPropsI> = (props) => {
     };
 
     /**
-     * Returns a sorted History of moves
+     * Returns a sorted history of moves
      */
     const getSortedMoves = (): HistoryMoveI[] => {
         let asc = (prev: HistoryMoveI, next: HistoryMoveI) =>
@@ -99,7 +99,7 @@ const T3History: FC<T3HistoryPropsI> = (props) => {
         getSortedMoves, [sortOrder, props.moves]
     );
 
-    // Render List History moves
+    // Render List history moves
     const moves: ReactElement[] = sortedItems
         .map(move => !move.id && hasStartMove ?
             renderDefaultMove() :
@@ -115,4 +115,4 @@ const T3History: FC<T3HistoryPropsI> = (props) => {
         </div>
     )
 }
-export default T3History;
+export default MovesHistory;

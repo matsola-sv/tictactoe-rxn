@@ -1,29 +1,29 @@
 import React, {FC, ReactElement} from "react";
-import T3BoardRow from "./Row/Row";
-import T3Square from "./Square/Square";
+import BoardRow from "./Row/Row";
+import Square from "./Square/Square";
 
-export type T3SquareType = string | null;
-export type T3BoardElHandlerI = {
+export type SquareType = string | null;
+export type BoardElHandlerType = {
     (squareID: number): void
 }
 
-export interface T3BoardPropsI {
+export interface BoardPropsI {
     columns: number,
     selected: number | null,
     selectedLine?: number[],
-    onClick: T3BoardElHandlerI,
-    squares: T3SquareType[]
+    onClick: BoardElHandlerType,
+    squares: SquareType[]
 }
 
-const T3Board: FC<T3BoardPropsI> = (props) => {
+const Board: FC<BoardPropsI> = (props) => {
     // Default value of props
-    const { selectedLine = [] } : T3BoardPropsI = props;
+    const { selectedLine = [] } : BoardPropsI = props;
 
     /**
      * This syntax provides binding `this` inside
      * @param id
      */
-    const handlerClickSquare: T3BoardElHandlerI = (id: number) => {
+    const handlerClickSquare: BoardElHandlerType = (id: number) => {
         props.onClick(id);
     }
 
@@ -36,7 +36,7 @@ const T3Board: FC<T3BoardPropsI> = (props) => {
         const unselected = id !== props.selected || renderLine;
         const content: ReactElement = <span>{props.squares[id]}</span>
 
-        return <T3Square id={id}
+        return <Square id={id}
                          key={id}
                          selected={!unselected}
                          selectedLine={renderLine}
@@ -51,7 +51,7 @@ const T3Board: FC<T3BoardPropsI> = (props) => {
      */
     const renderRow = (squares: ReactElement[], rowId: number): ReactElement => {
         return (
-            <T3BoardRow key={rowId}
+            <BoardRow key={rowId}
                         squares={squares}
             />
         )
@@ -89,4 +89,4 @@ const T3Board: FC<T3BoardPropsI> = (props) => {
     );
 }
 
-export default T3Board;
+export default Board;
