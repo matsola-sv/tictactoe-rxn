@@ -1,6 +1,10 @@
 import {FC, ReactElement, useMemo, useState} from "react";
 import {SortTypes} from "../../../utils/sort";
 
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "../../../redux/store";
+import {goToMove} from "../../../redux/tictactoe/game/gameSlice";
+
 import T3HistoryMove from "./Move/Move";
 import T3HistoryDefaultMove from "./DefaultMove/DefaultMove";
 import SortBar, {SortBarHandlerI} from "../../Common/List/SortBar/SortBar";
@@ -21,13 +25,13 @@ export interface T3HistoryPropsI {
     hasStartMove?: boolean,             // start of Game without player moves
     currentMove: number,
     moves: T3HistoryMoveI[],
-    onClick: T3HistoryHandlerI
 }
 
 const T3History: FC<T3HistoryPropsI> = (props) => {
     // Set default props
     const { hasStartMove = false }: T3HistoryPropsI = props;
 
+    const dispatch = useDispatch<AppDispatch>();
     const [sortOrder, setSortOrder] = useState<SortTypes>(SortTypes.Asc);
 
     /**
@@ -35,7 +39,7 @@ const T3History: FC<T3HistoryPropsI> = (props) => {
      * @param id
      */
     const moveHandler: T3HistoryHandlerI = (id: number) => {
-        props.onClick(id);
+        dispatch(goToMove(id));
     }
 
     /**

@@ -1,7 +1,7 @@
 {
 	"states": [
 		{
-			"activeMove": 3,
+			"currentMove": 3,
 			"history": [
 				{
 					"date": 1721685694625,
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"activeMove": 9,
+			"currentMove": 9,
 			"history": [
 				{
 					"date": 1721685694625,
@@ -98,7 +98,7 @@
 			]
 		},
 		{
-			"activeMove": 5,
+			"currentMove": 5,
 			"history": [
 				{
 					"date": 1721685694625,

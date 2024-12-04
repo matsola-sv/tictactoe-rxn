@@ -1,13 +1,14 @@
-import {T3GameStateI} from "../../components/Tictactoe/Game/Game";
+import {T3GameStateI} from "../../models/tictactoe/game";
 
 export class T3Storage {
     protected readonly sourceUrl = "/database/t3Storage.json";
 
     /**
+     * TODO Here should be the preparation of the received data
      * Get all states of a specific Game
      * @param gameID
      */
-    public getStates(gameID: number): Promise<T3GameStateI[]> {
+    public getStates<T>(gameID: T): Promise<T3GameStateI[]> {
         return this.getData<T3GameStateI[]>(
             this.sourceUrl, "states"
         );
@@ -17,7 +18,7 @@ export class T3Storage {
      * Get the last state of the Game
      * @param gameID
      */
-    public getLastState(gameID: number): Promise<T3GameStateI> {
+    public getLastState<T>(gameID: T): Promise<T3GameStateI | null> {
         return new Promise((resolve, reject) => {
             this.getStates(gameID)
                 .then(states => resolve(states[states.length - 1]))

@@ -1,30 +1,20 @@
-import React, {FC, useEffect, useState} from "react";
-import T3Game, {T3GameStateI} from "../components/Tictactoe/Game/Game";
-import {T3Storage} from "../services/tictactoe/storage";
+import React, {FC} from "react";
+
+import useGameState from "../hooks/tictactoe/useGameState";
+
 import Preloader from "../components/Common/Preloader/Preloader";
+import ErrorMessage from "../components/Common/Error/Message/Message";
+import T3Game from "../components/Tictactoe/Game/Game";
 
 const GamesPage: FC = () => {
-    const gameID: number = 1; // Temp
-    const storageService = new T3Storage();
+    const gameID: number = 1; //TODO Temp
+    const {loading, error, stateContainer} = useGameState<number>(gameID);
 
-    const [gameState, setGameState] = useState<T3GameStateI>();
-
-    // Loading Game state only once
-    useEffect(() => {
-        storageService.getLastState(gameID)
-            .then(lastGame => {
-                setGameState(lastGame);
-            });
-    }, []);
-
-    if (!gameState) {
-        return <Preloader/>
-    }
+    if (loading) return <Preloader/>
+    if (error) return <ErrorMessage error={error}/>
 
     return (
-        <React.Fragment>
-            <T3Game gameState={gameState}/>
-        </React.Fragment>
+        <T3Game gameState={stateContainer.state}/>
     );
 }
 export default GamesPage;

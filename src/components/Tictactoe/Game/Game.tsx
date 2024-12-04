@@ -1,73 +1,30 @@
-import {FC, ReactElement, useEffect, useMemo, useState} from "react";
+import {FC, ReactElement, useMemo, useState} from "react";
+import {useDispatch} from "react-redux";
 
 import {PlayerI} from "../../../models/player";
+import {T3GameMoveI, T3GameStateI, T3SquareState, T3WinnerState} from "../../../models/tictactoe/game";
+import {updateCurrentMove, updateHistoryMove} from "../../../redux/tictactoe/game/gameSlice";
+import {AppDispatch} from "../../../redux/store";
 
 import T3Board, {T3BoardElHandlerI, T3SquareType} from "../Board/Board";
-import T3History, {T3HistoryHandlerI, T3HistoryMoveI} from "../History/History";
+import T3History, {T3HistoryMoveI} from "../History/History";
 import T3NextMoveStatus from "./Status/NextMove";
 import T3DrawStatus from "./Status/Draw";
 import T3VictoryStatus from "./Status/Victory";
 
 import './Game.css';
 
-export interface T3GameProps {
-    gameState?: T3GameStateI | null
+export interface T3GamePropsI {
+    gameState: T3GameStateI
 }
 
-export interface T3GameStateI {
-    history: T3GameMoveI[],
-    activeMove: number                              // number of the current move. Default = 0
-}
+const T3Game: FC<T3GamePropsI> = ({gameState}) =>  {
+    const boardColumns: number = 3; // number of columns on the Game Board
 
-interface T3GameMoveI {
-    date: number,                                   // the timestamp when the move occurred
-    squares: T3SquareState[],                       // the state of the squares on the current move
-    squareID: number | null,		                // in which square the move is made (ID). You can find out who made the move squares[squareID]
-    winner: T3WinnerState                           // Game winner if there is one
-}
-
-interface T3WinnerI {
-    player: PlayerI,
-    winnerLine: number[]
-}
-
-type T3SquareState = PlayerI | null;
-type T3WinnerState = T3WinnerI | null;
-
-const T3Game: FC<T3GameProps> = (props) =>  {
-    const boardColumns: number = 3;                  // number of columns on the Game Board
-    const players: PlayerI[] = [                     // player with the index (0) goes first
-        { id: 1, name: "X" },
-        { id: 2, name: "O" }
-    ];
-    const defaultMove: T3GameMoveI = {
-        date: Date.now(),                            // the date of the move
-        squareID: null,                              // current square id
-        squares: Array(9).fill(null),                // List of squares and moves in them
-        winner: null
-    };
-
-    /**
-     * Returned the passed or the default state
-     */
-    const loadedState: T3GameStateI = useMemo(() => {
-        return props?.gameState ?? {
-            history: [defaultMove], activeMove: 0
-        }
-    }, [props.gameState]);
-
-    const [move, setMove] = useState<number>(loadedState.activeMove);                       // current move number
-    const [moveHistory, setMoveHistory] = useState<T3GameMoveI[]>(loadedState.history);
-    const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);             // required to cache the move History render
-
-    /**
-     * Update Game states
-     */
-    useEffect(() => {
-        setMove(loadedState.activeMove);
-        setMoveHistory(loadedState.history);
-        setNumberMoves(loadedState.history.length);
-    }, [props.gameState]);
+    const dispatch = useDispatch<AppDispatch>();
+    const move = gameState.currentMove;
+    const moveHistory = gameState.history;
+    const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length); // required to cache the move History render
 
     /**
      * Element selection handler on the Board
@@ -76,13 +33,6 @@ const T3Game: FC<T3GameProps> = (props) =>  {
      */
     const boardHandler : T3BoardElHandlerI = (squareID: number): void => {
         makeMove(squareID);
-    }
-
-    /**
-     * @param moveID
-     */
-    const historyMoveHandler: T3HistoryHandlerI = (moveID: number): void => {
-        jumpToMove(moveID);
     }
 
     /**
@@ -132,10 +82,11 @@ const T3Game: FC<T3GameProps> = (props) =>  {
 
     /**
      * Get player name on the current move
+     * Player with the index (0) goes first
      */
     const getPlayer = (): PlayerI => {
         return getMoveID() %2 === 0 ?
-            players[0] : players[1];
+            gameState.players[0] : gameState.players[1];
     }
 
     /**
@@ -160,26 +111,16 @@ const T3Game: FC<T3GameProps> = (props) =>  {
         squares[squareID] = getPlayer();
 
         // Update state Game
-        setMove(nextMove);                        // update current move number. Will be needed for move History
-        setNumberMoves(history.length + 1);       // used to cache the move History render
-        setMoveHistory(                           // add the state of the step to the Game History
+        dispatch(updateCurrentMove(nextMove));              // update current move number. Will be needed for move History
+        setNumberMoves(history.length + 1);                 // used to cache the move History render
+        dispatch(updateHistoryMove(                         // add the state of the step to the Game History
             history.concat([{
                 date: Date.now(),
                 squareID: squareID,
                 squares: squares,
-                winner: calculateWinner(squares)  // we calculate the winner on each
+                winner: calculateWinner(squares)             // we calculate the winner on each
             }])
-        );
-    }
-
-    /**
-     * Jump to the Game state by move number
-     * @param moveId
-     */
-    const jumpToMove = (moveId: number): void => {
-        if (getMoveID() !== moveId) {
-            setMove( moveId );
-        }
+        ));
     }
 
     /**
@@ -288,7 +229,6 @@ const T3Game: FC<T3GameProps> = (props) =>  {
                 <T3History moves={historyDisplay}
                            hasStartMove={true}
                            currentMove={getMoveID()}
-                           onClick={historyMoveHandler}
                 />
             </div>
         </div>
