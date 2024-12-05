@@ -1,8 +1,9 @@
+/* For move id> */
 .move-id {
-    display: inline-block;
-    background-color: #911414;
-    color: yellow;
-    padding: 2px 4px;
+    font-weight: bold;
+    color: #ff5722;
+    background-color: #ffebee;
+    padding: 2px 6px;
     border-radius: 4px;
-    margin: 0 5px 0 2px;
+    margin: 0 5px;
 }

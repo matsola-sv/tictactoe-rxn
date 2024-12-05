@@ -31,14 +31,10 @@ const Move: FC<MovePropsI> = (props) => {
 
     return (
         <li className={classes}>
-            <span>Go to move  </span>
+            <span>Go to move</span>
             <a href="#" onClick={handleClick}>
-                    <span className="move-id">
-                        #{props.id}
-                    </span>
-                <span className="move-coords">
-                        {getCoordinates()}
-                    </span>
+                <span className="move-id">#{props.id}</span>
+                <span className="move-coords">{getCoordinates()}</span>
             </a>
             <span> - {date}</span>
         </li>

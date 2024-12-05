@@ -1,10 +1,12 @@
-.square.selected {
-    border: 2px solid #8B0000; /* Темно-червоний відтінок */
-    background-color: #FFFAFA; /* Ледь помітний білий */
-    transition: background-color 0.3s ease;
-}
-
-.square.selected-line {
-    background-color: #32CD32; /* Яскраво-зелений для виділення */
-    transition: background-color 0.3s ease;
+/* Game board */
+.game-board {
+    width: 100%;
+    height: 100%;
+    display: grid; /* Use grid layout to manage the positioning of board cells */
+    grid-template-columns: repeat(auto-fill, minmax(1fr, 1fr)); /* Automatically fill columns with flexible widths */
+    max-width: 100%;
+    gap: 1px; /* Adds a 1px gap between grid items (cells) */
+    box-sizing: border-box; /* Includes padding and borders in the element's total width and height */
+    background-color: #fff;
+    overflow: hidden; /* Hides any content that overflows the container */
 }

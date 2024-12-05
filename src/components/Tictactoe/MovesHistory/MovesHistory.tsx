@@ -6,7 +6,7 @@ import {AppDispatch} from "../../../redux/store";
 import {goToMove} from "../../../redux/tictactoe/game/gameSlice";
 
 import Move from "./Move/Move";
-import MovesHistoryDefaultMove from "./DefaultMove/DefaultMove";
+import DefaultMove from "./DefaultMove/DefaultMove";
 import SortBar, {SortBarHandlerI} from "../../Common/List/SortBar/SortBar";
 
 import './MovesHistory.css';
@@ -72,7 +72,7 @@ const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
      */
     const renderDefaultMove = (): ReactElement => {
         return (
-            <MovesHistoryDefaultMove key={0}
+            <DefaultMove key={0}
                                   selected={props.currentMove === 0}
                                   onClick={moveHandler}
             />
@@ -107,12 +107,18 @@ const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
         );
 
     return (
-        <div id="moves-history">
-            <SortBar active={sortOrder}
-                     onSort={sortHandler}
-            />
-            <ol>{moves}</ol>
+        <div id="moves-history" className="history-list">
+            <div className="sort-bar-container">
+                <SortBar
+                    active={sortOrder}
+                    onSort={sortHandler}
+                />
+            </div>
+            <div className="moves-container">
+                <ol>{moves}</ol>
+            </div>
         </div>
+
     )
 }
 export default MovesHistory;

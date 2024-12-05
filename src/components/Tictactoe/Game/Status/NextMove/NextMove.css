@@ -1,0 +1,7 @@
+.status-next {
+    background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+    color: #FFFFFF;
+    padding: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}

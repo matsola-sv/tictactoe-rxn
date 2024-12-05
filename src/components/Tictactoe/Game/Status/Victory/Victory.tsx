@@ -1,5 +1,6 @@
 import {FC} from "react";
-import {PlayerI} from "../../../../models/player";
+import {PlayerI} from "../../../../../models/player";
+import "./Victory.css";
 
 type VictoryStatusProps = {
     player: PlayerI
@@ -7,7 +8,7 @@ type VictoryStatusProps = {
 
 const VictoryStatus: FC<VictoryStatusProps> = (props) => {
     return (
-        <div className="victory">
+        <div className="status-victory">
             Winner: {props.player.name}
         </div>
     );

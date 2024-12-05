@@ -1,0 +1,7 @@
+.status-victory {
+    background-color: #c2fbd7;
+    color: green;
+    padding: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}

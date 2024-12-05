@@ -8,9 +8,9 @@ import {AppDispatch} from "../../../redux/store";
 
 import Board, {BoardElHandlerType, SquareType} from "../Board/Board";
 import MovesHistory, {HistoryMoveI} from "../MovesHistory/MovesHistory";
-import NextMoveStatus from "./Status/NextMove";
-import DrawStatus from "./Status/Draw";
-import VictoryStatus from "./Status/Victory";
+import NextMoveStatus from "./Status/NextMove/NextMove";
+import DrawStatus from "./Status/Draw/Draw";
+import VictoryStatus from "./Status/Victory/Victory";
 
 import './Game.css';
 
@@ -211,25 +211,35 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
     );
 
     return (
-        <div id="t3-game" className="game">
-            <div className="game-board">
-                <Board columns={boardColumns}
-                         squares={squaresDisplay}
-                         selected={getActiveSquareID()}
-                         onClick={boardHandler}
-                         selectedLine={getWinner()?.winnerLine}
-                />
-            </div>
-            <div className="game-info">
-                <div className="status">
-                    <div className="text">
-                        {renderStatus()}
-                    </div>
+        <div id="t3-game" className="game-container">
+            {/* Left column */}
+            <div className="game-left">
+                <div className="game-menu">Menu Component</div>
+                <div className="board-container">
+                    <Board
+                        columns={boardColumns}
+                        squares={squaresDisplay}
+                        disabled={false}
+                        selected={getActiveSquareID()}
+                        onClick={boardHandler}
+                        selectedLine={getWinner()?.winnerLine}
+                    />
                 </div>
-                <MovesHistory moves={historyDisplay}
-                           hasStartMove={true}
-                           currentMove={getMoveID()}
-                />
+                <div className="game-tools">Timer Component</div>
+            </div>
+
+            {/* Right column */}
+            <div className="game-right">
+                <div className="game-info">
+                    <div className="status">
+                        <div className="text">{renderStatus()}</div>
+                    </div>
+                    <MovesHistory
+                        moves={historyDisplay}
+                        hasStartMove={true}
+                        currentMove={getMoveID()}
+                    />
+                </div>
             </div>
         </div>
     );

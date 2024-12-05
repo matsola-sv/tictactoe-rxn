@@ -1,29 +1,53 @@
+/* Styles for the sorting bar */
+.sort-bar {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f3f4f6;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow effect */
+    display: flex;
+    justify-content: space-between; /* Buttons are spaced evenly */
+    align-items: center;
+    gap: 10px; /* Space between buttons */
+    width: 100%; /* The bar takes up the full width of its parent element */
+}
 
+/* Styles for the sorting buttons */
 .sort-bar button {
-    border-radius: 3px;
+    border-radius: 5px;
     border: 1px solid #7AA7BF;
     box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
     box-sizing: border-box;
     cursor: pointer;
-    display: inline-block;
     font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 1.15385;
-    margin: 0 5px;
-    outline: none;
-    padding: 8px 0.8em;
-    position: relative;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    padding: 10px 20px; /* Increased padding for buttons */
     text-align: center;
-    text-decoration: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: baseline;
-    white-space: nowrap;
+    background-color: #ffffff;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    min-width: 100px; /* Minimum width for buttons */
+    flex-grow: 1; /* Buttons take up equal width */
 }
 
-.sort-bar .active {
-    background-color: #2ea44f;
-    border: 1px solid #2ea44f;
-    color: white;
+/* Styles for buttons on hover */
+.sort-bar button:hover {
+    background-color: #f0f8ff; /* Light blue background on hover */
+    color: #1e70b8; /* Dark blue text on hover */
+    border-color: #1e70b8; /* Change border color on hover */
+}
+
+/* Active button style */
+.sort-bar button.active {
+    background-color: #2ea44f; /* Green background for active button */
+    border-color: #2ea44f; /* Same green border for active button */
+    color: white; /* White text for active button */
+}
+
+/* Style for active button on hover */
+.sort-bar button.active:hover {
+    background-color: #248f3f; /* Darker green on hover for active button */
+    border-color: #248f3f; /* Same dark green border on hover for active button */
 }

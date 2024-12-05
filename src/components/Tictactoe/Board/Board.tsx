@@ -1,6 +1,7 @@
 import React, {FC, ReactElement} from "react";
 import BoardRow from "./Row/Row";
 import Square from "./Square/Square";
+import "./Board.css";
 
 export type SquareType = string | null;
 export type BoardElHandlerType = {
@@ -8,16 +9,17 @@ export type BoardElHandlerType = {
 }
 
 export interface BoardPropsI {
-    columns: number,
-    selected: number | null,
-    selectedLine?: number[],
-    onClick: BoardElHandlerType,
-    squares: SquareType[]
+    columns: number;
+    disabled?: boolean;
+    selected: number | null;
+    selectedLine?: number[];
+    onClick: BoardElHandlerType;
+    squares: SquareType[];
 }
 
 const Board: FC<BoardPropsI> = (props) => {
     // Default value of props
-    const { selectedLine = [] } : BoardPropsI = props;
+    const { selectedLine = [], disabled = false } : BoardPropsI = props;
 
     /**
      * This syntax provides binding `this` inside
@@ -32,13 +34,17 @@ const Board: FC<BoardPropsI> = (props) => {
      * @param id
      */
     const renderSquare = (id: number): ReactElement => {
+        const value: SquareType = props.squares[id];
         const renderLine = selectedLine.indexOf(id) !== -1;
-        const unselected = id !== props.selected || renderLine;
-        const content: ReactElement = <span>{props.squares[id]}</span>
+        const selected = !(id !== props.selected || renderLine);
+        const opened: boolean = !(value === null || selected || renderLine);
+        const content: ReactElement = <span>{value}</span>
 
         return <Square id={id}
                          key={id}
-                         selected={!unselected}
+                         opened={opened}
+                         disabled={disabled}
+                         selected={selected}
                          selectedLine={renderLine}
                          content={content}
                          onClick={handlerClickSquare.bind(this, id)}
@@ -83,7 +89,7 @@ const Board: FC<BoardPropsI> = (props) => {
     }
 
     return (
-        <div>
+        <div className="game-board">
             {renderRows()}
         </div>
     );

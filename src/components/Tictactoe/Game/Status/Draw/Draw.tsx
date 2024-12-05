@@ -1,4 +1,5 @@
 import {FC} from "react";
+import "./Draw.css";
 
 type DrawStatusProps = {
     value?: string
@@ -10,7 +11,7 @@ const DrawStatus: FC<DrawStatusProps> = (props) => {
     }: DrawStatusProps = props;
 
     return (
-        <div className="draw">
+        <div className="status-draw">
             {value}
         </div>
     );

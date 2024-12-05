@@ -6,7 +6,7 @@ export interface DefaultMovePropsI {
     onClick: MovesHistoryHandlerI
 }
 
-const MovesHistoryDefaultMove: FC<DefaultMovePropsI> = (props) => {
+const DefaultMove: FC<DefaultMovePropsI> = (props) => {
     const { selected = false }: DefaultMovePropsI = props;
     const classes: string  = selected ? 'selected' : "";
 
@@ -17,8 +17,8 @@ const MovesHistoryDefaultMove: FC<DefaultMovePropsI> = (props) => {
     return (
         <li className={classes}>
             <span>Go to game </span>
-            <a href="#" onClick={ clickHandler }> start </a>
+            <a href="#" onClick={clickHandler}>start</a>
         </li>
     );
 }
-export default MovesHistoryDefaultMove;
+export default DefaultMove;

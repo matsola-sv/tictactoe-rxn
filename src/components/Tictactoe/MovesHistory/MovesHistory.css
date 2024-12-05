@@ -1,64 +1,126 @@
-button.square {
-    cursor: pointer;
-    transition: transform 0.1s ease;
-}
-
-button.square:active {
-    transform: scale(0.95);
-}
-
-#moves-history .sort-bar {
-    margin: 10px 2px 0 2px;
-}
-
+/* Container for the history */
 #moves-history {
-    text-align: initial;
-}
-
-#moves-history ol {
-    list-style: none;
-    counter-reset: history-counter;
-}
-
-#moves-history li {
-    margin: 0 0 5px 0;
-    counter-increment: history-counter;
-    position: relative;
-    background-color: #f5f5f5;
-    padding: 5px 10px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Container takes up all available space */
+    overflow-y: auto; /* Adds vertical scrolling */
 }
 
+/* Container for the sorting bar */
+#moves-history .sort-bar-container {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #e6f7ff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Container for the list */
+.moves-container {
+    flex: 1; /* List takes up all available space */
+    overflow-y: auto; /* Adds vertical scrolling */
+}
+
+/* Styles for vertical scrollbar */
+.moves-container::-webkit-scrollbar {
+    width: 8px; /* Scrollbar width */
+}
+
+.moves-container::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* Scrollbar color */
+    border-radius: 4px;
+}
+
+.moves-container::-webkit-scrollbar-thumb:hover {
+    background-color: #999; /* Scrollbar color on hover */
+}
+
+.moves-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Background color for the scroll track */
+}
+
+/* Styling for the list */
+#moves-history ol {
+    list-style: none; /* Removes list markers */
+    counter-reset: history-counter; /* Resets the counter */
+    padding: 0;
+    margin: 0;
+}
+
+/* Styling for list item */
+#moves-history li {
+    margin: 0.5rem 0; /* Spacing between list items */
+    counter-increment: history-counter; /* Increments the counter for each item */
+    position: relative;
+    background-color: #f9f9f9;
+    padding: 1rem 1rem 1rem 3.5rem; /* Padding for list items */
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow styling */
+    transition: background-color 0.3s ease, transform 0.1s ease; /* Hover effects */
+    text-align: left; /* Aligns text to the left */
+}
+
+/* Hover animation */
 #moves-history li:hover {
-    background-color: #e0e0e0;
+    background-color: #e6f7ff;
+    transform: scale(1.02); /* Slight scaling on hover */
 }
 
+/* Position and size of the counter */
 #moves-history li::before {
-    content: counter(history-counter);
-    color: #fcd000;
-    font-size: 1.1rem;
-    font-weight: bold;
     position: absolute;
-    --size: 20px;
-    left: calc(-1 * var(--size) - 5px);
-    line-height: var(--size);
-    width: var(--size);
+    display: flex;
+    justify-content: center;
+    width: var(--size); /* Responsive size of the counter */
     height: var(--size);
-    top: 0;
-    transform: rotate(-10deg);
-    background: black;
-    border-radius: 50%;
-    text-align: center;
-    box-shadow: 1px 1px 0 #999;
+    --size: 2rem;
+    left: 0.5rem; /* Counter spacing */
+    top: 50%; /* Vertically centers the counter */
+    content: counter(history-counter); /* Displays the counter value */
+    font-size: 1rem;
+    font-weight: bold;
+    transform: translateY(-50%); /* Vertical centering */
+    background-color: #1890ff; /* Counter background color */
+    color: white;
+    border-radius: 50%; /* Circular shape */
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Light shadow styling */
 }
 
+/* Active move */
 #moves-history li.selected {
-    background-color: #32CD32; /* Яскравий зелений */
+    background-color: #32CD32;
     color: white;
 }
 
+/* Active counter */
 #moves-history li.selected::before {
-    background: green;
-    color: white;
+    background-color: #006400;
+}
+
+/* Move coordinates */
+.move-coords {
+    font-style: italic;
+    color: #757575;
+}
+
+/* Additional style for DefaultMove link */
+#moves-history li a {
+    text-decoration: none; /* No underline for links */
+    color: #007bff;
+    font-weight: bold;
+    transition: color 0.2s ease; /* Color transition on hover */
+}
+
+#moves-history li a:hover {
+    color: #0056b3;
 }

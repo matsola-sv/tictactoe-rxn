@@ -1,0 +1,7 @@
+.status-draw {
+    background-color: #6E6D70;
+    color: #DFDEDF;
+    padding: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}

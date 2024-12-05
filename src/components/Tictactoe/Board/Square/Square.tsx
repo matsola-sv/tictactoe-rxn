@@ -6,18 +6,22 @@ export type SquareHandlerType = {
 }
 
 export type SquareProps =  {
-    id: number,
-    content?: ReactElement | null,
-    selected?: boolean,
-    selectedLine?: boolean,
-    onClick: SquareHandlerType
+    id: number;
+    content?: ReactElement | null;
+    selected?: boolean;
+    selectedLine?: boolean;
+    opened?: boolean;
+    disabled?: boolean; // inactive or not available for pressing
+    onClick: SquareHandlerType;
 };
 
 const Square: FC<SquareProps> = (props) => {
     const {
         content = null,
+        opened = false,
         selected = false,
         selectedLine = false,
+        disabled = false,
         onClick
     }: SquareProps = props;
 
@@ -31,8 +35,17 @@ const Square: FC<SquareProps> = (props) => {
 
     const getClassName = (): string => {
         let className: string = 'square';
+
+        if (disabled) {
+            className += ' disabled';
+        }
+
         if (selected) {
             className += ' selected';
+        }
+
+        if (opened) {
+            className += ' opened';
         }
 
         if (selectedLine) {
