@@ -1,4 +1,6 @@
 import {FC, ReactElement, useMemo, useState} from "react";
+import classNames from "classnames";
+
 import {SortTypes} from "../../../utils/sort";
 
 import {useDispatch} from "react-redux";
@@ -22,14 +24,15 @@ export type MovesHistoryHandlerI = {
 }
 
 export interface MovesHistoryPropsI {
-    hasStartMove?: boolean,             // start of Game without player moves
-    currentMove: number,
     moves: HistoryMoveI[],
+    currentMove: number,
+    isDisabled?: boolean;           // Indicates if the moves history is disabled (moves list are hidden).
+    showStartMove?: boolean;        // Whether to display the option to navigate to the initial state of the game.
 }
 
 const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
     // Set default props
-    const { hasStartMove = false }: MovesHistoryPropsI = props;
+    const { showStartMove = false, isDisabled = false }: MovesHistoryPropsI = props;
 
     const dispatch = useDispatch<AppDispatch>();
     const [sortOrder, setSortOrder] = useState<SortTypes>(SortTypes.Asc);
@@ -101,7 +104,7 @@ const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
 
     // Render List history moves
     const moves: ReactElement[] = sortedItems
-        .map(move => !move.id && hasStartMove ?
+        .map(move => !move.id && showStartMove ?
             renderDefaultMove() :
             renderMove(move)
         );
@@ -114,11 +117,10 @@ const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
                     onSort={sortHandler}
                 />
             </div>
-            <div className="moves-container">
+            <div className={classNames('moves-container', {'locked-element': isDisabled})}>
                 <ol>{moves}</ol>
             </div>
         </div>
-
-    )
+    );
 }
 export default MovesHistory;

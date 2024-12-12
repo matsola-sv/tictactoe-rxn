@@ -30,6 +30,17 @@
     overflow-y: auto; /* Adds vertical scrolling */
 }
 
+/* Locking the display of move history */
+.moves-container.locked-element {
+    position: relative; /* Ensures that the overlay is positioned correctly */
+}
+
+.moves-container.locked-element::before {
+    opacity: 1;
+    z-index: 2; /* Ensures the element is above other elements */
+    background-color: #d3d3d3;
+}
+
 /* Styles for vertical scrollbar */
 .moves-container::-webkit-scrollbar {
     width: 8px; /* Scrollbar width */

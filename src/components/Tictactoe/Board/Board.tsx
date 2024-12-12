@@ -1,7 +1,11 @@
 import React, {FC, ReactElement} from "react";
+import classNames from 'classnames';
+
 import BoardRow from "./Row/Row";
 import Square from "./Square/Square";
+
 import "./Board.css";
+import SquareContent from "./Square/Content/SquareContent";
 
 export type SquareType = string | null;
 export type BoardElHandlerType = {
@@ -9,24 +13,22 @@ export type BoardElHandlerType = {
 }
 
 export interface BoardPropsI {
-    columns: number;
-    disabled?: boolean;
-    selected: number | null;
-    selectedLine?: number[];
+    columns: number;             // Number of columns on the board.
+    isClickable?: boolean;       // Defines whether the board is clickable. E.g.,when the game ends, the board isn't clickable.
+    isDisabled?: boolean;        // Indicates if the board is disabled (squares are hidden with visual blocking board).
+    selected: number | null;     // The currently selected square ID, or null if no square is selected.
+    selectedLine?: number[];     // List of square IDs that form the selected line.
     onClick: BoardElHandlerType;
     squares: SquareType[];
 }
 
-const Board: FC<BoardPropsI> = (props) => {
-    // Default value of props
-    const { selectedLine = [], disabled = false } : BoardPropsI = props;
-
+const Board: FC<BoardPropsI> = ({isClickable = true, isDisabled = false, selectedLine = [], selected, columns, squares, onClick}) => {
     /**
      * This syntax provides binding `this` inside
      * @param id
      */
     const handlerClickSquare: BoardElHandlerType = (id: number) => {
-        props.onClick(id);
+        onClick(id);
     }
 
     /**
@@ -34,21 +36,29 @@ const Board: FC<BoardPropsI> = (props) => {
      * @param id
      */
     const renderSquare = (id: number): ReactElement => {
-        const value: SquareType = props.squares[id];
+        const value: SquareType = squares[id];
+        const opened: boolean = value !== null;
         const renderLine = selectedLine.indexOf(id) !== -1;
-        const selected = !(id !== props.selected || renderLine);
-        const opened: boolean = !(value === null || selected || renderLine);
-        const content: ReactElement = <span>{value}</span>
+        const newSelected = !(id !== selected || renderLine);
+        const content: ReactElement = <SquareContent value={value}/>
 
-        return <Square id={id}
-                         key={id}
-                         opened={opened}
-                         disabled={disabled}
-                         selected={selected}
-                         selectedLine={renderLine}
-                         content={content}
-                         onClick={handlerClickSquare.bind(this, id)}
-        />;
+        // Indicates the square is disabled (not clickable and visually locked):
+        // The square is disabled if the board is not clickable and the square is empty.
+        const squareDisabled: boolean = !isClickable && value === null;
+
+        return (
+            <Square
+                id={id}
+                key={id}
+                isOpened={opened}
+                canClickIfOpened={false}
+                isDisabled={squareDisabled}
+                isSelected={newSelected}
+                isSelectedLine={renderLine}
+                content={content}
+                onClick={handlerClickSquare.bind(this, id)}
+            />
+        );
     }
 
     /**
@@ -69,12 +79,12 @@ const Board: FC<BoardPropsI> = (props) => {
     const renderRows = (): ReactElement[] => {
         let rows: ReactElement[] = [];
         let rowItems: ReactElement[] = [];
-        let step: number = props.columns;
+        let step: number = columns;
 
-        props.squares.forEach((square, i) => {
+        squares.forEach((square, i) => {
             if (step === 0) {
                 rowItems = [];
-                step = props.columns;
+                step = columns;
             }
             rowItems.push(renderSquare(i));
 
@@ -89,7 +99,7 @@ const Board: FC<BoardPropsI> = (props) => {
     }
 
     return (
-        <div className="game-board">
+        <div className={classNames('game-board', {'locked-element': isDisabled, 'un-clickable': !isClickable})}>
             {renderRows()}
         </div>
     );

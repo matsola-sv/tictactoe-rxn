@@ -6,6 +6,9 @@ import {GameMoveI, GameStateI, SquareState, WinnerState} from "../../../models/t
 import {updateCurrentMove, updateHistoryMove} from "../../../redux/tictactoe/game/gameSlice";
 import {AppDispatch} from "../../../redux/store";
 
+import {useTypedSelector} from "../../../hooks/useTypedSelector";
+
+import GameMenu from "../GameMenu/GameMenu";
 import Board, {BoardElHandlerType, SquareType} from "../Board/Board";
 import MovesHistory, {HistoryMoveI} from "../MovesHistory/MovesHistory";
 import NextMoveStatus from "./Status/NextMove/NextMove";
@@ -19,12 +22,13 @@ export interface GamePropsI {
 }
 
 const Game: FC<GamePropsI> = ({gameState}) =>  {
-    const boardColumns: number = 3; // number of columns on the game Board
+    const boardColumns: number = 3; // Number of columns on the game Board
 
     const dispatch = useDispatch<AppDispatch>();
     const move = gameState.currentMove;
     const moveHistory = gameState.history;
-    const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length); // required to cache the move history render
+    const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);  // Required to cache the move history render
+    const isPausedGame = useTypedSelector(state => state.t3game.state.isPaused); // If the game is paused to hide the move history and game board.
 
     /**
      * Element selection handler on the Board
@@ -214,12 +218,15 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
         <div id="t3-game" className="game-container">
             {/* Left column */}
             <div className="game-left">
-                <div className="game-menu">Menu Component</div>
+                <div className="menu-container">
+                    <GameMenu/>
+                </div>
                 <div className="board-container">
                     <Board
+                        isDisabled={isPausedGame}
+                        isClickable={getWinner() === null}
                         columns={boardColumns}
                         squares={squaresDisplay}
-                        disabled={false}
                         selected={getActiveSquareID()}
                         onClick={boardHandler}
                         selectedLine={getWinner()?.winnerLine}
@@ -235,8 +242,9 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
                         <div className="text">{renderStatus()}</div>
                     </div>
                     <MovesHistory
+                        isDisabled={isPausedGame}
                         moves={historyDisplay}
-                        hasStartMove={true}
+                        showStartMove={true}
                         currentMove={getMoveID()}
                     />
                 </div>

@@ -1,13 +1,12 @@
 /*# sourceMappingURL=game.css.map*/
 
 /*
-    TODO: Check if padding needs adjustment
+    NOTE: Check if padding needs adjustment
     Height of the container - accounting for padding and the height of the menu/timer.
     Important: If padding, margin, or borders change in .game-container, their impact on the container's height needs to be considered.
     In this case, we use calc() to subtract 10px of padding from each side.
     If padding changes or borders are added, this calculation must be adjusted accordingly.
 */
-
 .game-container {
     height: calc(100vh - 20px); /* Subtract padding from each side: 10px left and 10px right */
 }
@@ -17,10 +16,10 @@
     display: flex; /* Using flexbox to arrange the left and right columns side by side */
     flex-direction: row; /* Left and right columns will be in a single row */
     gap: 20px; /* Space between the columns */
-    margin: 10px; /* External margin for the container */
-    padding: 10px; /* Internal padding */
+    margin: 10px;
+    padding: 10px;
     box-sizing: border-box; /* Include padding and borders in the size calculation */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for the container */
     background-color: #fff;
 }
 
@@ -46,12 +45,12 @@
 
 /* Right column */
 .game-right {
-    flex: 1.25; /* The right column takes 1.25 parts of space compared to the left */
+    flex: 1.20; /* The right column takes 1.25 parts of space compared to the left */
     max-width: 500px; /* Maximum width of the right column */
 }
 
 /* Timer and menu - same style for both components */
-.game-menu, .game-tools {
+.menu-container, .game-tools {
     flex: 0 0 auto; /* These elements don't change size, fixed height */
     display: flex;
     justify-content: center; /* Center content horizontally */

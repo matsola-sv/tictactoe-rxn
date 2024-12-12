@@ -2,23 +2,24 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {GameMoveI, GameStateI} from "../../../models/tictactoe/game";
 import {GameStateContainerI, GameStateMetaI} from "./types";
 
-export const initialGameState: GameStateI = {
+const initialGameState: GameStateI = {
     // Player with the index (0) goes first
     players: [
         { id: 1, name: "X" },
         { id: 2, name: "O" }
     ],
     history: [{
-        date: Date.now(),               // the date of the move
-        squareID: null,                 // current square id
-        squares: Array(9).fill(null),   // list of squares and moves in them
-        winner: null
+        date: Date.now(),                  // The timestamp when the move occurred
+        squareID: null,                    // In which square the move is made (ID). You can find out who made the move squares[squareID]
+        squares: Array(9).fill(null),      // The state (null/player object) of the squares on the current move
+        winner: null                       // Game winner if there is one
     }],
-    currentMove: 0,                     // current move number
+    currentMove: 0,                        // Number of the current move
+    isPaused: false                        // Whether the game is paused (stops timer, disables board, hides history).
 };
 
-export const initialGameMeta: GameStateMetaI = {
-    isRestored: false                   // indicates if the game state has been restored (false by default)
+const initialGameMeta: GameStateMetaI = {
+    isRestored: false                      // Indicates if the game state has been restored (false by default)
 };
 
 const gameSlice = createSlice({
@@ -48,8 +49,12 @@ const gameSlice = createSlice({
                 state.state.currentMove = action.payload;
             }
         },
+        //
+        togglePause(container: GameStateContainerI) {
+            container.state.isPaused = !container.state.isPaused;
+        }
     }
 });
 
-export const { goToMove, updateHistoryMove, updateCurrentMove, restoreGameState } = gameSlice.actions;
+export const { goToMove, updateHistoryMove, updateCurrentMove, restoreGameState, togglePause } = gameSlice.actions;
 export default gameSlice.reducer;

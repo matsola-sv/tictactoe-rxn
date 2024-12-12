@@ -5,18 +5,38 @@
     display: flex; /* Use flexbox to align content inside the square */
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
-    margin: 0; /* TODO Important to avoid unwanted spacing between squares */
-    font-size: calc(2vw); /* Font size is 2 times larger than the base size */
+    margin: 0; /* NOTE: Important to avoid unwanted spacing between squares */
     font-weight: bold;
     text-align: center;
     border: 1px solid #ccc;
     background-color: #fff;
     box-sizing: border-box; /* Includes padding and borders in the element's total width and height */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* transition for background-color and transform changes (e.g., on hover/state change) */
     cursor: pointer; /* Change the cursor to indicate it's clickable */
+    /*
+      PROBLEM: Dynamic font-size with `clamp(16px, calc(5vw + 1vh), 32px)` causes inconsistent resizing of square height.
+      This issue is particularly noticeable when the font size increases or decreases unevenly between rows of squares.
+      SOLUTION: Fixed with `min-height` for stable height and responsive font size with `clamp()`.
+    */
+    font-size: clamp(1rem, 5vw, 2rem); /* Responsive font: minimum 1rem, based on screen width (5vw - 5% of the viewport's width), maximum 2rem */
+    min-height: 100px; /* Minimum height for cell stability */
+    line-height: 1; /* Fixing row height to prevent height changes */
+    overflow: hidden; /* Avoids cell enlargement due to content */
+    user-select: none; /* Disables text selection */
 }
 
 .square:focus {
+    box-shadow: 0 0 10px rgba(0, 200, 0, 0.5);
     outline: none; /* Remove the default focus outline for a cleaner appearance */
+}
+
+/**
+   Opened square that is neither selected nor part of the selected line
+   (e.g., a square that has been clicked but is not part of the winning line)
+ */
+.square.opened:not(.selected, .selected-line) {
+    background-color: #e7f4e7;
+    color: #555;
 }
 
 /* Selected (active) square */
@@ -31,18 +51,18 @@
     color: #333;
 }
 
-/* Square that has already been clicked but not highlighted */
-.square.opened {
-    background-color: #e7f4e7;
-    color: #555;
-    border: 1px solid #a0d8a8;
+/* Inactive square (default), cannot be clicked */
+.square.locked-element {
+    position: relative; /* Ensures that the overlay is positioned correctly */
 }
 
-/* Inactive square, cannot be clicked */
-.square.disabled {
-    background-color: #d3d3d3;
-    color: #ccc;
-    border: 1px solid #e0e0e0;
-    cursor: not-allowed; /* Cursor indicates that interaction is not allowed */
-    pointer-events: none; /* Disable clicking on disabled squares */
+.square.locked-element::before {
+    opacity: 0.4; /* Transparency for the frozen effect */
+    z-index: 1; /* Ensures the element is above other elements */
+}
+
+@media (max-width: 768px) {
+    .square {
+        font-size: clamp(1rem, 6vw, 2rem); /* Font changes for smaller screens */
+    }
 }

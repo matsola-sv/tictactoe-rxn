@@ -1,0 +1,10 @@
+/* For square content (text) */
+.square-content {
+    display: flex; /* flexbox - for aligning content inside the cell */
+    justify-content: center; /* Horizontal alignment */
+    align-items: center; /* Vertical alignment */
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 0 5%;
+}
