@@ -45,8 +45,11 @@
 
 /* Right column */
 .game-right {
-    flex: 1.20; /* The right column takes 1.25 parts of space compared to the left */
+    flex: 1.2;
+    display: flex; /* The right column takes 1.25 parts of space compared to the left */
+    flex-direction: column;
     max-width: 500px; /* Maximum width of the right column */
+    box-sizing: border-box;
 }
 
 /* Timer and menu - same style for both components */
@@ -66,14 +69,19 @@
 
 /* Additional settings for status and move history */
 .game-info {
-    position: relative; /* For proper positioning of child elements */
-    height: 100%; /* If needed for responsive height */
+    flex: 1; /* Ensures the container grows to fill available space */
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: column; /* Arranges child elements in a vertical column */
     background-color: #f1f1f1;
     padding: 20px;
     border: 1px solid #ddd;
+    box-sizing: border-box;
+    overflow-y: auto; /* Enables vertical scrolling if the content exceeds the container's height */
+}
+
+.status {
+    flex: 0 0 auto; /* Fixed height for status */
+    margin: 0 0 20px 0;
 }
 
 .status .text {
