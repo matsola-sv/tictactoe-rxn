@@ -1,5 +1,5 @@
 import {FC} from "react";
-import {MovesHistoryHandlerI} from "../MovesHistory";
+import {MovesHistoryHandlerI} from "../MoveHistory.types";
 
 export interface DefaultMovePropsI {
     selected: boolean,

@@ -1,21 +1,28 @@
 import {FC, ReactElement, useMemo, useState} from "react";
 import {useDispatch} from "react-redux";
 
+// Models
 import {PlayerI} from "../../../models/player";
-import {GameMoveI, GameStateI, SquareState, WinnerState} from "../../../models/tictactoe/game";
+import {GameMoveI, GameStateI, HistoryMoveI, SquareState, WinnerState} from "../../../models/tictactoe/game";
+
+// Redux
 import {updateCurrentMove, updateHistoryMove} from "../../../redux/tictactoe/game/gameSlice";
 import {AppDispatch} from "../../../redux/store";
 
+// Hooks
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
 
+// Components
 import GameMenu from "../GameMenu/GameMenu";
-import Board, {BoardElHandlerType, SquareType} from "../Board/Board";
-import MovesHistory, {HistoryMoveI} from "../MovesHistory/MovesHistory";
+//import Board, {BoardElHandlerType, SquareType} from "../Board/Board";
+import Board from "../Board/Board";
+import MovesHistory from "../MovesHistory/MovesHistory";
 import NextMoveStatus from "./Status/NextMove/NextMove";
 import DrawStatus from "./Status/Draw/Draw";
 import VictoryStatus from "./Status/Victory/Victory";
 
 import './Game.css';
+import {BoardElHandlerType, SquareType} from "../Board/Board.types";
 
 export interface GamePropsI {
     gameState: GameStateI

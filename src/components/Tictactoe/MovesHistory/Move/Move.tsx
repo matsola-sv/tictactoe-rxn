@@ -1,21 +1,20 @@
 import {FC} from "react";
-import {MovesHistoryHandlerI} from "../MovesHistory";
+import {MovesHistoryHandlerI} from "../MoveHistory.types";
 import './Move.css';
-
 
 export interface MovePropsI {
     id: number,
-    date: Date,
-    squareID: number,
-    selected: boolean,
+    date: Date,                     // The timestamp of when the move was made.
+    squareID: number,               // The ID of the square involved in the move.
+    isSelected: boolean,
     onClick: MovesHistoryHandlerI
 }
 
 const Move: FC<MovePropsI> = (props) => {
     // Set default props
-    const { squareID, selected = false } = props;
+    const { squareID, isSelected = false } = props;
 
-    const classes: string = selected ? 'selected' : "";
+    const classes: string = isSelected ? 'selected' : "";
     const date: string = props.date.toLocaleTimeString();
 
     const handleClick = () => {

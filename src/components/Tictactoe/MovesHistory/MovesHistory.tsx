@@ -1,9 +1,13 @@
 import {FC, ReactElement, useMemo, useState} from "react";
+import {useDispatch} from "react-redux";
 import classNames from "classnames";
 
+// Models
 import {SortTypes} from "../../../utils/sort";
+import {HistoryMoveI} from "../../../models/tictactoe/game";
+import {MovesHistoryHandlerI, MovesHistoryPropsI} from "./MoveHistory.types";
 
-import {useDispatch} from "react-redux";
+// Redux
 import {AppDispatch} from "../../../redux/store";
 import {goToMove} from "../../../redux/tictactoe/game/gameSlice";
 
@@ -12,23 +16,6 @@ import DefaultMove from "./DefaultMove/DefaultMove";
 import SortBar, {SortBarHandlerI} from "../../Common/List/SortBar/SortBar";
 
 import './MovesHistory.css';
-
-export interface HistoryMoveI {
-    id: number,
-    date: Date,
-    squareID: number
-}
-
-export type MovesHistoryHandlerI = {
-    (moveID: number): void
-}
-
-export interface MovesHistoryPropsI {
-    moves: HistoryMoveI[],
-    currentMove: number,
-    isDisabled?: boolean;           // Indicates if the moves history is disabled (moves list are hidden).
-    showStartMove?: boolean;        // Whether to display the option to navigate to the initial state of the game.
-}
 
 const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
     // Set default props
@@ -60,12 +47,13 @@ const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
      */
     const renderMove = (move: HistoryMoveI): ReactElement => {
         return (
-            <Move id={move.id}
-                         key={move.id}
-                         date={move.date}
-                         squareID={move.squareID}
-                         selected={props.currentMove === move.id}
-                         onClick={moveHandler}
+            <Move
+                id={move.id}
+                key={move.id}
+                date={move.date}
+                squareID={move.squareID}
+                isSelected={props.currentMove === move.id}
+                onClick={moveHandler}
             />
         );
     };
@@ -76,8 +64,8 @@ const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
     const renderDefaultMove = (): ReactElement => {
         return (
             <DefaultMove key={0}
-                                  selected={props.currentMove === 0}
-                                  onClick={moveHandler}
+                         selected={props.currentMove === 0}
+                         onClick={moveHandler}
             />
         );
     };
