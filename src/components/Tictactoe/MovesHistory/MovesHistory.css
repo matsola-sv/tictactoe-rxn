@@ -1,9 +1,4 @@
 /* Container for the history */
-.moves-history {
-    flex: 1; /* Займає весь залишковий простір */
-    overflow-y: auto; /* Вертикальний скрол тільки для історії ходів */
-}
-
 #moves-history {
     padding: 10px;
     border: 1px solid #ddd;
@@ -72,7 +67,7 @@
 }
 
 /* Styling for list item */
-#moves-history li {
+.moves-container li {
     margin: 0.5rem 0; /* Spacing between list items */
     counter-increment: history-counter; /* Increments the counter for each item */
     position: relative;
@@ -85,13 +80,13 @@
 }
 
 /* Hover animation */
-#moves-history li:hover {
+.moves-container li:hover {
     background-color: #e6f7ff;
     transform: scale(1.02); /* Slight scaling on hover */
 }
 
 /* Position and size of the counter */
-#moves-history li::before {
+.moves-container li::before {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -112,13 +107,13 @@
 }
 
 /* Active move */
-#moves-history li.selected {
+.moves-container li.selected {
     background-color: #32CD32;
     color: white;
 }
 
 /* Active counter */
-#moves-history li.selected::before {
+.moves-container li.selected::before {
     background-color: #006400;
 }
 
@@ -129,13 +124,13 @@
 }
 
 /* Additional style for DefaultMove link */
-#moves-history li a {
+.moves-container li a {
     text-decoration: none; /* No underline for links */
     color: #007bff;
     font-weight: bold;
     transition: color 0.2s ease; /* Color transition on hover */
 }
 
-#moves-history li a:hover {
+.moves-container li a:hover {
     color: #0056b3;
 }

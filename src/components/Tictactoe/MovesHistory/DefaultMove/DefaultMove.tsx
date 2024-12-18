@@ -15,9 +15,9 @@ const DefaultMove: FC<DefaultMovePropsI> = (props) => {
     };
 
     return (
-        <li className={classes}>
+        <li className={classes} onClick={clickHandler}>
             <span>Go to game </span>
-            <a href="#" onClick={clickHandler}>start</a>
+            <a href="#">start</a>
         </li>
     );
 }

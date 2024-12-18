@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {forwardRef} from "react";
 import {MovesHistoryHandlerI} from "../MoveHistory.types";
 import './Move.css';
 
@@ -10,7 +10,7 @@ export interface MovePropsI {
     onClick: MovesHistoryHandlerI
 }
 
-const Move: FC<MovePropsI> = (props) => {
+const Move = forwardRef<HTMLLIElement, MovePropsI>((props, moveRef) => {
     // Set default props
     const { squareID, isSelected = false } = props;
 
@@ -29,14 +29,18 @@ const Move: FC<MovePropsI> = (props) => {
     }
 
     return (
-        <li className={classes}>
+        <li
+            ref={moveRef}
+            className={classes}
+            onClick={handleClick}
+        >
             <span>Go to move</span>
-            <a href="#" onClick={handleClick}>
+            <a href="#">
                 <span className="move-id">#{props.id}</span>
                 <span className="move-coords">{getCoordinates()}</span>
             </a>
             <span> - {date}</span>
         </li>
     );
-}
+});
 export default Move;

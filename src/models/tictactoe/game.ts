@@ -15,6 +15,8 @@ export interface GameMoveI {
     winner: WinnerState;                            // Game winner if there is one
 }
 
+export type GameMoveState = GameMoveI | null;
+
 export interface GameStateI {
     players: PlayerI[];
     history: GameMoveI[];

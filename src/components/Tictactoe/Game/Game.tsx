@@ -3,7 +3,14 @@ import {useDispatch} from "react-redux";
 
 // Models
 import {PlayerI} from "../../../models/player";
-import {GameMoveI, GameStateI, HistoryMoveI, SquareState, WinnerState} from "../../../models/tictactoe/game";
+import {
+    GameMoveI,
+    GameMoveState,
+    GameStateI,
+    HistoryMoveI,
+    SquareState,
+    WinnerState
+} from "../../../models/tictactoe/game";
 
 // Redux
 import {updateCurrentMove, updateHistoryMove} from "../../../redux/tictactoe/game/gameSlice";
@@ -23,6 +30,7 @@ import VictoryStatus from "./Status/Victory/Victory";
 
 import './Game.css';
 import {BoardElHandlerType, SquareType} from "../Board/Board.types";
+import EmptyListMessage from "../../Common/EmptyListMessage/EmptyListMessage";
 
 export interface GamePropsI {
     gameState: GameStateI
@@ -30,10 +38,20 @@ export interface GamePropsI {
 
 const Game: FC<GamePropsI> = ({gameState}) =>  {
     const boardColumns: number = 3; // Number of columns on the game Board
+    const fallbackBoard: ReactElement = (
+        <EmptyListMessage
+            message="It's empty here, like in space. No cells found!"
+        />
+    );
+    const fallbackMoveHistory: ReactElement = (
+        <EmptyListMessage
+            message="The game is a blank slate! Make your first move and create history."
+        />
+    );
 
     const dispatch = useDispatch<AppDispatch>();
-    const move = gameState.currentMove;
-    const moveHistory = gameState.history;
+    const move: number = gameState.currentMove;
+    const moveHistory: GameMoveI[] = gameState.history;
     const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);  // Required to cache the move history render
     const isPausedGame = useTypedSelector(state => state.t3game.state.isPaused); // If the game is paused to hide the move history and game board.
 
@@ -64,8 +82,8 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
     /**
      * Return game state of the current move
      */
-    const getMove = (): GameMoveI => {
-        return getHistory()[getMoveID()]
+    const getMove = (): GameMoveState => {
+        return getHistory()[getMoveID()] ?? null;
     }
 
     /**
@@ -73,7 +91,7 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
      */
     const getSquares = (move?: GameMoveI): SquareState[] => {
         return (move ?? getMove())
-            .squares;
+            ?.squares ?? [];
     }
 
     /**
@@ -88,7 +106,7 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
      * Return current square ID on the active move
      */
     const getActiveSquareID = (): number | null => {
-        return getMove().squareID;
+        return getMove()?.squareID ?? null;
     }
 
     /**
@@ -104,7 +122,7 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
      * Return the winner data or null from the game state
      */
     const getWinner = (): WinnerState => {
-        return getMove().winner;
+        return getMove()?.winner ?? null;
     }
 
     /**
@@ -185,7 +203,7 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
         const movesEnded: boolean = getSquares().length
             === getMoveID();
 
-        return !(!movesEnded || getMove().winner);
+        return !(!movesEnded || getMove()?.winner);
     }
 
     /*
@@ -237,6 +255,7 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
                         selected={getActiveSquareID()}
                         onClick={boardHandler}
                         selectedLine={getWinner()?.winnerLine}
+                        fallbackComponent={fallbackBoard}
                     />
                 </div>
                 <div className="game-tools">Timer Component</div>
@@ -251,8 +270,8 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
                     <MovesHistory
                         isDisabled={isPausedGame}
                         moves={historyDisplay}
-                        showStartMove={true}
                         currentMove={getMoveID()}
+                        fallbackComponent={fallbackMoveHistory}
                     />
                 </div>
             </div>

@@ -8,8 +8,20 @@ import Square from "./Square/Square";
 import SquareContent from "./Square/Content/SquareContent";
 
 import "./Board.css";
+import EmptyListMessage from "../../Common/EmptyListMessage/EmptyListMessage";
 
-const Board: FC<BoardPropsI> = ({isClickable = true, isDisabled = false, selectedLine = [], selected, columns, squares, onClick}) => {
+const Board: FC<BoardPropsI> = (props) => {
+    const {
+        columns,
+        squares,
+        onClick,
+        selected,
+        isClickable = true,
+        isDisabled = false,
+        selectedLine = [],
+        fallbackComponent = <EmptyListMessage/>,
+    } = props;
+
     /**
      * This syntax provides binding `this` inside
      * @param id
@@ -55,7 +67,7 @@ const Board: FC<BoardPropsI> = ({isClickable = true, isDisabled = false, selecte
     const renderRow = (squares: ReactElement[], rowId: number): ReactElement => {
         return (
             <BoardRow key={rowId}
-                        squares={squares}
+                      squares={squares}
             />
         )
     }
@@ -85,11 +97,15 @@ const Board: FC<BoardPropsI> = ({isClickable = true, isDisabled = false, selecte
         return rows;
     }
 
+    if (squares.length === 0) {
+        return fallbackComponent;
+    }
+
     return (
         <div className={classNames('game-board', {'locked-element': isDisabled, 'un-clickable': !isClickable})}>
             {renderRows()}
         </div>
     );
-}
+};
 
 export default Board;
