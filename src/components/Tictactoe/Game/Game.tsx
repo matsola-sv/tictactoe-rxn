@@ -54,6 +54,7 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
     const moveHistory: GameMoveI[] = gameState.history;
     const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);  // Required to cache the move history render
     const isPausedGame = useTypedSelector(state => state.t3game.state.isPaused); // If the game is paused to hide the move history and game board.
+    const isShowGameMenu = moveHistory.length > 0;
 
     /**
      * Element selection handler on the Board
@@ -244,7 +245,7 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
             {/* Left column */}
             <div className="game-left">
                 <div className="menu-container">
-                    <GameMenu/>
+                    <GameMenu isDisabled={!isShowGameMenu}/>
                 </div>
                 <div className="board-container">
                     <Board

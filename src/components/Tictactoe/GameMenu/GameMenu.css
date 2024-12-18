@@ -3,12 +3,21 @@
     justify-content: flex-start; /* Buttons are aligned left-to-right */
     gap: 1rem;
     padding: 1rem;
-    background-color: #f9f9f9; /* Light background */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow to lift the menu */
+    border-radius: 4px;
+}
+
+.game-menu.disabled {
+    background-color: #f0f0f0;
+    border: 2px solid #d0d0d0;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0.6;  /* Reduce the brightness to make the menu appear inactive */
+    pointer-events: none; /* Prevents interaction with the menu */
 }
 
 .pause-btn {
-    background-color: #4caf50; /* Green color */
+    background-color: #4caf50;
     color: white;
     border: none;
     border-radius: 4px;
@@ -18,6 +27,13 @@
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.pause-btn:disabled {
+    background-color: #cccccc;
+    color: #999999;
+    cursor: not-allowed; /* Shows a forbidden cursor */
+    box-shadow: none;
 }
 
 .pause-btn:hover {
