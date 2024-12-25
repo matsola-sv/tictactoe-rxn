@@ -1,0 +1,33 @@
+.sort-buttons {
+    display: flex;
+    gap: 5px; /* Space between buttons */
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+.sort-arrow  {
+    background-color: #e3f2fd;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold; /* Make text bold */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; /* Smooth transition for background color, transform, and box-shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.sort-arrow:hover {
+    background-color: #90caf9;
+    transform: translateY(-1px); /* Slight lift on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.sort-arrow.active {
+    background-color: #42a5f5;
+    color: #fff;
+    border: 1px solid #2196f3;
+    transform: translateY(-1px); /* Lift effect like on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

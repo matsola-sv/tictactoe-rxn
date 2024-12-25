@@ -1,0 +1,28 @@
+.sort-fields {
+    display: flex;
+    flex-wrap: wrap; /* Wrap elements if there's not enough space */
+    gap: 5px; /* Spacing between elements */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 100%; /* Prevent overflow */
+}
+
+.sort-field {
+    background-color: #f7f7f7;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    white-space: nowrap; /* Prevent text wrapping */
+    color: #333;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none; /* Disables text selection */
+}
+
+.sort-field.active {
+    color: #ff5722;
+    background-color: #ffebee;
+    font-weight: bold;
+    box-shadow: 0 0 4px rgba(255, 87, 34, 0.5);
+}

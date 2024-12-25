@@ -1,9 +1,11 @@
-import {FC, ReactElement, useEffect, useMemo, useRef, useState} from "react";
+import {FC, ReactElement, useCallback, useEffect, useMemo, useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import classNames from "classnames";
 
 // Models
-import {SortTypes} from "../../../utils/sort";
+import {SortTypes} from "../../../utils/sorting";
+import {SortHandler} from "../../../models/sorting";
+import {LayoutAlignment} from "../../../models/layout";
 import {HistoryMoveI} from "../../../models/tictactoe/game";
 import {MovesHistoryHandlerI, MovesHistoryPropsI} from "./MoveHistory.types";
 
@@ -11,12 +13,15 @@ import {MovesHistoryHandlerI, MovesHistoryPropsI} from "./MoveHistory.types";
 import {AppDispatch} from "../../../redux/store";
 import {goToMove} from "../../../redux/tictactoe/game/gameSlice";
 
+import EmptyListMessage from "../../Common/EmptyListMessage/EmptyListMessage";
 import Move from "./Move/Move";
 import DefaultMove from "./DefaultMove/DefaultMove";
-import SortBar, {SortBarHandlerI} from "../../Common/List/SortBar/SortBar";
+import HorizontalBar from "../../Common/Controls/HorizontalBar/HorizontalBar";
+import SortLabel from "../../Common/List/SortBar/SortLabel/SortLabel";
+import SortFields from "../../Common/List/SortBar/SortFields/SortFields";
+import SortButtons from "../../Common/List/SortBar/SortButtons/SortButtons";
 
 import './MovesHistory.css';
-import EmptyListMessage from "../../Common/EmptyListMessage/EmptyListMessage";
 
 const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
     // Set default props
@@ -26,6 +31,8 @@ const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
         isDisabled = false,
         fallbackComponent = ( <EmptyListMessage/> )
     }: MovesHistoryPropsI = props;
+
+    const sortedField = "Move number";            // Currently selected sorting field
 
     const itemRefs = useRef<HTMLLIElement[]>([]); // References to DOM elements in the move history for auto-scrolling to the active one.
     const dispatch = useDispatch<AppDispatch>();
@@ -58,11 +65,11 @@ const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
      * Handler on change type sort
      * @param order
      */
-    const sortHandler: SortBarHandlerI = (order): void => {
+    const sortHandler: SortHandler = useCallback((order: SortTypes): void => {
         if (sortOrder !== order) {
             setSortOrder(order);
         }
-    };
+    }, [sortOrder]);
 
     /**
      * Smoothly scrolls to index the move.
@@ -139,12 +146,27 @@ const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
             renderMove(move)
         );
 
+    // Render navigation and sorting bar for move history
+    const barComponents: ReactElement[] = [
+        <SortLabel key={"mh-sort-label"}/>,
+        <SortFields
+            key={"mh-sort-fields"}
+            fields={[sortedField]}
+            activeField={sortedField}
+        />,
+        <SortButtons
+            key={"mh-sort-buttons"}
+            sortOrder={sortOrder}
+            onSortOrderChange={sortHandler}
+        />
+    ];
+
     return (
         <div id="moves-history" className="history-list">
             <div className="sort-bar-container">
-                <SortBar
-                    active={sortOrder}
-                    onSort={sortHandler}
+                <HorizontalBar
+                    alignment={LayoutAlignment.RIGHT}
+                    children={barComponents}
                 />
             </div>
             <div className={classNames('moves-container', {'locked-element': isDisabled})}>
