@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {Link} from "react-router-dom";
-import * as ROUTES from "../../../constants/routes";
+import * as ROUTES from "../../../../constants/routes";
 import './Navigator.css';
 
 const Navigator: FC = () => {
