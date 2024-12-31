@@ -1,9 +1,9 @@
-import React, {FC, FormEvent, ReactElement, useCallback} from "react";
+import React, {FC, MouseEvent, ReactElement, useCallback} from "react";
+import {ButtonMouseHandler} from "../../../Common/Controls/Button/Button.type";
+import Button from "../../../Common/Controls/Button/Button";
 import './Square.css';
 
-export type SquareHandlerType = {
-    (event: React.FormEvent): void
-}
+export type SquareHandlerType = ButtonMouseHandler;
 
 export type SquareProps =  {
     id: number;
@@ -31,7 +31,7 @@ const Square: FC<SquareProps> = (props) => {
      * This syntax provides binding `this` inside
      * @param event
      */
-    const handlerClick = (event: FormEvent<HTMLButtonElement>) => {
+    const handlerClick: SquareHandlerType = (event: MouseEvent<HTMLButtonElement>) => {
         onClick(event);
     };
 
@@ -53,11 +53,12 @@ const Square: FC<SquareProps> = (props) => {
     }, [isDisabled, isSelected, isOpened, isSelectedLine, canClickIfOpened]);
 
     return (
-        <button className={getClassName()}
-                onClick={handlerClick}
+        <Button
+            className={getClassName()}
+            onClick={handlerClick}
         >
             {content}
-        </button>
+        </Button>
     );
 }
 export default Square;

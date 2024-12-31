@@ -2,9 +2,15 @@ import {FC} from "react";
 import {useDispatch} from "react-redux";
 import classNames from "classnames";
 
+// Models
+import {ButtonMouseHandler} from "../../Common/Controls/Button/Button.type";
+
+// Redux
 import {AppDispatch} from "../../../redux/store";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import {togglePause} from "../../../redux/tictactoe/game/gameSlice";
+
+import Button from "../../Common/Controls/Button/Button";
 
 import "./GameMenu.css";
 
@@ -16,15 +22,18 @@ const GameMenu: FC<GameMenuPropsI> = ({isDisabled}) => {
     const dispatch = useDispatch<AppDispatch>();
     const isGamePaused = useTypedSelector(state => state.t3game.state.isPaused);
 
-    const handlePauseClick = () => {
+    const handlePauseClick: ButtonMouseHandler = () => {
         dispatch(togglePause());
     };
 
     return (
         <div className={classNames('game-menu', {'disabled': isDisabled})}>
-            <button className={classNames('pause-btn', {'paused': isGamePaused})} onClick={handlePauseClick}>
+            <Button
+                onClick={handlePauseClick}
+                className={classNames('pause-btn', {'paused': isGamePaused})}
+            >
                 {isGamePaused ? "Resume" : "Pause"}
-            </button>
+            </Button>
         </div>
     );
 };

@@ -1,4 +1,5 @@
 import {FC} from "react";
+import Button from "../../Controls/Button/Button";
 
 interface ErrorFallbackProps {
     error: Error,
@@ -10,7 +11,9 @@ const ErrorFallback: FC<ErrorFallbackProps> = ({ error, resetErrorBoundary }) =>
         <div role="alert">
             <p>Something went wrong:</p>
             <pre>{error.message}</pre>
-            <button onClick={resetErrorBoundary}>Try again</button>
+            <Button onClick={resetErrorBoundary}>
+                Try again
+            </Button>
         </div>
     )
 };

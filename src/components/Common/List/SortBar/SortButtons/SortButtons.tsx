@@ -1,7 +1,10 @@
-import {FC} from "react";
+import {FC, MouseEvent} from "react";
 import classNames from "classnames";
 
 import {SortTypes} from "../../../../../utils/sorting";
+import {ButtonMouseHandler} from "../../../Controls/Button/Button.type";
+
+import Button from "../../../Controls/Button/Button";
 
 import "./SortButtons.css"
 
@@ -18,22 +21,26 @@ const SortButtons: FC<SortButtonsProps> = ({sortOrder, onSortOrderChange}) => {
         return classNames("sort-arrow", {active: sortOrder === order});
     }
 
+    const onSortHandler: ButtonMouseHandler<SortTypes> = (e: MouseEvent<HTMLButtonElement>, order?: SortTypes) => {
+        onSortOrderChange(order ?? sortOrder);
+    };
+
     return (
         <div className="sort-buttons">
-            <button
+            <Button<SortTypes>
+                ariaLabel="Sort Ascending"
                 className={getButtonClass(SortTypes.Asc)}
-                onClick={() => onSortOrderChange(SortTypes.Asc)}
-                aria-label="Sort Ascending"
+                onClick={event => onSortHandler(event, SortTypes.Asc)}
             >
                 ↑
-            </button>
-            <button
+            </Button>
+            <Button<SortTypes>
+                ariaLabel="Sort Descending"
                 className={getButtonClass(SortTypes.Desc)}
-                onClick={() => onSortOrderChange(SortTypes.Desc)}
-                aria-label="Sort Descending"
+                onClick={event => onSortHandler(event, SortTypes.Desc)}
             >
-                ↓
-            </button>
+                ↑
+            </Button>
         </div>
     )
 };
