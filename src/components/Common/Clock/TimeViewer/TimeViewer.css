@@ -1,92 +1,88 @@
 .time-viewer {
     display: flex;
     justify-content: center;
-    margin-bottom: 40px
-}
-
-@media screen and (max-width: 1680px) {
-    .time-viewer {
-        margin-bottom:22px
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .time-viewer {
-        margin-bottom:30px
-    }
+    gap: 1rem; /* Distance between time blocks */
 }
 
 .time-viewer .time-unit {
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
 }
 
 .time-viewer .time-separator {
-    font-size: 36px;
+    font-size: 2rem;
     position: relative;
-    top: 10px;
-    padding: 0 6px
-}
-
-@media screen and (max-width: 1680px) {
-    .time-viewer .time-separator {
-        font-size:27px;
-        top: 6px
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .time-viewer .time-separator {
-        font-size:28px;
-        top: 10px
-    }
+    top: 0.5rem;
+    padding: 0 0.5rem;
 }
 
 .time-unit .value {
-    font-size: 36px;
-    box-sizing: border-box;
-    width: 58px;
-    min-width: 58px;
-    height: 58px;
-    border-radius: 10px;
+    font-size: 2rem; /* Size time numbers */
+    width: 3rem;
+    height: 3rem;
+    border-radius: 10%;
     background-color: #f0f0f0;
-    margin-top: 2px;
+    margin-top: 0.2rem;
     display: flex;
     align-items: center;
-    justify-content: center
-}
-
-@media screen and (max-width: 1680px) {
-    .time-unit .value {
-        font-size:27px;
-        width: 43px;
-        min-width: 43px;
-        height: 43px
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .time-unit .value {
-        font-size:28px;
-        width: 51px;
-        min-width: 51px;
-        height: 51px
-    }
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; /* Additionally for smooth size changes */
 }
 
 .time-unit .label {
-    font-size: 12px
+    font-size: 0.75rem; /* Sizes for unit labels */
+    color: #555;
 }
 
-@media screen and (max-width: 1680px) {
+/* Large screens */
+@media screen and (min-width: 1025px) {
     .time-unit .label {
-        font-size:9px
+        font-size: 1.2rem;
     }
 }
 
-@media screen and (max-width: 500px) {
+/* Tablet */
+@media screen and (max-width: 768px) {
+    .time-viewer {
+        gap: 0.8rem;
+    }
+
+    .time-viewer .time-separator {
+        font-size: 1.5rem;
+        top: 0.4rem;
+    }
+
+    .time-unit .value {
+        font-size: 1.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
     .time-unit .label {
-        font-size:12px
+        font-size: 0.65rem;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+    .time-viewer {
+        gap: 0.5rem;
+    }
+
+    .time-viewer .time-separator {
+        font-size: 1.2rem;
+        top: 0.3rem;
+    }
+
+    .time-unit .value {
+        font-size: 1.2rem;
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .time-unit .label {
+        font-size: 0.6rem;
     }
 }
