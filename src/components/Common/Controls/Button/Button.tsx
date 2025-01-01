@@ -3,22 +3,25 @@ import {ButtonPropsI} from "./Button.type";
 
 /**
  * Button component that handles optional click events with custom data.
+ * The default value of T as 'void' allows using the ButtonMouseHandler type without specifying T when no data is provided.
+ *
  * Example usage:
  *
  * const clickHandler: ButtonEventHandler<number> = (event: MouseEvent<HTMLButtonElement>, id?: number) => {
- *      console.log('on click:', event, id);
+ *      console.log('On click:', event, id);
  * };
  *
- * const clickHandler2: ButtonEventHandler<number> = () => console.log('on click', event, id);
+ * const clickHandler2: ButtonEventHandler<number> = () => console.log('On click');
  *
  * <Button<number> onClick={event => clickHandler(event, 10)}>
  *      <span>Button</span>
  * </Button>
  *
- *  <Button<number> onClick={clickHandler2}>
+ * <Button<number> onClick={clickHandler2}>
  *      <span>Button2</span>
  * </Button>
- * @param props
+ *
+ * @param props The properties for the Button component.
  * @constructor
  */
 const Button = <T = void>(props: ButtonPropsI<T>): ReactElement | null => {

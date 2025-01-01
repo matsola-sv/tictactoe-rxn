@@ -2,6 +2,7 @@ import {MouseEvent, ReactNode} from "react";
 
 /**
  * Possible in two versions (without parameters and with one mandatory one)
+ * Defaulting T to 'void' allows using the ButtonMouseHandler type without needing to specify T when no data is passed.
  */
 export type ButtonMouseHandler<T = void> =
     (() => void) |
