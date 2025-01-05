@@ -1,9 +1,9 @@
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import Time from "../utils/time";
 
 export interface StopwatchConfig {
-    autoStart?: boolean,                                          // if set to true stopwatch will auto start
-    initialMillis?: number                                        // starting point in milliseconds for the stopwatch
+    autoStart?: boolean,                                          // If set to true stopwatch will auto start
+    initialMillis?: number                                        // Starting point in milliseconds for the stopwatch
 }
 
 export interface StopwatchResult {
@@ -11,10 +11,10 @@ export interface StopwatchResult {
     seconds: number,
     minutes: number,
     hours: number,
-    isActive: boolean,                                              // flag to indicate if stopwatch is working or not
-    start: () => void,                                              // function to be called to start/resume stopwatch
-    pause: () => void,                                              // function to be called to pause stopwatch
-    reset: (autoRestart?: boolean, offsetMills?: number) => void    // to reset stopwatch to 0:0:0:0 or to reset stopwatch with offset
+    isActive: boolean,                                              // Flag to indicate if stopwatch is working or not
+    start: () => void,                                              // Function to be called to start/resume stopwatch
+    pause: () => void,                                              // Function to be called to pause stopwatch
+    reset: (autoRestart?: boolean, offsetMills?: number) => void    // To reset stopwatch to 0:0:0:0 or to reset stopwatch with offset
 }
 
 const useStopwatch = (config: StopwatchConfig): StopwatchResult => {
@@ -42,25 +42,25 @@ const useStopwatch = (config: StopwatchConfig): StopwatchResult => {
      * @param newActivity
      * @param force
      */
-    const updateActivity = (newActivity: boolean, force: boolean = false): void => {
+    const updateActivity = useCallback((newActivity: boolean, force: boolean = false): void => {
         if (force || isActive !== newActivity) {
             setIsActive(newActivity);
         }
-    }
+    }, [isActive]);
 
     /**
      * To be called to start/resume stopwatch
      */
-    const start = (): void => {
+    const start = useCallback((): void => {
         updateActivity(true);
-    };
+    }, [updateActivity]);
 
     /**
      * To be called to pause stopwatch
      */
-    const pause = (): void => {
+    const pause = useCallback((): void => {
         updateActivity(false);
-    }
+    }, [updateActivity]);
 
     /**
      * To reset stopwatch to 0:0:0 (h:m:s) or use to reset stopwatch with offset of times
@@ -69,10 +69,13 @@ const useStopwatch = (config: StopwatchConfig): StopwatchResult => {
      * @param autoRestart
      * @param offsetMills
      */
-    const reset = (autoRestart: boolean = false, offsetMills = 0): void => {
-        updateActivity(autoRestart, true);
-        setSecondsStamp(offsetMills / 1000);
-    };
+    const reset = useCallback(
+        (autoRestart: boolean = false, offsetMills = 0): void => {
+            updateActivity(autoRestart, true);
+            setSecondsStamp(offsetMills / 1000);
+        },
+        [updateActivity]
+    );
 
     return {
         ...Time.getTimeFromSeconds(secondsStamp),
