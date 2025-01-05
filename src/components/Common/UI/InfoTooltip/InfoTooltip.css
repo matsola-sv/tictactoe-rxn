@@ -1,0 +1,86 @@
+.info-tooltip {
+    position: relative;
+    display: inline-block; /* Defines the element as inline-block for correct display */
+    cursor: pointer;
+    font-size: 1.125rem; /* 18px in rem */
+    color: #007bff;
+}
+
+/* Tooltip text */
+.info-tooltip .tooltip-text {
+    visibility: hidden; /* Hide tooltip by default */
+    opacity: 0;
+    position: absolute;
+    top: 110%; /* Position the tooltip below the element */
+    left: 50%; /* Center the tooltip horizontally */
+    transform: translateX(-50%); /* Center the tooltip relative to its width */
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 0.25rem;
+    padding: 0.625rem;
+    max-width: 90vw; /* 90% of the window width */
+    min-width: 9.375rem;
+    width: auto;
+    white-space: normal; /* Text can wrap */
+    word-wrap: break-word; /* Word wrap if necessary */
+    line-height: 1.4; /* Line height for better readability */
+    z-index: 1000;
+    transition: opacity 0.3s ease-in-out; /* Smooth transition for visibility */
+    overflow-wrap: break-word; /* Word wrapping when necessary */
+    text-align: center;
+    pointer-events: none;
+    box-sizing: border-box; /* Includes padding and border in element width and height */
+}
+
+/* Tooltip arrow */
+.info-tooltip .tooltip-text::after {
+    content: ''; /* Empty content for the arrow */
+    position: absolute;
+    top: -0.5rem; /* Position the arrow */
+    left: 50%; /* Center the arrow horizontally */
+    transform: translateX(-50%); /* Center the arrow relative to the tooltip */
+    width: 0;
+    height: 0;
+    border-left: 0.3125rem solid transparent;
+    border-right: 0.3125rem solid transparent;
+    border-bottom: 0.625rem solid rgba(0, 0, 0, 0.8);
+}
+
+/* Show tooltip on hover */
+.info-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Change text color on hover */
+.info-tooltip:hover {
+    color: #0056b3;
+}
+
+/* For large screens */
+@media (min-width: 1200px) {
+    .info-tooltip {
+        font-size: 0.95rem;
+    }
+}
+
+/* For screens between 768px and 1200px */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .info-tooltip {
+        font-size: 0.9rem;
+    }
+}
+
+/* For screens up to 768px */
+@media (max-width: 768px) {
+    .info-tooltip {
+        font-size: 0.85rem;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+    .info-tooltip {
+        font-size: 0.8rem;
+    }
+}

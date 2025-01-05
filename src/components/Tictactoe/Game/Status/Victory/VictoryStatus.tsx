@@ -6,10 +6,10 @@ type VictoryStatusProps = {
     player: PlayerI
 }
 
-const VictoryStatus: FC<VictoryStatusProps> = (props) => {
+const VictoryStatus: FC<VictoryStatusProps> = ({player}) => {
     return (
         <div className="status-victory">
-            Winner: {props.player.name}
+            Winner: {player.name}
         </div>
     );
 }

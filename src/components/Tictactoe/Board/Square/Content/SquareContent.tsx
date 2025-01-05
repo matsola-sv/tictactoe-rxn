@@ -7,7 +7,7 @@ interface SquareContentProps {
 
 const SquareContent: FC<SquareContentProps> = ({value})=> {
     return (
-        <div className="square-content test">
+        <div className="square-content">
             {value}
         </div>
     )

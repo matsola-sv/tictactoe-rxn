@@ -1,5 +1,3 @@
-/*# sourceMappingURL=game.css.map*/
-
 /*
     NOTE: Check if padding needs adjustment
     Height of the container - accounting for padding and the height of the menu/timer.
@@ -77,14 +75,4 @@
     border: 1px solid #ddd;
     box-sizing: border-box;
     overflow-y: auto; /* Enables vertical scrolling if the content exceeds the container's height */
-}
-
-.status {
-    flex: 0 0 auto; /* Fixed height for status */
-    margin: 0 0 20px 0;
-}
-
-.status .text {
-    font-size: 18px;
-    font-weight: bold;
 }

@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 
 // Models
 import {PlayerI} from "../../../models/player";
+import {GameStatus} from "../../../models/tictactoe/gameStatus";
 import {BoardElHandlerType, SquareType} from "../Board/Board.types";
 import {
     GameMoveI,
@@ -14,8 +15,11 @@ import {
 } from "../../../models/tictactoe/game";
 
 // Redux
-import {updateCurrentMove, updateHistoryMove} from "../../../redux/tictactoe/game/gameSlice";
+import {makeMove as reduxMakeMove} from "../../../redux/tictactoe/game/gameSlice";
 import {AppDispatch} from "../../../redux/store";
+
+// Services
+import {calculateWinner, getCurrentPlayer} from "../../../services/tictactoe/gameLogic";
 
 // Hooks
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
@@ -25,13 +29,11 @@ import EmptyListMessage from "../../Common/EmptyListMessage/EmptyListMessage";
 import GameMenu from "../GameMenu/GameMenu";
 import Board from "../Board/Board";
 import MovesHistory from "../MovesHistory/MovesHistory";
-import NextMoveStatus from "./Status/NextMove/NextMove";
-import DrawStatus from "./Status/Draw/Draw";
-import VictoryStatus from "./Status/Victory/Victory";
+import Status from "./Status/Status";
 
 import './Game.css';
 
-export interface GamePropsI {
+interface GamePropsI {
     gameState: GameStateI
 }
 
@@ -48,12 +50,20 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
         />
     );
 
+    // Game state in Redux
     const dispatch = useDispatch<AppDispatch>();
     const move: number = gameState.currentMove;
     const moveHistory: GameMoveI[] = gameState.history;
+    const status = useTypedSelector(state => state.t3game.state.status);
+
+    // Local state
     const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);  // Required to cache the move history render
-    const isPausedGame = useTypedSelector(state => state.t3game.state.isPaused); // If the game is paused to hide the move history and game board.
-    const isShowGameMenu = moveHistory.length > 0;
+    const isShowGameMenu: boolean = moveHistory.length > 0;
+
+    // Game statuses
+    const isStopped = status === GameStatus.Stopped;                // Checks if the game has stopped
+    const isPaused: boolean = status === GameStatus.Paused;         // The game is paused
+    const isViewingHistory = status === GameStatus.ViewingHistory;  // Checks if the game is in the process of viewing the history of moves.
 
     /**
      * Element selection handler on the Board
@@ -114,8 +124,7 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
      * Player with the index (0) goes first
      */
     const getPlayer = (): PlayerI => {
-        return getMoveID() %2 === 0 ?
-            gameState.players[0] : gameState.players[1];
+        return getCurrentPlayer(gameState);
     }
 
     /**
@@ -126,10 +135,20 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
     }
 
     /**
+     * Checks if a move can be made based on the current game status.
+     *
+     * @param status - The current status of the game.
+     */
+    const canMakeMove = (status: GameStatus) => {
+        return status === GameStatus.Running || status === GameStatus.Waiting;
+    };
+
+    /**
      * @param squareID
      */
     const makeMove = (squareID: number): void => {
-        if (getWinner() || getSquare(squareID)) {
+        // Check if it is possible to make a move (if the game is stopped or the cell is already occupied)
+        if (isStopped || isViewingHistory || getSquare(squareID)) {
             return;
         }
 
@@ -139,71 +158,20 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
         let squares = getSquares().slice();
         squares[squareID] = getPlayer();
 
-        // Update state game
-        dispatch(updateCurrentMove(nextMove));              // update current move number. Will be needed for move history
-        setNumberMoves(history.length + 1);                 // used to cache the move history render
-        dispatch(updateHistoryMove(                         // add the state of the step to the game history
-            history.concat([{
+        // Update state game in Redux
+        setNumberMoves(history.length + 1);                 // Used to cache the move history render
+        dispatch(reduxMakeMove({
+            // Update current move number. Will be needed for move history
+            currentMove: nextMove,
+
+            // Add the state of the step to the game history
+            history: history.concat([{
                 date: Date.now(),
                 squareID: squareID,
                 squares: squares,
-                winner: calculateWinner(squares)             // we calculate the winner on each
+                winner: calculateWinner(squares)            // We calculate the winner on each
             }])
-        ));
-    }
-
-    /**
-     * Calculates the game winner on the field
-     * @param squares
-     */
-    const calculateWinner = (squares: SquareState[]): WinnerState => {
-        const lines = [
-            [0, 1, 2], [3, 4, 5], [6, 7, 8],
-            [0, 3, 6], [1, 4, 7], [2, 5, 8],
-            [0, 4, 8], [2, 4, 6],
-        ];
-
-        for (let i = 0; i < lines.length; i++) {
-            const [a, b, c] = lines[i];
-
-            if (squares[a] &&
-                squares[a]?.id === squares[b]?.id &&
-                squares[a]?.id === squares[c]?.id
-            ) {
-                return {
-                    player: squares[a] as PlayerI,
-                    winnerLine: lines[i]
-                };
-            }
-        }
-        return null;
-    }
-
-    /**
-     * The Status of the game on the current move changes when moving through the history of moves
-     */
-    const renderStatus = (): ReactElement => {
-        if (checkDraw()) {
-            return <DrawStatus/>
-        }
-        const winner = getWinner();
-
-        return winner ?
-            <VictoryStatus player={winner.player}/> :
-            <NextMoveStatus player={getPlayer()}/>
-    }
-
-    /**
-     * Checks if there is currently a draw
-     * The game Status changes when moving through the history of moves
-     */
-    const checkDraw = (): boolean => {
-        // moves end when current move-id(from 0-9) == the number of all squares on the field (9)
-        // there may be only 10 moves, but we moved history to current move(2), so moves won't be finished
-        const movesEnded: boolean = getSquares().length
-            === getMoveID();
-
-        return !(!movesEnded || getMove()?.winner);
+        }));
     }
 
     /*
@@ -248,8 +216,8 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
                 </div>
                 <div className="board-container">
                     <Board
-                        isDisabled={isPausedGame}
-                        isClickable={getWinner() === null}
+                        isDisabled={isPaused}
+                        isClickable={canMakeMove(status)}
                         columns={boardColumns}
                         squares={squaresDisplay}
                         selected={getActiveSquareID()}
@@ -258,17 +226,17 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
                         fallbackComponent={fallbackBoard}
                     />
                 </div>
-                <div className="game-tools">Timer Component</div>
+                <div className="game-tools">
+                    Timer Component
+                </div>
             </div>
 
             {/* Right column */}
             <div className="game-right">
                 <div className="game-info">
-                    <div className="status">
-                        <div className="text">{renderStatus()}</div>
-                    </div>
+                    <Status gameState={gameState}/>
                     <MovesHistory
-                        isDisabled={isPausedGame}
+                        isDisabled={isPaused}
                         moves={historyDisplay}
                         currentMove={getMoveID()}
                         fallbackComponent={fallbackMoveHistory}

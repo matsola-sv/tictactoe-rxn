@@ -6,10 +6,10 @@ type NextStatusPropsI = {
     player: PlayerI
 }
 
-const NextMoveStatus: FC<NextStatusPropsI> = (props) => {
+const NextMoveStatus: FC<NextStatusPropsI> = ({player}) => {
     return (
         <div className="status-next">
-            Next player: {props.player.name}
+            Next player: {player.name}
         </div>
     );
 }

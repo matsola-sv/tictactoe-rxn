@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import classNames from "classnames";
 
 // Models
+import {GameStatus} from "../../../models/tictactoe/gameStatus";
 import {ButtonMouseHandler} from "../../Common/Controls/Button/Button.type";
 
 // Redux
@@ -20,7 +21,9 @@ interface GameMenuPropsI {
 
 const GameMenu: FC<GameMenuPropsI> = ({isDisabled}) => {
     const dispatch = useDispatch<AppDispatch>();
-    const isGamePaused = useTypedSelector(state => state.t3game.state.isPaused);
+    const isGamePaused: boolean = useTypedSelector(
+        state => state.t3game.state.status === GameStatus.Paused
+    );
 
     const handlePauseClick: ButtonMouseHandler = () => {
         dispatch(togglePause());

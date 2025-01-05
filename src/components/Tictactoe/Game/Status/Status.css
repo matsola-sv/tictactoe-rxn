@@ -1,0 +1,9 @@
+.status {
+    flex: 0 0 auto; /* Fixed height for status */
+    margin: 0 0 20px 0;
+}
+
+.status .text {
+    font-size: 18px;
+    font-weight: bold;
+}
