@@ -5,11 +5,7 @@ type DrawStatusProps = {
     value?: string
 }
 
-const DrawStatus: FC<DrawStatusProps> = (props) => {
-    const {
-        value = "Draw in tic-tac-toe game"
-    }: DrawStatusProps = props;
-
+const DrawStatus: FC<DrawStatusProps> = ({ value = "Draw in tic-tac-toe game" }) => {
     return (
         <div className="status-draw">
             {value}

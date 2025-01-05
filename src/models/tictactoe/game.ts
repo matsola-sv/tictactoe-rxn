@@ -1,4 +1,5 @@
 import {PlayerI} from "../player";
+import {GameStatus} from "./gameStatus";
 
 export interface WinnerI {
     player: PlayerI;
@@ -21,7 +22,7 @@ export interface GameStateI {
     players: PlayerI[];
     history: GameMoveI[];
     currentMove: number;                            // Number of the current move. Default = 0
-    isPaused: boolean;                              // Whether the game is paused (stops timer, disables board, hides history).
+    status: GameStatus                              // The game's current status at each stage, which affects the game logic
 }
 
 export interface HistoryMoveI {

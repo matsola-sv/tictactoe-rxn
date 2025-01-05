@@ -1,6 +1,10 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+
+import {GameStateContainerI, GameStateMetaI, MoveActionPayloadI} from "./types";
 import {GameMoveI, GameStateI} from "../../../models/tictactoe/game";
-import {GameStateContainerI, GameStateMetaI} from "./types";
+import {GameStatus} from "../../../models/tictactoe/gameStatus";
+
+import {getGameStatusByMove, validateMove} from "../../../services/tictactoe/gameLogic";
 
 const initialGameState: GameStateI = {
     // Player with the index (0) goes first
@@ -15,13 +19,46 @@ const initialGameState: GameStateI = {
         winner: null                       // Game winner if there is one
     }],
     currentMove: 0,                        // Number of the current move
-    isPaused: false                        // Whether the game is paused (stops timer, disables board, hides history).
+    status: GameStatus.Waiting,            // The game's current status at each stage, which affects the game logic
 };
 
 const initialGameMeta: GameStateMetaI = {
-    isRestored: false                      // Indicates if the game state has been restored (false by default)
+    // Indicates if the game state has been restored (false by default)
+    isRestored: false,
+
+    // Stores the previous game status to correctly handle transitions
+    // between modes (e.g., between the active game and the game history view). This field
+    // allows returning to the previous game status after exiting the history view mode.
+    previousStatus: GameStatus.Waiting,
 };
 
+/**
+ * This is the only mechanism for changing the game status.
+ * Note: it is advisable to use it, not change it manually!
+ *
+ * @param container
+ * @param newStatus
+ */
+const updateStatusGame = (container: GameStateContainerI, newStatus: GameStatus): void => {
+    if (container.state.status === newStatus) {
+        return;
+    }
+
+    // Set the previous status if it hasn't been updated already.
+    if (container.meta.previousStatus !== container.state.status) {
+        container.meta.previousStatus = container.state.status;
+    }
+
+    // Update the current game status.
+    container.state.status = newStatus;
+};
+
+/**
+ * NOTE:
+ * To simplify testing, the logic for changing the game status has been moved
+ * from the src/components/Game/Game.tsx to Redux actions. This separation allows for easier
+ * unit testing and better state management in the application.
+ */
 const gameSlice = createSlice({
     name: "t3-game",
     initialState: {
@@ -30,31 +67,121 @@ const gameSlice = createSlice({
     },
     reducers: {
         // Restores the previous state (once) if the game was paused
-        restoreGameState(state: GameStateContainerI, action: PayloadAction<GameStateI>) {
-            if (!state.meta.isRestored) {
-                state.state.history = action.payload.history;
-                state.state.currentMove = action.payload.currentMove;
-                state.meta.isRestored = true;
+        restoreGameState(container: GameStateContainerI, action: PayloadAction<GameStateI>) {
+            if (!container.meta.isRestored) {
+                container.state.history = action.payload.history;
+                container.state.currentMove = action.payload.currentMove;
+                container.meta.isRestored = true;
+
+                // Set status to "Waiting" if the game is being restored, and it's not already in that state
+                if (container.state.status !== GameStatus.Waiting) {
+                    updateStatusGame(container, GameStatus.Waiting);
+                }
             }
         },
-        updateCurrentMove(state: GameStateContainerI, action: PayloadAction<number>) {
-            state.state.currentMove = action.payload;
+        // Updates current move number, history moves and changes game status if needed
+        makeMove(container: GameStateContainerI, action: PayloadAction<MoveActionPayloadI>) {
+            const { currentMove, history } = action.payload;
+            const { isValid, error } = validateMove(currentMove, history);
+
+            if (!isValid) {
+                console.error(`[Action makeMove]: ${error}`);
+                return;
+            }
+
+            // Update state for move
+            container.state.currentMove = currentMove;
+            container.state.history = history;
+            const move: GameMoveI = history[currentMove];
+
+            // Starts the game if it's the first move in the current session
+            if (container.state.status === GameStatus.Waiting) {
+                updateStatusGame(container, GameStatus.Running);
+            }
+
+            // Get the game status for the new move and update it if it has changed.
+            // Note: The updateStatusGame function will not update the status if the new status is the same as the current one.
+            updateStatusGame(container, getGameStatusByMove(move, currentMove));
         },
-        updateHistoryMove(state: GameStateContainerI, action: PayloadAction<GameMoveI[]>) {
-            state.state.history = action.payload;
-        },
+
         // Go to the Game state by move number
-        goToMove(state: GameStateContainerI, action: PayloadAction<number>) {
-            if (state.state.currentMove !== action.payload) {
-                state.state.currentMove = action.payload;
+        goToMove(container: GameStateContainerI, action: PayloadAction<number>) {
+            const moveTo: number = action.payload;
+            if (container.state.currentMove !== moveTo) {
+                // Note: We need to copy Redux state, not origin object!
+                const historyCopy = JSON.parse(JSON.stringify(container.state.history));
+                const { isValid, error } = validateMove(moveTo, historyCopy);
+
+                if (!isValid) {
+                    console.error(`[Action goToMove]: ${error}`);
+                    return;
+                }
+                // Update the current move to the specified step in the game's history.
+                container.state.currentMove = moveTo;
+
+                // If the target move is in the past, switch to "ViewingHistory" state.
+                const totalMoves: number = container.state.history.length - 1;
+                if (moveTo < totalMoves) {
+                    updateStatusGame(container, GameStatus.ViewingHistory);
+                    return;
+                }
+                // Exiting the history viewing mode. Restore the game status that was active
+                // before transitioning to the history viewing mode.
+                updateStatusGame(container, container.meta.previousStatus);
             }
         },
-        //
+
+        // Go the game to an active state where timers are running, players can make moves, etc.
+        startGame(container: GameStateContainerI) {
+            updateStatusGame(container, GameStatus.Running);
+        },
+
+        // Pauses or resumes the game (transition from "running"=>"paused" / "paused"=>"running")
+        // Whether the game is paused (stops timer, disables board, hides history).
         togglePause(container: GameStateContainerI) {
-            container.state.isPaused = !container.state.isPaused;
-        }
+            const status: GameStatus = container.state.status;
+            const noPauseStatuses: GameStatus[] = [
+                GameStatus.Waiting,
+                GameStatus.Stopped,
+                GameStatus.ViewingHistory
+            ];
+            // Prevent pausing if the game is stopped, in history view, or not yet started.
+            if (noPauseStatuses.indexOf(status) >= 0) {
+                return;
+            }
+
+            // Switch between "Running" and "Paused" states
+            const newStatus: GameStatus = (status === GameStatus.Paused)
+                ? GameStatus.Running
+                : GameStatus.Paused;
+            updateStatusGame(container, newStatus);
+        },
+
+        // Stop the game (win or other action) - from running or paused to stopped
+        stopGame(container: GameStateContainerI) {
+            updateStatusGame(container, GameStatus.Stopped);
+        },
+
+        // Saving the game (going from "paused" => "saving")
+        saveGame(container: GameStateContainerI) {
+            updateStatusGame(container, GameStatus.Saving);
+        },
+
+        // After successfully saving (goes from "saving" => "waiting" or "stopped")
+        finishSavingGame(container: GameStateContainerI, action: PayloadAction<boolean>) {
+            const newStatus = action.payload
+                ? GameStatus.Waiting
+                : GameStatus.Stopped;
+            updateStatusGame(container, newStatus);
+        },
     }
 });
 
-export const { goToMove, updateHistoryMove, updateCurrentMove, restoreGameState, togglePause } = gameSlice.actions;
+export const {
+    goToMove,
+    makeMove,
+    restoreGameState,
+    togglePause
+} = gameSlice.actions;
+
 export default gameSlice.reducer;

@@ -6,9 +6,9 @@ import {BoardElHandlerType, BoardPropsI, SquareType} from "./Board.types";
 import BoardRow from "./Row/Row";
 import Square from "./Square/Square";
 import SquareContent from "./Square/Content/SquareContent";
+import EmptyListMessage from "../../Common/EmptyListMessage/EmptyListMessage";
 
 import "./Board.css";
-import EmptyListMessage from "../../Common/EmptyListMessage/EmptyListMessage";
 
 const Board: FC<BoardPropsI> = (props) => {
     const {
