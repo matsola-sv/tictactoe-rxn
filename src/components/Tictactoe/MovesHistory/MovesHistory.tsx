@@ -1,4 +1,4 @@
-import {FC, ReactElement, useCallback, useEffect, useMemo, useRef, useState} from "react";
+import {FC, ReactElement, useCallback, useLayoutEffect, useMemo, useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import classNames from "classnames";
 
@@ -39,7 +39,9 @@ const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
     const [sortOrder, setSortOrder] = useState<SortTypes>(SortTypes.Asc);
 
     // Trigger scrolling when the current move changes or the sort order is updated
-    useEffect(() => {
+    // useLayoutEffect ensures that scrolling is performed before any changes are rendered on the screen,
+    // allowing for controlled scrolling without delays or visual issues.
+    useLayoutEffect(() => {
         scrollToMove(currentMove);
     }, [currentMove, sortOrder]);
 
@@ -48,7 +50,8 @@ const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
      * @param element
      */
     const setMoveRef = (id: number, element: HTMLLIElement | null): void => {
-        if (element) {
+        // Ensures no duplicate DOM elements in itemRefs
+        if (element && !itemRefs.current.includes(element)) {
             itemRefs.current[id] = element;
         }
     };
@@ -76,12 +79,18 @@ const MovesHistory: FC<MovesHistoryPropsI> = (props) => {
      * @param index
      */
     const scrollToMove = (index: number): void => {
-        const targetElement: HTMLLIElement = itemRefs.current[index];
-        if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: "smooth", // Smooth transition
-                block: "center", // Central location
-            });
+        const target: HTMLLIElement = itemRefs.current[index];
+        if (target) {
+            // Checks if the element is fully visible in the browser window to avoid unnecessary scrolling.
+            const isVisible = target.getBoundingClientRect().top >= 0 &&
+                target.getBoundingClientRect().bottom <= window.innerHeight;
+
+            if (!isVisible) {
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                });
+            }
         }
     };
 
