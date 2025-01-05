@@ -1,6 +1,14 @@
 {
 	"states": [
 		{
+			"status": "running",
+			"time": {
+				"durationSecs": 25
+			},
+			"players": [
+				{ "id": 1, "name": "X" },
+				{ "id": 2, "name": "O" }
+			],
 			"currentMove": 3,
 			"history": [
 				{
@@ -30,6 +38,14 @@
 			]
 		},
 		{
+			"status": "running",
+			"time": {
+				"durationSecs": 120
+			},
+			"players": [
+				{ "id": 1, "name": "X" },
+				{ "id": 2, "name": "O" }
+			],
 			"currentMove": 9,
 			"history": [
 				{
@@ -98,6 +114,14 @@
 			]
 		},
 		{
+			"status": "running",
+			"time": {
+				"durationSecs": 20
+			},
+			"players": [
+				{ "id": 1, "name": "X" },
+				{ "id": 2, "name": "O" }
+			],
 			"currentMove": 5,
 			"history": [
 				{

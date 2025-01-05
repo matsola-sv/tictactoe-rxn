@@ -21,12 +21,10 @@ import {AppDispatch} from "../../../redux/store";
 // Services
 import {calculateWinner, getCurrentPlayer} from "../../../services/tictactoe/gameLogic";
 
-// Hooks
-import {useTypedSelector} from "../../../hooks/useTypedSelector";
-
 // Components
 import EmptyListMessage from "../../Common/EmptyListMessage/EmptyListMessage";
 import GameMenu from "../GameMenu/GameMenu";
+import GameStopwatch from "../GameStopwatch/GameStopwatch";
 import Board from "../Board/Board";
 import MovesHistory from "../MovesHistory/MovesHistory";
 import Status from "./Status/Status";
@@ -54,7 +52,8 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
     const dispatch = useDispatch<AppDispatch>();
     const move: number = gameState.currentMove;
     const moveHistory: GameMoveI[] = gameState.history;
-    const status = useTypedSelector(state => state.t3game.state.status);
+    const status = gameState.status;                                // Game status
+    const initialMillis = gameState.time.durationSecs * 1000;       // Initial mills for stopwatch
 
     // Local state
     const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);  // Required to cache the move history render
@@ -227,7 +226,7 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
                     />
                 </div>
                 <div className="game-tools">
-                    Timer Component
+                    <GameStopwatch initialMillis={initialMillis}/>
                 </div>
             </div>
 

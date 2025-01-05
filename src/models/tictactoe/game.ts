@@ -22,7 +22,10 @@ export interface GameStateI {
     players: PlayerI[];
     history: GameMoveI[];
     currentMove: number;                            // Number of the current move. Default = 0
-    status: GameStatus                              // The game's current status at each stage, which affects the game logic
+    status: GameStatus;                             // The game's current status at each stage, which affects the game logic
+    time: {
+        durationSecs: number;                       // Duration of the game in seconds when it is active (without pauses and status changes)
+    }
 }
 
 export interface HistoryMoveI {
