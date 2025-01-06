@@ -20,6 +20,9 @@ const initialGameState: GameStateI = {
     }],
     currentMove: 0,                        // Number of the current move
     status: GameStatus.Waiting,            // The game's current status at each stage, which affects the game logic
+    time: {
+        durationSecs: 0,                   // Duration of the game in seconds when it is active (without pauses and status changes)
+    }
 };
 
 const initialGameMeta: GameStateMetaI = {
@@ -66,11 +69,11 @@ const gameSlice = createSlice({
         state: initialGameState
     },
     reducers: {
+        // TODO I need to add validation game state before update and show errors if it isn't correct
         // Restores the previous state (once) if the game was paused
         restoreGameState(container: GameStateContainerI, action: PayloadAction<GameStateI>) {
             if (!container.meta.isRestored) {
-                container.state.history = action.payload.history;
-                container.state.currentMove = action.payload.currentMove;
+                container.state = action.payload;
                 container.meta.isRestored = true;
 
                 // Set status to "Waiting" if the game is being restored, and it's not already in that state
@@ -174,6 +177,18 @@ const gameSlice = createSlice({
                 : GameStatus.Stopped;
             updateStatusGame(container, newStatus);
         },
+
+        /**
+         * Updates the game duration in seconds when the game is active (excluding pauses and status changes).
+         * @param container
+         * @param action - Game duration in seconds
+         */
+        updateGameDuration(container: GameStateContainerI, action: PayloadAction<number>) {
+            const newDuration = action.payload;
+            if (container.state.time.durationSecs !== newDuration) {
+                container.state.time.durationSecs = newDuration;
+            }
+        }
     }
 });
 
@@ -181,7 +196,8 @@ export const {
     goToMove,
     makeMove,
     restoreGameState,
-    togglePause
+    togglePause,
+    updateGameDuration
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

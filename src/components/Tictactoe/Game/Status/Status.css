@@ -1,9 +1,13 @@
 .status {
-    flex: 0 0 auto; /* Fixed height for status */
+    display: flex;
+    align-items: center; /* Vertical alignment of items */
+    width: 100%;
+    justify-content: space-between; /* Elements take up the entire width */
     margin: 0 0 20px 0;
 }
 
 .status .text {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 1.125rem; /* 18px in rem */
+    width: 100%;
+    text-align: center;
 }

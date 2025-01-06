@@ -21,12 +21,10 @@ import {AppDispatch} from "../../../redux/store";
 // Services
 import {calculateWinner, getCurrentPlayer} from "../../../services/tictactoe/gameLogic";
 
-// Hooks
-import {useTypedSelector} from "../../../hooks/useTypedSelector";
-
 // Components
 import EmptyListMessage from "../../Common/EmptyListMessage/EmptyListMessage";
 import GameMenu from "../GameMenu/GameMenu";
+import GameStopwatch from "../GameStopwatch/GameStopwatch";
 import Board from "../Board/Board";
 import MovesHistory from "../MovesHistory/MovesHistory";
 import Status from "./Status/Status";
@@ -54,16 +52,18 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
     const dispatch = useDispatch<AppDispatch>();
     const move: number = gameState.currentMove;
     const moveHistory: GameMoveI[] = gameState.history;
-    const status = useTypedSelector(state => state.t3game.state.status);
+    const status = gameState.status;                                // Game status
+    const initialMillis = gameState.time.durationSecs * 1000;       // Initial mills for stopwatch
+
+    // Game statuses
+    const isRunning: boolean = status === GameStatus.Running;       // It's active game (the stopwatch is running, you can make move)
+    const isStopped: boolean = status === GameStatus.Stopped;       // Checks if the game has stopped
+    const isPaused: boolean = status === GameStatus.Paused;         // The game is paused
+    const isViewingHistory = status === GameStatus.ViewingHistory;  // Checks if the game is in the process of viewing the history of moves.
 
     // Local state
     const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);  // Required to cache the move history render
-    const isShowGameMenu: boolean = moveHistory.length > 0;
-
-    // Game statuses
-    const isStopped = status === GameStatus.Stopped;                // Checks if the game has stopped
-    const isPaused: boolean = status === GameStatus.Paused;         // The game is paused
-    const isViewingHistory = status === GameStatus.ViewingHistory;  // Checks if the game is in the process of viewing the history of moves.
+    const isShowGameMenu: boolean = isRunning || isPaused;
 
     /**
      * Element selection handler on the Board
@@ -227,7 +227,7 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
                     />
                 </div>
                 <div className="game-tools">
-                    Timer Component
+                    <GameStopwatch initialMillis={initialMillis}/>
                 </div>
             </div>
 
@@ -236,7 +236,7 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
                 <div className="game-info">
                     <Status gameState={gameState}/>
                     <MovesHistory
-                        isDisabled={isPaused}
+                        /*isDisabled={isPaused}*/
                         moves={historyDisplay}
                         currentMove={getMoveID()}
                         fallbackComponent={fallbackMoveHistory}
