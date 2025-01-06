@@ -1,0 +1,26 @@
+.action-indicator {
+    display: flex;
+    align-items: center; /* Vertical alignment of items */
+    justify-content: center; /* Center content horizontally */
+    font-size: 1.25rem; /* Icon size */
+    margin-right: 0.5em; /* Add right margin for spacing */
+}
+
+.action-indicator.pause {
+    color: #ff9800;
+}
+
+.action-indicator.save {
+    color: #007bff;
+}
+
+.action-indicator .icon {
+    font-size: 1.5rem; /* Icon size relative to parent element */
+    margin-left: 0.2em; /* Space between icon and text */
+}
+
+.action-indicator .fa {
+    font-size: 1.5rem; /* FontAwesome icon size */
+    margin-left: 0.2em; /* Space between icon and text */
+    margin-right: 0.5em;
+}
