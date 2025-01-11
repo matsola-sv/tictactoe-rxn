@@ -1,4 +1,4 @@
-import {FC, ReactElement, useMemo, useState} from "react";
+import {FC, ReactElement, useEffect, useMemo, useState} from "react";
 import {useDispatch} from "react-redux";
 
 // Models
@@ -64,6 +64,11 @@ const Game: FC<GamePropsI> = ({ gameState, boardColumns = 3 }) =>  {
     // Local state
     const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);  // Required to cache the move history render
     const isShowGameMenu: boolean = isRunning || isPaused;
+
+    // Updates the number of moves in the history, required for memorizing the move history.
+    useEffect(() => {
+        setNumberMoves(moveHistory.length);
+    }, [moveHistory]);
 
     /**
      * Element selection handler on the Board
@@ -198,13 +203,16 @@ const Game: FC<GamePropsI> = ({ gameState, boardColumns = 3 }) =>  {
     };
 
     // Data for display is cached and updates when the state changes (moves history, current move)
+    // getSquares depends on move and moveHistory, as these data determine the state of squares for the current move,
+    // so it's not necessary to include it in the dependencies.
     const squaresDisplay = useMemo<SquareType[]>(
-        prepareSquaresDisplay, [moveHistory, move]
+        prepareSquaresDisplay, [moveHistory, move] // eslint-disable-line react-hooks/exhaustive-deps
     );
 
     // Rerender only when the number of moves changes
+    // Relying on numberMoves as it reflects moveHistory changes; avoids unnecessary recalculations.
     const historyDisplay = useMemo<HistoryMoveI[]>(
-        prepareHistoryDisplay, [numberMoves]
+        prepareHistoryDisplay, [numberMoves] // eslint-disable-line react-hooks/exhaustive-deps
     );
 
     return (
