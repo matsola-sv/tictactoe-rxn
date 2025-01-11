@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import classNames from "classnames";
 
 // Models
+import {LayoutAlignment} from "../../../models/layout";
 import {GameStatus} from "../../../models/tictactoe/gameStatus";
 import {ButtonMouseHandler} from "../../Common/Controls/Button/Button.type";
 
@@ -11,6 +12,7 @@ import {AppDispatch} from "../../../redux/store";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import {togglePause} from "../../../redux/tictactoe/game/gameSlice";
 
+import HorizontalBar from "../../Common/Controls/HorizontalBar/HorizontalBar";
 import Button from "../../Common/Controls/Button/Button";
 
 import "./GameMenu.css";
@@ -31,12 +33,14 @@ const GameMenu: FC<GameMenuPropsI> = ({isDisabled}) => {
 
     return (
         <div className={classNames('game-menu', {'disabled': isDisabled})}>
-            <Button
-                onClick={handlePauseClick}
-                className={classNames('pause-btn', {'paused': isGamePaused})}
-            >
-                {isGamePaused ? "Resume" : "Pause"}
-            </Button>
+            <HorizontalBar alignment={LayoutAlignment.CENTER}>
+                <Button
+                    onClick={handlePauseClick}
+                    className={classNames('pause-btn', {'paused': isGamePaused})}
+                >
+                    {isGamePaused ? "Resume" : "Pause"}
+                </Button>
+            </HorizontalBar>
         </div>
     );
 };

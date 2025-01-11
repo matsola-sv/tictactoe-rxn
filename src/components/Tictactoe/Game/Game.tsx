@@ -32,11 +32,11 @@ import Status from "./Status/Status";
 import './Game.css';
 
 interface GamePropsI {
-    gameState: GameStateI
+    gameState: GameStateI;
+    boardColumns?: number; // Number of columns on the game board
 }
 
-const Game: FC<GamePropsI> = ({gameState}) =>  {
-    const boardColumns: number = 3; // Number of columns on the game Board
+const Game: FC<GamePropsI> = ({ gameState, boardColumns = 3 }) =>  {
     const fallbackBoard: ReactElement = (
         <EmptyListMessage
             message="It's empty here, like in space. No cells found!"
@@ -236,7 +236,6 @@ const Game: FC<GamePropsI> = ({gameState}) =>  {
                 <div className="game-info">
                     <Status gameState={gameState}/>
                     <MovesHistory
-                        /*isDisabled={isPaused}*/
                         moves={historyDisplay}
                         currentMove={getMoveID()}
                         fallbackComponent={fallbackMoveHistory}

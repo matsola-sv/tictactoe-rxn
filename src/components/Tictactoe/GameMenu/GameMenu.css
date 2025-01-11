@@ -16,8 +16,8 @@
     pointer-events: none; /* Prevents interaction with the menu */
 }
 
-.pause-btn {
-    background-color: #4caf50;
+.game-menu .btn {
+    background-color: #90caf9;
     color: white;
     border: none;
     border-radius: 4px;
@@ -29,26 +29,35 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.pause-btn:disabled {
+.game-menu .btn:active {
+    border: 1px solid #6E6D70;
+    transform: scale(0.95);
+}
+
+.game-menu .btn:disabled {
     background-color: #cccccc;
     color: #999999;
     cursor: not-allowed; /* Shows a forbidden cursor */
     box-shadow: none;
 }
 
-.pause-btn:hover {
+.game-menu .pause-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+.game-menu .pause-btn:hover {
     background-color: #45a049; /* Slightly darker green on hover */
 }
 
-.pause-btn:active {
+.game-menu .pause-btn:active {
     background-color: #3e8e41; /* Even darker green on click */
-    transform: scale(0.95);
 }
 
-.pause-btn.paused {
+.game-menu .pause-btn.paused {
     background-color: #ff9800; /* Orange color for "Resume" */
 }
 
-.pause-btn.paused:hover {
+.game-menu .pause-btn.paused:hover {
     background-color: #fb8c00; /* Slightly darker orange on hover */
 }

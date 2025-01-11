@@ -62,8 +62,12 @@
     border-radius: 5px;
     font-size: 1.2em;
     font-weight: bold;
-    padding: 0 1em; /* Padding on left and right */
     min-height: 5vh; /* Minimum height for the timer and menu as a percentage of the screen height */
+}
+
+/* Game menu expands to the full width of the parent element */
+.menu-container {
+    display: block;
 }
 
 /* Additional settings for status and move history */
