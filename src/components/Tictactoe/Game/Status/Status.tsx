@@ -8,7 +8,7 @@ import {GameStatus} from "../../../../models/tictactoe/gameStatus";
 import useGameResult, {GameResultI} from "../../../../hooks/tictactoe/useGameResult";
 import {getCurrentPlayer} from "../../../../services/tictactoe/gameLogic";
 
-import ActionIndicator from "../ActionIndicator/ActionIndicator";
+import ActionIndicators from "../ActionIndicators/ActionIndicators";
 import DrawStatus from "./Draw/DrawStatus";
 import NextMoveStatus from "./NextMove/NextMoveStatus";
 import VictoryStatus from "./Victory/VictoryStatus";
@@ -56,7 +56,7 @@ const Status: FC<StatusPropsI> = ({gameState}) => {
 
     return (
         <div className="status">
-            <ActionIndicator/>
+            <ActionIndicators/>
             <div className="text">
                 {renderStatus()}
             </div>

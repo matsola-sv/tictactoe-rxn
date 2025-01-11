@@ -1,5 +1,5 @@
 .status {
-    /*display: flex;*/ /* Fix bug with left margin! */
+    display: flex;  /*Fix bug with left margin!*/
     align-items: center; /* Vertical alignment of items */
     width: 100%;
     justify-content: space-between; /* Elements take up the entire width */
