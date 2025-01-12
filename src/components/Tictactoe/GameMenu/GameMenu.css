@@ -6,6 +6,7 @@
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow to lift the menu */
     border-radius: 4px;
+    user-select: none; /* Disables text selection in all moves history */
 }
 
 .game-menu.disabled {

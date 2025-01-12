@@ -9,6 +9,7 @@
     flex-grow: 1; /* Container takes up all available space */
     overflow-y: auto; /* Adds vertical scrolling */
     overflow-x: hidden; /* Disabled overflow-x to prevent scroll jumps in the move history. */
+    user-select: none; /* Disables text selection in all moves history */
 }
 
 /* Container for the sorting bar */
@@ -79,6 +80,7 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow styling */
     transition: background-color 0.3s ease, transform 0.1s ease; /* Hover effects */
     text-align: left; /* Aligns text to the left */
+    cursor: pointer;
 }
 
 /* Hover animation */
@@ -120,19 +122,15 @@
 }
 
 /* Move coordinates */
-.move-coords {
+.moves-container .move-coords {
     font-style: italic;
     color: #757575;
 }
 
 /* Additional style for DefaultMove link */
-.moves-container li a {
+.moves-container .move-details {
     text-decoration: none; /* No underline for links */
     color: #007bff;
     font-weight: bold;
     transition: color 0.2s ease; /* Color transition on hover */
-}
-
-.moves-container li a:hover {
-    color: #0056b3;
 }

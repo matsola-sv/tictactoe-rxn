@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     gap: 1rem; /* Distance between time blocks */
+    user-select: none; /* Disables text selection in time viewer */
 }
 
 .time-viewer .time-unit {

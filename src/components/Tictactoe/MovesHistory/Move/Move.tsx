@@ -34,12 +34,12 @@ const Move = forwardRef<HTMLLIElement, MovePropsI>((props, moveRef) => {
             className={classes}
             onClick={handleClick}
         >
-            <span>Go to move</span>
-            <a href="#">
+            <span className="move-action">Go to move</span>
+            <span className="move-details">
                 <span className="move-id">#{props.id}</span>
                 <span className="move-coords">{getCoordinates()}</span>
-            </a>
-            <span> - {date}</span>
+            </span>
+            <span className="move-date"> - {date}</span>
         </li>
     );
 });
