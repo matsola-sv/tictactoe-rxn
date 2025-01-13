@@ -20,23 +20,37 @@ interface GameStopwatchProps {
 
 const GameStopwatch: FC<GameStopwatchProps> = ({ initialMillis = 0 }) => {
     const dispatch = useDispatch<AppDispatch>();
-    const gameStatus = useTypedSelector(state => state.t3game.state.status);
-    const { hours, minutes, seconds, secondsStamp, start, pause } = useStopwatch(
+    const gameStatus: GameStatus = useTypedSelector(state => state.t3game.state.status);
+    const { hours, minutes, seconds, secondsStamp, start, pause, reset } = useStopwatch(
         { autoStart: false, initialMillis }
     );
 
+    // Reset stopwatch on initialMillis change (e.g., new game)
+    useEffect(() => {
+        const currentMillis: number = secondsStamp * 1000;
+        if (currentMillis !== initialMillis) {
+            reset(false, initialMillis);
+        }
+    }, [initialMillis]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    // Control the stopwatch when changing statuses
     // Exclude 'secondsStamp' from dependencies as it's updated only when the game status changes
     useEffect(() => {
         if (gameStatus === GameStatus.Running) {
             start();
             return;
         }
-        // Pause the stopwatch
+        if (gameStatus === GameStatus.Waiting) {
+            reset(false, initialMillis);
+            return;
+        }
+
+        // Pause the stopwatch, not the game (it doesn't go into "Pausing" status)
         pause();
 
         // Update the game duration in seconds, storing the current time in state
         dispatch(updateGameDuration(secondsStamp));
-    }, [gameStatus, pause, start]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [gameStatus, pause, start, reset]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <TimeViewer

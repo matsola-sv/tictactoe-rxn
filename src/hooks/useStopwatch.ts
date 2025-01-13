@@ -32,6 +32,7 @@ const useStopwatch = (config: StopwatchConfig): StopwatchResult => {
                 );
             }, 1000);
 
+            // Clearing the interval when dismantling the hook
             return () => clearInterval(interval);
         }
     }, [isActive]);
