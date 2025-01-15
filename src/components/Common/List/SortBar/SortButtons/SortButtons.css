@@ -11,8 +11,7 @@
     border-radius: 4px;
     padding: 5px 10px;
     cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: bold; /* Make text bold */
+    font-size: 0.875rem; /* 0.875rem = 14px */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; /* Smooth transition for background color, transform, and box-shadow */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -30,4 +29,25 @@
     border: 1px solid #2196f3;
     transform: translateY(-1px); /* Lift effect like on hover */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* For screens between 768px and 1200px */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .sort-arrow {
+        font-size: 0.875rem; /* 0.875rem = 14px */
+    }
+}
+
+/* For screens from 480px to 768px */
+@media (max-width: 768px) {
+    .sort-arrow {
+        font-size: 0.8125rem; /* 0.8125rem = 13px */
+    }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+    .sort-arrow {
+        font-size: 0.6875rem; /* 0.6875rem = 11px */
+    }
 }

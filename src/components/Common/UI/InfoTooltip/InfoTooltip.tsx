@@ -1,4 +1,9 @@
 import {FC, useState} from "react";
+
+// Font Awesome icons
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faInfoCircle} from "@fortawesome/free-solid-svg-icons";
+
 import "./InfoTooltip.css";
 
 interface InfoTooltipProps {
@@ -15,7 +20,7 @@ const InfoTooltip: FC<InfoTooltipProps> = ({text}) => {
             onMouseLeave={() => setTooltipVisible(false)}
             onTouchStart={() => setTooltipVisible(!isTooltipVisible)} // For mobile devices
         >
-          ⓘ
+            <FontAwesomeIcon icon={faInfoCircle} />
             {isTooltipVisible && (
                 <div className="tooltip-text">{text}</div>
             )}

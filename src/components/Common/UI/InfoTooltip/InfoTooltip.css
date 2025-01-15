@@ -2,7 +2,7 @@
     position: relative;
     display: inline-block; /* Defines the element as inline-block for correct display */
     cursor: pointer;
-    font-size: 1.125rem; /* 18px in rem */
+    font-size: 1.3125rem; /* 1.3125rem = 21px */
     color: #007bff;
 }
 
@@ -60,27 +60,27 @@
 /* For large screens */
 @media (min-width: 1200px) {
     .info-tooltip {
-        font-size: 0.95rem;
+        font-size: 1.3125rem; /* 1.3125rem = 21px */
     }
 }
 
 /* For screens between 768px and 1200px */
 @media (min-width: 768px) and (max-width: 1199px) {
     .info-tooltip {
-        font-size: 0.9rem;
+        font-size: 1.1875rem; /* 1.1875rem = 19px */
     }
 }
 
-/* For screens up to 768px */
+/* For screens from 480px to 768px */
 @media (max-width: 768px) {
     .info-tooltip {
-        font-size: 0.85rem;
+        font-size: 1.125rem; /* 1.125rem = 18px */
     }
 }
 
 /* For very small screens */
 @media (max-width: 480px) {
     .info-tooltip {
-        font-size: 0.8rem;
+        font-size: 1rem; /* 1rem = 16px */
     }
 }
