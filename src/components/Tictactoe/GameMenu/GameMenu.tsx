@@ -1,7 +1,9 @@
 import {FC} from "react";
 import {useDispatch} from "react-redux";
 import classNames from "classnames";
-import {faPause, faPlay, faPlusSquare} from '@fortawesome/free-solid-svg-icons';
+
+// Fontawesome icons
+import {faPause, faPlay, faSyncAlt} from '@fortawesome/free-solid-svg-icons';
 
 // Models
 import {LayoutAlignment} from "../../../models/layout";
@@ -49,7 +51,7 @@ const GameMenu: FC<GameMenuPropsI> = ({isDisabled = false}) => {
                 />
                 <GameButton
                     title="New Game"
-                    icon={faPlusSquare}
+                    icon={faSyncAlt}
                     isDisabled={isDisabled}
                     onClick={handleNewGame}
                     className="new-game-btn"

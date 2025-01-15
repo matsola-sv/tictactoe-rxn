@@ -6,11 +6,13 @@
     margin-right: 0.5em; /* Add right margin for spacing */
 }
 
+/* When game is pausing */
 .action-indicator.pause {
     color: #ff9800;
 }
 
-.action-indicator.save {
+/* For all indicators */
+.action-indicator {
     color: #007bff;
 }
 

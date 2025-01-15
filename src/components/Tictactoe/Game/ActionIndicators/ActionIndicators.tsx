@@ -1,9 +1,9 @@
 import {FC} from "react";
 
-// Fontawesome
-import {faPauseCircle, faSave} from "@fortawesome/free-solid-svg-icons";
-import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
+// Fontawesome icons
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
+import {faClock, faPauseCircle, faSave} from "@fortawesome/free-solid-svg-icons";
 
 import {GameStatus} from "../../../../models/tictactoe/gameStatus";
 import {useTypedSelector} from "../../../../hooks/useTypedSelector";
@@ -15,6 +15,9 @@ interface Indicator {
     isActive: boolean;
     icon: IconDefinition;
     className?: string;
+    spin?: boolean;        // To spin animation
+    pulse?: boolean;       // To pulse animation
+    spinPulse?: boolean    // To spin plus pulse animation
 }
 
 /**
@@ -22,17 +25,18 @@ interface Indicator {
  * @constructor
  */
 const ActionIndicators: FC = () => {
-    const isPaused: boolean = useTypedSelector(
-        state => state.t3game.state.status === GameStatus.Paused
+    const statusGame: GameStatus = useTypedSelector(
+        state => state.t3game.state.status
     );
-    const isSaving: boolean = useTypedSelector(state =>
-        state.t3game.state.status === GameStatus.Saving
-    );
+    const isPaused: boolean = statusGame === GameStatus.Paused;
+    const isSaving: boolean = statusGame === GameStatus.Saving;
+    const isRunning: boolean = statusGame === GameStatus.Running;
 
     // List of indicators that shows which action is currently being performed (e.g., pause or saving).
     const indicators: Indicator[] = [
-        { id: 1, isActive: isPaused, icon: faPauseCircle, className: "pause" },
-        { id: 2, isActive: isSaving, icon: faSave, className: "save" }
+        { id: 1, isActive: isPaused, icon: faPauseCircle, className: "pause" }, // When game is pausing
+        { id: 2, isActive: isRunning, icon: faClock, spin: true},               // When the stopwatch is running
+        { id: 3, isActive: isSaving, icon: faSave, className: "save" }          // When game is saving
     ]
 
     const hasActions: boolean = indicators.some(
@@ -52,6 +56,9 @@ const ActionIndicators: FC = () => {
                     <div key={indicator.id} className={`action-indicator ${indicator.className}`}>
                         <FontAwesomeIcon
                             icon={indicator.icon}
+                            spin={indicator.spin}
+                            pulse={indicator.pulse}
+                            spinPulse={indicator.spinPulse}
                             className="icon"
                         />
                     </div>
