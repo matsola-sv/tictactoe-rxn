@@ -1,4 +1,5 @@
 import {ReactElement} from "react";
+import classNames from "classnames";
 import {ButtonPropsI} from "./Button.type";
 
 /**
@@ -40,9 +41,13 @@ const Button = <T = void>(props: ButtonPropsI<T>): ReactElement | null => {
         return null;
     }
 
+    const classes = classNames(`btn ${className}`,
+        {'disabled': isDisabled}
+    );
+
     return (
         <button disabled={isDisabled}
-                className={`btn ${className}`}
+                className={classes}
                 aria-label={ariaLabel}
                 onClick={onClick}
                 onMouseEnter={onMouseEnter}
