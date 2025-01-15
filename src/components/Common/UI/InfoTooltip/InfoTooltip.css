@@ -59,28 +59,48 @@
 
 /* For large screens */
 @media (min-width: 1200px) {
+    /* Info icon */
     .info-tooltip {
         font-size: 1.3125rem; /* 1.3125rem = 21px */
+    }
+    /* Info text */
+    .tooltip-text {
+        font-size: 0.95rem;
     }
 }
 
 /* For screens between 768px and 1200px */
 @media (min-width: 768px) and (max-width: 1199px) {
+    /* Info icon */
     .info-tooltip {
         font-size: 1.1875rem; /* 1.1875rem = 19px */
+    }
+    /* Info text */
+    .tooltip-text {
+        font-size: 0.9rem;
     }
 }
 
 /* For screens from 480px to 768px */
 @media (max-width: 768px) {
+    /* Info icon */
     .info-tooltip {
         font-size: 1.125rem; /* 1.125rem = 18px */
+    }
+    /* Info text */
+    .tooltip-text {
+        font-size: 0.85rem;
     }
 }
 
 /* For very small screens */
 @media (max-width: 480px) {
+    /* Info icon */
     .info-tooltip {
         font-size: 1rem; /* 1rem = 16px */
+    }
+    /* Info text */
+    .tooltip-text {
+        font-size: 0.8rem;
     }
 }
