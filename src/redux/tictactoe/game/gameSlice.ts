@@ -1,4 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import isEqual from 'fast-deep-equal';
 
 import {GameStateContainerI, GameStateMetaI, MoveActionPayloadI} from "./types";
 import {GameMoveI, GameStateI} from "../../../models/tictactoe/game";
@@ -35,6 +36,11 @@ const initialGameMeta: GameStateMetaI = {
     previousStatus: GameStatus.Waiting,
 };
 
+const initialGameContainer: GameStateContainerI = {
+    meta: initialGameMeta,
+    state: initialGameState,
+};
+
 /**
  * This is the only mechanism for changing the game status.
  * Note: it is advisable to use it, not change it manually!
@@ -64,14 +70,11 @@ const updateStatusGame = (container: GameStateContainerI, newStatus: GameStatus)
  */
 const gameSlice = createSlice({
     name: "t3-game",
-    initialState: {
-        meta: initialGameMeta,
-        state: initialGameState
-    },
+    initialState: initialGameContainer,
     reducers: {
         // TODO I need to add validation game state before update and show errors if it isn't correct
         // Restores the previous state (once) if the game was paused
-        restoreGameState(container: GameStateContainerI, action: PayloadAction<GameStateI>) {
+        restoreGame(container: GameStateContainerI, action: PayloadAction<GameStateI>) {
             if (!container.meta.isRestored) {
                 container.state = action.payload;
                 container.meta.isRestored = true;
@@ -82,6 +85,15 @@ const gameSlice = createSlice({
                 }
             }
         },
+
+        // Creates a new game. Reset the state to default only if the current state differs from it.
+        newGame(container: GameStateContainerI) {
+            if (!isEqual(initialGameContainer, container)) {
+                container.meta = initialGameMeta;
+                container.state = initialGameState;
+            }
+        },
+
         // Updates current move number, history moves and changes game status if needed
         makeMove(container: GameStateContainerI, action: PayloadAction<MoveActionPayloadI>) {
             const { currentMove, history } = action.payload;
@@ -195,9 +207,10 @@ const gameSlice = createSlice({
 export const {
     goToMove,
     makeMove,
-    restoreGameState,
+    restoreGame,
     togglePause,
-    updateGameDuration
+    updateGameDuration,
+    newGame
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

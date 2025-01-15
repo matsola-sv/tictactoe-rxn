@@ -4,7 +4,7 @@ import {useCallback, useEffect, useState} from "react";
 import {AsyncStateI} from "../../models/common";
 import {GameStateContainerI} from "../../redux/tictactoe/game/types";
 
-import {restoreGameState} from "../../redux/tictactoe/game/gameSlice";
+import {restoreGame} from "../../redux/tictactoe/game/gameSlice";
 import {AppDispatch} from "../../redux/store";
 
 import {useTypedSelector} from "../useTypedSelector";
@@ -28,9 +28,8 @@ const useGameState = <T>(gameID: T): GameStateResultI => {
 
         try {
             const lastState = await getLastGameState<T>(gameID);
-
             if (lastState) {
-                dispatch(restoreGameState(lastState));
+                dispatch(restoreGame(lastState));
             }
         } catch (error: unknown) {
             setError(

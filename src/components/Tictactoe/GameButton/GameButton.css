@@ -1,0 +1,35 @@
+/* Styles for a standard button within game-menu */
+.game-btn {
+    background-color: #90caf9;
+    color: white;
+    border: 0.2rem solid white;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+}
+
+/* Disabled button state */
+.game-btn.disabled {
+    background-color: #cccccc;
+    color: #999999;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.5;
+}
+
+/* Active button state, on hover */
+/* Note: Using :not(.disabled) ensures the style only applies to active buttons
+   and avoids style conflicts with disabled buttons. */
+.game-btn:not(.disabled):hover {
+    background-color: #82b5f3;
+}
+
+/* Active button state, on click */
+/* Note: :not(.disabled) is necessary to avoid style conflicts with disabled buttons. */
+.game-btn:not(.disabled):active {
+    transform: scale(0.95);
+}

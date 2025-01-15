@@ -23,11 +23,11 @@ import {calculateWinner, getCurrentPlayer} from "../../../services/tictactoe/gam
 
 // Components
 import EmptyListMessage from "../../Common/EmptyListMessage/EmptyListMessage";
-import GameMenu from "../GameMenu/GameMenu";
 import GameStopwatch from "../GameStopwatch/GameStopwatch";
+import GameMenu from "../GameMenu/GameMenu";
 import Board from "../Board/Board";
-import MovesHistory from "../MovesHistory/MovesHistory";
 import Status from "./Status/Status";
+import MovesHistory from "../MovesHistory/MovesHistory";
 
 import './Game.css';
 
@@ -56,14 +56,13 @@ const Game: FC<GamePropsI> = ({ gameState, boardColumns = 3 }) =>  {
     const initialMillis = gameState.time.durationSecs * 1000;       // Initial mills for stopwatch
 
     // Game statuses
-    const isRunning: boolean = status === GameStatus.Running;       // It's active game (the stopwatch is running, you can make move)
     const isStopped: boolean = status === GameStatus.Stopped;       // Checks if the game has stopped
     const isPaused: boolean = status === GameStatus.Paused;         // The game is paused
     const isViewingHistory = status === GameStatus.ViewingHistory;  // Checks if the game is in the process of viewing the history of moves.
 
     // Local state
     const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);  // Required to cache the move history render
-    const isShowGameMenu: boolean = isRunning || isPaused;
+    const isShowGameMenu: boolean = true;
 
     // Updates the number of moves in the history, required for memorizing the move history.
     useEffect(() => {

@@ -1,6 +1,7 @@
 import {FC} from "react";
 import {useDispatch} from "react-redux";
 import classNames from "classnames";
+import {faPause, faPlay, faPlusSquare} from '@fortawesome/free-solid-svg-icons';
 
 // Models
 import {LayoutAlignment} from "../../../models/layout";
@@ -10,10 +11,10 @@ import {ButtonMouseHandler} from "../../Common/Controls/Button/Button.type";
 // Redux
 import {AppDispatch} from "../../../redux/store";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
-import {togglePause} from "../../../redux/tictactoe/game/gameSlice";
+import {newGame, togglePause} from "../../../redux/tictactoe/game/gameSlice";
 
 import HorizontalBar from "../../Common/Controls/HorizontalBar/HorizontalBar";
-import Button from "../../Common/Controls/Button/Button";
+import GameButton from "../GameButton/GameButton";
 
 import "./GameMenu.css";
 
@@ -21,25 +22,38 @@ interface GameMenuPropsI {
     isDisabled?: boolean; // The menu is inactive, but it is displayed
 }
 
-const GameMenu: FC<GameMenuPropsI> = ({isDisabled}) => {
+const GameMenu: FC<GameMenuPropsI> = ({isDisabled = false}) => {
     const dispatch = useDispatch<AppDispatch>();
-    const isGamePaused: boolean = useTypedSelector(
-        state => state.t3game.state.status === GameStatus.Paused
-    );
+    const gameStatus: GameStatus = useTypedSelector(state => state.t3game.state.status);
+    const isGamePaused: boolean = gameStatus === GameStatus.Paused;
+    const isGameRunning: boolean = gameStatus === GameStatus.Running;
+    const canActivePause: boolean = isGamePaused || isGameRunning;
 
-    const handlePauseClick: ButtonMouseHandler = () => {
+    const handlePause: ButtonMouseHandler = () => {
         dispatch(togglePause());
     };
 
+    const handleNewGame: ButtonMouseHandler = () => {
+        dispatch(newGame());
+    };
+
     return (
-        <div className={classNames('game-menu', {'disabled': isDisabled})}>
+        <div className={classNames('game-menu buttons', {'disabled': isDisabled})}>
             <HorizontalBar alignment={LayoutAlignment.CENTER}>
-                <Button
-                    onClick={handlePauseClick}
+                <GameButton
+                    onClick={handlePause}
+                    isDisabled={!canActivePause}
+                    icon={isGamePaused ? faPlay : faPause}
+                    title={isGamePaused ? "Resume" : "Pause"}
                     className={classNames('pause-btn', {'paused': isGamePaused})}
-                >
-                    {isGamePaused ? "Resume" : "Pause"}
-                </Button>
+                />
+                <GameButton
+                    title="New Game"
+                    icon={faPlusSquare}
+                    isDisabled={isDisabled}
+                    onClick={handleNewGame}
+                    className="new-game-btn"
+                />
             </HorizontalBar>
         </div>
     );
