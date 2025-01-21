@@ -2,6 +2,7 @@ import {PlayerI} from "../../models/player";
 import {GameMoveI, GameStateI, SquareState, WinnerState} from "../../models/tictactoe/game";
 import {GameStatus} from "../../models/tictactoe/gameStatus";
 import {ValidationResult} from "../../models/common";
+import {PaginationDetails} from "../../models/lists";
 
 /**
  * Determines the current player based on the game's state and current move.
@@ -42,13 +43,23 @@ export const calculateWinner = (squares: SquareState[]): WinnerState => {
 }
 
 export const validateMove = (moveID: number, history: GameMoveI[]): ValidationResult => {
-    let result: ValidationResult = { isValid: true, error: null };
+    // Allows overriding specific fields via the `overrides` parameter.
+    let createResult = (overrides: Partial<ValidationResult>): ValidationResult => {
+        return { isValid: true, error: null, ...overrides };
+    }
+
+    if (moveID < 0) {
+        return createResult({
+            isValid: false, error: "Move number cannot be less than"
+        });
+    }
 
     if (!history[moveID]) {
-        result.isValid = false;
-        result.error = `Move number ${moveID} does not exist in the game history.`;
+        return createResult({
+            isValid: false, error: `Move number ${moveID} does not exist in the game history.`
+        });
     }
-    return result;
+    return createResult({});
 };
 
 export const getGameStatusByMove = (move: GameMoveI, currentMove: number): GameStatus => {
@@ -61,4 +72,22 @@ export const getGameStatusByMove = (move: GameMoveI, currentMove: number): GameS
         return GameStatus.Stopped;
     }
     return  GameStatus.Running;
+};
+
+/**
+ * Returns pagination details for navigating through game moves.
+ * @param currentMove
+ * @param history
+ */
+export const getMovesPagination = ({currentMove, history}: GameStateI): PaginationDetails => {
+    return {
+        nextItem: currentMove < (history.length - 1) ? currentMove + 1 : null,
+        prevItem: currentMove > 0 ? currentMove - 1 : null,
+        currentItem: currentMove,
+        totalItems: history.length,
+        currentPage: 1,
+        itemsPerPage: history.length,
+        totalPages: 1,
+        hasMorePages: false
+    };
 };
