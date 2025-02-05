@@ -2,7 +2,6 @@
     position: relative;
     display: inline-block; /* Defines the element as inline-block for correct display */
     cursor: pointer;
-    font-size: 1.3125rem; /* 1.3125rem = 21px */
     color: #007bff;
 }
 
@@ -57,50 +56,33 @@
     color: #0056b3;
 }
 
-/* For large screens */
+/* NOTE: Write media queries from larger to smaller screens
+to avoid unnecessary overrides and ensure code efficiency.*/
+
+/* Icon size for screens up to 1199px */
+@media (max-width: 1199px) {
+    .info-tooltip {
+        font-size: 1.25rem; /* Icon size for smaller screens */
+    }
+}
+
+/* Icon size for screens larger than 1200px */
 @media (min-width: 1200px) {
-    /* Info icon */
     .info-tooltip {
-        font-size: 1.3125rem; /* 1.3125rem = 21px */
-    }
-    /* Info text */
-    .tooltip-text {
-        font-size: 0.95rem;
+        font-size: 1.3125rem; /* Icon size for larger screens */
     }
 }
 
-/* For screens between 768px and 1200px */
-@media (min-width: 768px) and (max-width: 1199px) {
-    /* Info icon */
-    .info-tooltip {
-        font-size: 1.1875rem; /* 1.1875rem = 19px */
-    }
-    /* Info text */
+/* Tooltip text size for screens smaller than 479px */
+@media (max-width: 478px) {
     .tooltip-text {
-        font-size: 0.9rem;
+        font-size: 0.8rem; /* Smaller text size for very small screens */
     }
 }
 
-/* For screens from 480px to 768px */
-@media (max-width: 768px) {
-    /* Info icon */
-    .info-tooltip {
-        font-size: 1.125rem; /* 1.125rem = 18px */
-    }
-    /* Info text */
+/* Tooltip text size for screens larger than 479px */
+@media (min-width: 479px) {
     .tooltip-text {
-        font-size: 0.85rem;
-    }
-}
-
-/* For very small screens */
-@media (max-width: 480px) {
-    /* Info icon */
-    .info-tooltip {
-        font-size: 1rem; /* 1rem = 16px */
-    }
-    /* Info text */
-    .tooltip-text {
-        font-size: 0.8rem;
+        font-size: 0.85rem; /* Default text size for screens above 479px */
     }
 }
