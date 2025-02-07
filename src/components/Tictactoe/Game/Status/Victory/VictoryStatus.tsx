@@ -8,7 +8,7 @@ type VictoryStatusProps = {
 
 const VictoryStatus: FC<VictoryStatusProps> = ({player}) => {
     return (
-        <div className="status-victory">
+        <div className="t3-status t3-status--victory">
             Winner: {player.name}
         </div>
     );

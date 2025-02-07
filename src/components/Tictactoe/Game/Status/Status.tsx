@@ -1,14 +1,12 @@
 import {FC, ReactElement} from "react";
-
 // Models
 import {GameStateI} from "../../../../models/tictactoe/game";
 import {GameStatus} from "../../../../models/tictactoe/gameStatus";
-
 // Hooks and services
 import useGameResult, {GameResultI} from "../../../../hooks/tictactoe/useGameResult";
 import {getCurrentPlayer} from "../../../../services/tictactoe/gameLogic";
-
-import ActionIndicators from "../ActionIndicators/ActionIndicators";
+// Components
+import ActionIndicators from "../../ActionIndicators/ActionIndicators";
 import DrawStatus from "./Draw/DrawStatus";
 import NextMoveStatus from "./NextMove/NextMoveStatus";
 import VictoryStatus from "./Victory/VictoryStatus";
@@ -55,9 +53,9 @@ const Status: FC<StatusPropsI> = ({gameState}) => {
     };
 
     return (
-        <div className="status">
+        <div id="t3-status-wrapper">
             <ActionIndicators/>
-            <div className="text">
+            <div className="t3-status__body">
                 {renderStatus()}
             </div>
         </div>

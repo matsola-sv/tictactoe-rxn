@@ -1,31 +1,37 @@
-.status {
-    display: flex;  /* Fix bug with left margin! */
-    align-items: center; /* Vertical alignment of items */
-    width: 100%;
-    justify-content: space-between; /* Elements take up the entire width */
-    margin: 0 0 20px 0;
-    user-select: none; /* Disables text selection. */
+#t3-status-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 1.25rem 0; /* 1.25rem = 20px */
+    user-select: none;
 }
 
-.status .text {
-    font-size: 1.125rem; /* 18px in rem */
+.t3-status__body {
     width: 100%;
     text-align: center;
+    white-space: normal; /* Allow text wrapping */
 }
 
-/* Laptops */
-@media (max-width: 768px) {
-    .status .text {
-        font-size: 0.875rem;
-        white-space: normal; /* Allow text wrapping */
+.t3-status--next,
+.t3-status--draw,
+.t3-status--victory {
+    padding: 0.3125rem; /* 0.3125rem = 5px */
+    transition: all 0.3s ease;
+}
+
+/* NOTE: Write media queries from larger to smaller screens
+ to avoid unnecessary overrides and ensure code efficiency.*/
+
+/* Laptops, desktop and large monitors */
+@media (min-width: 480px) {
+    .t3-status__body {
+        font-size: 1.125rem; /* 18px in rem */
     }
 }
 
 /* Mobiles */
-@media (max-width: 480px) {
-    .status .text {
-        font-size: 0.75rem;
-        white-space: normal; /* Allow text wrapping */
+@media (max-width: 479px) {
+    .t3-status__body {
+        font-size: 1rem;
     }
 }
-

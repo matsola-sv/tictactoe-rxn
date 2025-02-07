@@ -8,7 +8,7 @@ type NextStatusPropsI = {
 
 const NextMoveStatus: FC<NextStatusPropsI> = ({player}) => {
     return (
-        <div className="status-next">
+        <div className="t3-status t3-status--next">
             Next player: {player.name}
         </div>
     );

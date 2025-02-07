@@ -1,7 +1,4 @@
-.status-draw {
-    background-color: #6E6D70;
-    color: #DFDEDF;
-    padding: 5px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+.t3-status--draw {
+    background: linear-gradient(to bottom right, #7d7c80, #5a5a5d);
+    color: #ffffff;
 }

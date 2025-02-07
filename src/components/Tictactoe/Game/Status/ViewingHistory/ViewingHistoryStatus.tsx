@@ -11,12 +11,12 @@ const ViewingHistoryStatus: FC<ViewingHistoryPropsI> = ({ statusComponent, toolt
     const defaultTooltip: string = "In this mode, you cannot make moves, start or stop the game. You can only view past game states.";
 
     return (
-        <div className="viewing-history">
-            <div className="header">
+        <div className="t3-status t3-status--vh">
+            <div className="t3-status-vh__header">
                 Viewing History
                 <InfoTooltip text={tooltip || defaultTooltip}/>
             </div>
-            <div className="status-inline">
+            <div className="t3-status-vh__inline">
                 {statusComponent}
             </div>
         </div>

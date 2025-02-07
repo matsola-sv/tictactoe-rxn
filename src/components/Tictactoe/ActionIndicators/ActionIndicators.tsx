@@ -5,8 +5,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 import {faClock, faPauseCircle, faSave} from "@fortawesome/free-solid-svg-icons";
 
-import {GameStatus} from "../../../../models/tictactoe/gameStatus";
-import {useTypedSelector} from "../../../../hooks/useTypedSelector";
+import {GameStatus} from "../../../models/tictactoe/gameStatus";
+import {useTypedSelector} from "../../../hooks/useTypedSelector";
 
 import "./ActionIndicators.css";
 

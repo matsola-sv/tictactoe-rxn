@@ -7,7 +7,7 @@ type DrawStatusProps = {
 
 const DrawStatus: FC<DrawStatusProps> = ({ value = "Draw in tic-tac-toe game" }) => {
     return (
-        <div className="status-draw">
+        <div className="t3-status t3-status--draw">
             {value}
         </div>
     );
