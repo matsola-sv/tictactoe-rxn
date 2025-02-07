@@ -59,13 +59,6 @@
 /* NOTE: Write media queries from larger to smaller screens
 to avoid unnecessary overrides and ensure code efficiency.*/
 
-/* Icon size for screens up to 1199px */
-@media (max-width: 1199px) {
-    .info-tooltip {
-        font-size: 1.25rem; /* Icon size for smaller screens */
-    }
-}
-
 /* Icon size for screens larger than 1200px */
 @media (min-width: 1200px) {
     .info-tooltip {
@@ -73,16 +66,23 @@ to avoid unnecessary overrides and ensure code efficiency.*/
     }
 }
 
-/* Tooltip text size for screens smaller than 479px */
-@media (max-width: 478px) {
-    .tooltip-text {
-        font-size: 0.8rem; /* Smaller text size for very small screens */
+/* Icon size for screens up to 1199px */
+@media (max-width: 1199px) {
+    .info-tooltip {
+        font-size: 1.25rem; /* Icon size for smaller screens */
     }
 }
 
-/* Tooltip text size for screens larger than 479px */
-@media (min-width: 479px) {
+/* Tooltip text size for screens larger than 480px */
+@media (min-width: 480px) {
     .tooltip-text {
         font-size: 0.85rem; /* Default text size for screens above 479px */
+    }
+}
+
+/* Tooltip text size for screens smaller than 479px */
+@media (max-width: 479px) {
+    .tooltip-text {
+        font-size: 0.8rem; /* Smaller text size for very small screens */
     }
 }
