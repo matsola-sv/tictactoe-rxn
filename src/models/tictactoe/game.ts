@@ -29,7 +29,7 @@ export interface GameStateI {
         durationSecs: number;                       // Duration of the game in seconds when it is active (without pauses and status changes)
     },
 
-    //TODO interface settings Move number";
+    // [Task1: Split the game state](docs/TODO.md#task1-split-the-game-state-tic-tac-toe-into-components-for-game-logic-display-settings-and-user-settings)
     settings: {
         // History moves settings
         history: {

@@ -28,7 +28,7 @@ const initialGameState: GameStateI = {
         durationSecs: 0,                   // Duration of the game in seconds when it is active (without pauses and status changes)
     },
 
-    // TODO Temporary. Need to be broken down into game settings and the game process itself.
+    // [Task1: Split the game state](docs/TODO.md#task1-split-the-game-state-tic-tac-toe-into-components-for-game-logic-display-settings-and-user-settings)
     settings: {
         // History moves
         history: {

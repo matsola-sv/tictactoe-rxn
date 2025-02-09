@@ -1,22 +1,36 @@
-/* Pause buttons */
+/* PAUSE BUTTONS */
 /* Note: :not(.disabled) is necessary to avoid style conflicts with disabled buttons. */
+
+/* Disabled state */
+.game-controls .pause-btn.disabled {
+    background-color: #e7f4e7;
+    color: #555;
+    box-shadow: none;
+}
 
 /* Active pause button (not disabled) */
 .game-controls .pause-btn:not(.disabled) {
-    background-color: #4caf50;
+    background: linear-gradient(145deg, #4caf50, #009688);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease, box-shadow 0.2s ease;
 }
 
 /* Pause button on hover (not disabled) */
 .game-controls .pause-btn:hover:not(.disabled) {
-    background-color: #45a049;
+    background: linear-gradient(145deg, #45a049, #00796b);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Paused state of the pause button */
 .game-controls .pause-btn.paused:not(.disabled) {
-    background-color: #ff9800;
+    background: linear-gradient(145deg, #ff9800, #fb8c00);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Pause button on hover when paused */
 .game-controls .pause-btn.paused:hover:not(.disabled) {
-    background-color: #fb8c00;
+    background: linear-gradient(145deg, #fb8c00, #f57c00);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }

@@ -10,21 +10,22 @@
     text-align: center;
     border: 1px solid #ccc;
     background-color: #fff;
-    box-sizing: border-box; /* Includes padding and borders in the element's total width and height */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* transition for background-color and transform changes (e.g., on hover/state change) */
+    box-sizing: border-box; /* Includes padding and borders in width and height */
+    transition: background-color 0.3s ease, transform 0.2s ease;
     cursor: pointer; /* Change the cursor to indicate it's clickable */
     /*
       PROBLEM: Dynamic font-size with `clamp(16px, calc(5vw + 1vh), 32px)` causes inconsistent resizing of square height.
       This issue is particularly noticeable when the font size increases or decreases unevenly between rows of squares.
       SOLUTION: Fixed with `min-height` for stable height and responsive font size with `clamp()`.
     */
-    font-size: clamp(1rem, 5vw, 2rem); /* Responsive font: minimum 1rem, based on screen width (5vw - 5% of the viewport's width), maximum 2rem */
-    min-height: 100px; /* Minimum height for cell stability */
+    font-size: clamp(1rem, 5vw, 2rem); /* Responsive: min 1rem, based on screen width (5vw - 5% of the viewport's width), max 2rem */
+    min-height: 6.25rem; /* Min height (100px=6.25rem) for cell stability */
     line-height: 1; /* Fixing row height to prevent height changes */
     overflow: hidden; /* Avoids cell enlargement due to content */
     user-select: none; /* Disables text selection */
 }
 
+/* Focused square (for better visual indication) */
 .square:focus {
     box-shadow: 0 0 10px rgba(0, 200, 0, 0.5);
     outline: none; /* Remove the default focus outline for a cleaner appearance */
@@ -41,14 +42,16 @@
 
 /* Selected (active) square */
 .square.selected {
-    background-color: #6BDB85;
+    background: linear-gradient(145deg, #4caf50, #009688);
     color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Highlighted line (e.g., part of the winning line) */
 .square.selected-line {
-    background-color: #ffcccb;
+    background: linear-gradient(135deg, #ff9e9e, #fbd5d5); /* Softer red gradient */
     color: #333;
+    box-shadow: 0 0 8px rgba(255, 158, 158, 0.5); /* Softer glow effect */
 }
 
 /* Inactive square (default), cannot be clicked */
@@ -61,8 +64,9 @@
     z-index: 1; /* Ensures the element is above other elements */
 }
 
+/* Responsive font sizes for small screens */
 @media (max-width: 768px) {
     .square {
-        font-size: clamp(1rem, 6vw, 2rem); /* Font changes for smaller screens */
+        font-size: clamp(1rem, 6vw, 2rem);
     }
 }
