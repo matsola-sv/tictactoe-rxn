@@ -1,0 +1,36 @@
+.row-cont {
+    display: flex;
+    flex-wrap: nowrap; /* Prevents wrapping to next row */
+    align-items: center; /* Aligns vertically */
+    box-sizing: border-box; /* Includes padding & border */
+    overflow: hidden; /* Not show overflow content */
+}
+
+/* Layout templates */
+.row-cont.pl-left {
+    justify-content: flex-start;
+}
+
+.row-cont.pl-center {
+    justify-content: center;
+}
+
+.row-cont.pl-right {
+    justify-content: flex-end;
+}
+
+/* Two-column, three-column layouts */
+.row-cont.pl-2-cols, .row-cont.pl-3-cols {
+    display: grid;
+    gap: 0.625rem; /* (0.625rem - 10px) */
+}
+
+/* Two-column layout */
+.row-cont.pl-2-cols {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Three-column layout */
+.row-cont.pl-3-cols {
+    grid-template-columns: 1fr 1fr 1fr;
+}

@@ -1,15 +1,13 @@
 import {FC, MouseEvent} from "react";
 import classNames from "classnames";
-
 // Font Awesome icons
 import {faSortAmountDown, faSortAmountUp} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-
+// Models
 import {SortTypes} from "../../../../../utils/sorting";
 import {ButtonMouseHandler} from "../../../Controls/Button/Button.type";
-
+// Components
 import Button from "../../../Controls/Button/Button";
-import "./SortButtons.css"
 
 interface SortButtonsProps {
     sortOrder: SortTypes; // Sorting direction (ascending/descending)
@@ -29,7 +27,7 @@ const SortButtons: FC<SortButtonsProps> = ({sortOrder, onSortOrderChange}) => {
     };
 
     return (
-        <div className="sort-buttons">
+        <>
             <Button<SortTypes>
                 ariaLabel="Sort Ascending"
                 className={getButtonClass(SortTypes.Asc)}
@@ -44,7 +42,7 @@ const SortButtons: FC<SortButtonsProps> = ({sortOrder, onSortOrderChange}) => {
             >
                 <FontAwesomeIcon icon={faSortAmountDown} />
             </Button>
-        </div>
+        </>
     )
 };
 export default SortButtons;

@@ -1,8 +1,8 @@
 import {PlayerI} from "../../models/player";
-import {GameMoveI, GameStateI, SquareState, WinnerState} from "../../models/tictactoe/game";
-import {GameStatus} from "../../models/tictactoe/gameStatus";
 import {ValidationResult} from "../../models/common";
 import {PaginationDetails} from "../../models/lists";
+import {GameStatus} from "../../models/tictactoe/gameStatus";
+import {GameMoveI, GameStateI, SquareState, WinnerState} from "../../models/tictactoe/game";
 
 /**
  * Determines the current player based on the game's state and current move.
@@ -91,3 +91,12 @@ export const getMovesPagination = ({currentMove, history}: GameStateI): Paginati
         hasMorePages: false
     };
 };
+
+/**
+ * Generates the move number. Logic is centralized for consistency and easy changes.
+ * Numbering from 0
+ * @param currentHistory
+ */
+export const generateMoveNumber = (currentHistory: GameMoveI[]): number => {
+    return currentHistory.length;
+}

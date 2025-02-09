@@ -1,8 +1,8 @@
 import React, {FC, ReactElement} from "react";
 import classNames from 'classnames';
-
+// Models
 import {BoardElHandlerType, BoardPropsI, SquareType} from "./Board.types";
-
+// Components
 import BoardRow from "./Row/Row";
 import Square from "./Square/Square";
 import SquareContent from "./Square/Content/SquareContent";

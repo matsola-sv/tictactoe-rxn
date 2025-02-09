@@ -1,41 +1,40 @@
-import {FC, ReactElement, useEffect, useMemo, useState} from "react";
+import {FC, ReactElement, useMemo} from "react";
 import {useDispatch} from "react-redux";
-
 // Models
 import {PlayerI} from "../../../models/player";
+import {UIElementSize} from "../../../models/ui";
 import {GameStatus} from "../../../models/tictactoe/gameStatus";
 import {BoardElHandlerType, SquareType} from "../Board/Board.types";
-import {
-    GameMoveI,
-    GameMoveState,
-    GameStateI,
-    HistoryMoveI,
-    SquareState,
-    WinnerState
-} from "../../../models/tictactoe/game";
-
+import {GameMoveI, GameMoveState, GameStateI, SquareState, WinnerState} from "../../../models/tictactoe/game";
 // Redux
 import {makeMove as reduxMakeMove} from "../../../redux/tictactoe/game/gameSlice";
 import {AppDispatch} from "../../../redux/store";
-
 // Services
-import {calculateWinner, getCurrentPlayer} from "../../../services/tictactoe/gameLogic";
-
+import {calculateWinner, generateMoveNumber, getCurrentPlayer} from "../../../services/tictactoe/gameLogic";
+//Hooks
+import useProcessedMoves from "../../../hooks/tictactoe/useProcessedMoves";
 // Components
 import EmptyListMessage from "../../Common/EmptyListMessage/EmptyListMessage";
+import GameControls from "../Controls/GameControls/GameControls";
 import GameStopwatch from "../GameStopwatch/GameStopwatch";
-import GameMenu from "../GameMenu/GameMenu";
 import Board from "../Board/Board";
 import Status from "./Status/Status";
-import MovesHistory from "../MovesHistory/MovesHistory";
-
-import './Game.css';
+import HistoryControls from "../Moves/HistoryControls/HistoryControls";
+import HistoryControlsMini from "../Moves/HistoryControlsMini/HistoryControlsMini";
+import HistoryList from "../Moves/HistoryList/HistoryList";
+// CSS
+import GameView from "./GameView/GameView";
 
 interface GamePropsI {
     gameState: GameStateI;
     boardColumns?: number; // Number of columns on the game board
 }
 
+/**
+ *  NOTE:
+ *  A component that encapsulates the game logic, manages the game state, prepares components for display,
+ *  and delegates rendering to GameView, which decides what to render based on device type, screen size, etc.
+ */
 const Game: FC<GamePropsI> = ({ gameState, boardColumns = 3 }) =>  {
     const fallbackBoard: ReactElement = (
         <EmptyListMessage
@@ -55,19 +54,23 @@ const Game: FC<GamePropsI> = ({ gameState, boardColumns = 3 }) =>  {
     const status = gameState.status;                                // Game status
     const initialMillis = gameState.time.durationSecs * 1000;       // Initial mills for stopwatch
 
+    // Game settings
+    // TODO Temporary. Need to be broken down into game settings and the game process itself.
+    const movesSort = gameState.settings.history.sorting;
+
+    // Returns a prepared for displaying and sorted history of moves
+    const {movesForDisplay, canShowDate: canShowMovesDate} = useProcessedMoves({
+        movesHistory: moveHistory,
+        sortOrder: movesSort.order
+    });
+
     // Game statuses
     const isStopped: boolean = status === GameStatus.Stopped;       // Checks if the game has stopped
     const isPaused: boolean = status === GameStatus.Paused;         // The game is paused
     const isViewingHistory = status === GameStatus.ViewingHistory;  // Checks if the game is in the process of viewing the history of moves.
 
     // Local state
-    const [numberMoves, setNumberMoves] = useState<number>(moveHistory.length);  // Required to cache the move history render
     const isShowGameMenu: boolean = true;
-
-    // Updates the number of moves in the history, required for memorizing the move history.
-    useEffect(() => {
-        setNumberMoves(moveHistory.length);
-    }, [moveHistory]);
 
     /**
      * Element selection handler on the Board
@@ -163,17 +166,17 @@ const Game: FC<GamePropsI> = ({ gameState, boardColumns = 3 }) =>  {
         squares[squareID] = getPlayer();
 
         // Update state game in Redux
-        setNumberMoves(history.length + 1);                 // Used to cache the move history render
         dispatch(reduxMakeMove({
             // Update current move number. Will be needed for move history
             currentMove: nextMove,
 
             // Add the state of the step to the game history
             history: history.concat([{
+                moveNumber: generateMoveNumber(history),
                 date: Date.now(),
                 squareID: squareID,
                 squares: squares,
-                winner: calculateWinner(squares)            // We calculate the winner on each
+                winner: calculateWinner(squares) // We calculate the winner on each
             }])
         }));
     }
@@ -189,18 +192,6 @@ const Game: FC<GamePropsI> = ({ gameState, boardColumns = 3 }) =>  {
             );
     }
 
-    /*
-    * Prepare the state of history moves for display
-    */
-    const prepareHistoryDisplay: () => HistoryMoveI[] = () => {
-        return getHistory()
-            .map((move, index) => Object.assign({
-                id: index,
-                date: new Date(move.date),
-                squareID: move.squareID
-            }));
-    };
-
     // Data for display is cached and updates when the state changes (moves history, current move)
     // getSquares depends on move and moveHistory, as these data determine the state of squares for the current move,
     // so it's not necessary to include it in the dependencies.
@@ -208,20 +199,26 @@ const Game: FC<GamePropsI> = ({ gameState, boardColumns = 3 }) =>  {
         prepareSquaresDisplay, [moveHistory, move] // eslint-disable-line react-hooks/exhaustive-deps
     );
 
-    // Rerender only when the number of moves changes
-    // Relying on numberMoves as it reflects moveHistory changes; avoids unnecessary recalculations.
-    const historyDisplay = useMemo<HistoryMoveI[]>(
-        prepareHistoryDisplay, [numberMoves] // eslint-disable-line react-hooks/exhaustive-deps
-    );
-
     return (
-        <div id="t3-game" className="game-container">
-            {/* Left column */}
-            <div className="game-left">
-                <div className="menu-container">
-                    <GameMenu isDisabled={!isShowGameMenu}/>
-                </div>
-                <div className="board-container">
+        <GameView
+            components={{
+                gameControls: ({
+                    mobile: <GameControls
+                        controlSize={UIElementSize.M}
+                        isDisabled={!isShowGameMenu}
+                    />,
+                    desktop: <GameControls
+                        controlSize={UIElementSize.L}
+                        isDisabled={!isShowGameMenu}
+                    />
+                }),
+                gameStopwatch: (
+                    <GameStopwatch initialMillis={initialMillis}/>
+                ),
+                gameStatus: (
+                    <Status gameState={gameState}/>
+                ),
+                board: (
                     <Board
                         isDisabled={isPaused}
                         isClickable={canMakeMove(status)}
@@ -232,24 +229,21 @@ const Game: FC<GamePropsI> = ({ gameState, boardColumns = 3 }) =>  {
                         selectedLine={getWinner()?.winnerLine}
                         fallbackComponent={fallbackBoard}
                     />
-                </div>
-                <div className="game-tools">
-                    <GameStopwatch initialMillis={initialMillis}/>
-                </div>
-            </div>
-
-            {/* Right column */}
-            <div className="game-right">
-                <div className="game-info">
-                    <Status gameState={gameState}/>
-                    <MovesHistory
-                        moves={historyDisplay}
+                ),
+                movesControls: ({
+                    desktop: (<HistoryControls/>),
+                    mobile: (<HistoryControlsMini/>),
+                }),
+                movesList: (
+                    <HistoryList
+                        moves={movesForDisplay}
                         currentMove={getMoveID()}
+                        canShowDate={canShowMovesDate}
                         fallbackComponent={fallbackMoveHistory}
                     />
-                </div>
-            </div>
-        </div>
+                ),
+            }}
+        />
     );
 }
 export default Game;

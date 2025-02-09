@@ -1,0 +1,22 @@
+/* Pause buttons */
+/* Note: :not(.disabled) is necessary to avoid style conflicts with disabled buttons. */
+
+/* Active pause button (not disabled) */
+.game-controls .pause-btn:not(.disabled) {
+    background-color: #4caf50;
+}
+
+/* Pause button on hover (not disabled) */
+.game-controls .pause-btn:hover:not(.disabled) {
+    background-color: #45a049;
+}
+
+/* Paused state of the pause button */
+.game-controls .pause-btn.paused:not(.disabled) {
+    background-color: #ff9800;
+}
+
+/* Pause button on hover when paused */
+.game-controls .pause-btn.paused:hover:not(.disabled) {
+    background-color: #fb8c00;
+}

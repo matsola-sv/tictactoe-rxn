@@ -1,0 +1,97 @@
+/* Container for the history moves list */
+.history-list {
+    flex: 1; /* Expands the list to take up available space */
+    flex-direction: column;
+    min-height: 0; /* Ensures vertical scrolling works correctly */
+    overflow-y: auto; /* Enables vertical scrolling when content exceeds the height */
+    overflow-x: hidden; /* Disables horizontal scrolling */
+    padding-right: 0.25rem; /* 0.25rem=4px by 1rem=16px. Adds space for the scrollbar!!! The scrollbar size is defined by the styles below. */
+    user-select: none; /* Prevents text selection in the move history */
+}
+
+/* Styles for vertical scrollbar */
+.history-list::-webkit-scrollbar {
+    width: 0.125rem; /* 0.125rem=2px by 1rem=16px. Scrollbar width */
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* Scrollbar color */
+    border-radius: 0.125rem; /* 0.125rem=2px by 1rem=16px */
+}
+
+.history-list::-webkit-scrollbar-thumb:hover {
+    background-color: #999; /* Scrollbar color on hover */
+}
+
+.history-list::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Background color for the scroll track */
+}
+
+/* Styling for the list */
+.history-list ol {
+    list-style: none; /* Removes list markers */
+    counter-reset: history-counter; /* Resets the counter */
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden; /* Disabled overflow-x to prevent scroll jumps in the move history. */
+}
+
+/* Styling for list item */
+.history-list li {
+    position: relative;
+    margin: 0.5rem 0; /* Spacing between list items */
+    counter-increment: history-counter; /* Increments the counter for each item */
+    background-color: #f6f7f5;
+    padding: 1rem 1rem 1rem 3.5rem; /* Padding for list items */
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Light shadow styling */
+    transition: background-color 0.3s ease, transform 0.1s ease; /* Hover effects */
+    text-align: left; /* Aligns text to the left */
+    cursor: pointer;
+}
+
+/* Position and size of the counter */
+.history-list li::before {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: var(--size); /* Responsive size of the counter */
+    height: var(--size);
+    --size: 1.6rem;
+    left: 0.5rem; /* Counter spacing */
+    top: 50%; /* Vertically centers the counter */
+    content: counter(history-counter); /* Displays the counter value */
+    font-size: 1rem;
+    font-weight: bold;
+    transform: translateY(-50%); /* Vertical centering */
+    background-color: #1890ff; /* Counter background color */
+    color: white;
+    border-radius: 50%; /* Circular shape */
+    align-items: center;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); /* 0.25rem=4px by 1rem=16px. Light shadow styling */
+}
+
+/* Active move */
+.history-list li.selected {
+    background-color: #32CD32;
+    color: white;
+}
+
+/* Active counter */
+.history-list li.selected::before {
+    background-color: #006400;
+}
+
+/* Move coordinates */
+.history-list .move-coords {
+    font-style: italic;
+    color: #757575;
+}
+
+/* Additional style for DefaultMove link */
+.history-list .move-details {
+    text-decoration: none; /* No underline for links */
+    color: #007bff;
+    font-weight: bold;
+    transition: color 0.2s ease; /* Color transition on hover */
+}

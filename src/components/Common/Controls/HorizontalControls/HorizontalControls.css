@@ -1,0 +1,64 @@
+.horiz-controls {
+    border: 1px solid #ddd;
+    padding: 0.3125rem 0.625rem;  /* 5px = 0.3125rem, 0.625rem = 10px */
+}
+
+/* Styles for the horizontal controls bar and child row containers */
+.horiz-controls,
+.horiz-controls .row-cont {
+    gap: 0.625rem; /* Spacing between items in row (0.625rem - 10px) */
+}
+
+/* For buttons in horizontal controls menu */
+.horiz-controls .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    border: 0.1rem solid white;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+}
+
+/* For active button state */
+.horiz-controls .btn.active {
+    background-color: #0d47a1;
+    border-color: #bbdefb;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3); /* 0.5px = 0.03125rem */
+}
+
+/* Disabled button state */
+.horiz-controls .btn.disabled {
+    background-color: #cccccc;
+    color: #999999;
+    opacity: 0.5;
+    box-shadow: none;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* For small buttons on the controls bar */
+.horiz-controls--s .btn {
+    width: 2.5rem; /* 40px = 2.5rem */
+    height: 1.875rem; /* 30px = 1.875rem */
+    font-size: 1rem; /* Без змін, 1rem = 16px */
+}
+
+/* For standard (medium) size buttons on the controls bar */
+.horiz-controls--m .btn {
+    width: 3.125rem; /* 50px = 3.125rem */
+    height: 2.1875rem; /* 35px = 2.1875rem */
+    font-size: 1.2rem; /* Без змін, 1.2rem = 19.2px */
+}
+
+/* For large size buttons on the controls bar */
+.horiz-controls--l .btn {
+    width: 3.4375rem; /* 55px = 3.4375rem */
+    height: 2.8125rem; /* 45px = 2.8125rem */
+    font-size: 1.4rem; /* Без змін, 1.4rem = 22.4px */
+}

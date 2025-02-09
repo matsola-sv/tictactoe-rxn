@@ -1,0 +1,68 @@
+/* Desktop layout specific styles */
+
+/* Game layout container */
+.t3-container .t3-layout {
+    gap: 1.25rem; /* 20px = 1.25rem. Space between columns */
+}
+
+.t3-layout.two-columns {
+    flex-direction: row;
+}
+
+/* Left column */
+.t3-layout.two-columns .game-left {
+    flex: 1; /* The left column takes 1 part of the available space */
+    display: flex;
+    flex-direction: column; /* Arranging elements vertically */
+    gap: 0.625rem; /* 10px = 0.625rem. Space between elements in the left column */
+}
+
+/* Right column */
+.t3-layout.two-columns .game-right {
+    flex: 1.2;
+    display: flex; /* The right column takes 1.25 parts of space compared to the left */
+    flex-direction: column; /* Arranging elements vertically */
+    max-width: 31.25rem; /* 500px = 31.25rem */
+    box-sizing: border-box;
+    overflow-x: hidden;
+    background-color: #f1f1f1;
+}
+
+/* GAME CONTROLS BUTTONS */
+.t3-layout.two-columns .controls-wrapper {
+    display: block;
+}
+
+/* The horizontal menus on the LEFT (stopwatch, game controls) */
+.t3-layout .game-left .horiz-controls {
+    border-radius: 6px;
+}
+
+/* GAME STATUS */
+/* For all statuses */
+.t3-layout.two-columns .t3-status {
+    border-radius: 0.3125rem; /* 5px = 0.3125rem */
+}
+
+/* For the viewing history status */
+.t3-layout.two-columns .t3-status--vh {
+    border-radius: 0.5rem; /* 0.5rem = 8px */
+}
+
+/* For the status within a game status */
+.t3-layout.two-columns .t3-status-vh__inline {
+    border-radius: 0.625rem  0; /* 10px = 0.625rem */
+}
+
+/* History moves list container */
+.t3-layout.two-columns #history-moves {
+    padding: 0 0.5rem 0.625rem 0.625rem; /* 10px = 0.625rem. Right padding: 10px-2px (list of moves scroll size) = 0.5rem */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: snow;
+    display: flex;
+    flex-direction: column; /* Arranging elements vertically */
+    flex: 1; /* Allowing the container to take up available space */
+    min-height: 0; /* Setting minimum height to 0 to prevent overflow */
+    overflow: hidden;
+}

@@ -1,10 +1,11 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import isEqual from 'fast-deep-equal';
-
+// Models
+import {SortTypes} from "../../../utils/sorting";
+import {GameStatus} from "../../../models/tictactoe/gameStatus";
 import {GameStateContainerI, GameStateMetaI, MoveActionPayloadI} from "./types";
 import {GameMoveI, GameStateI} from "../../../models/tictactoe/game";
-import {GameStatus} from "../../../models/tictactoe/gameStatus";
-
+// Services
 import {getGameStatusByMove, validateMove} from "../../../services/tictactoe/gameLogic";
 
 const initialGameState: GameStateI = {
@@ -13,7 +14,9 @@ const initialGameState: GameStateI = {
         { id: 1, name: "X" },
         { id: 2, name: "O" }
     ],
+    // History moves
     history: [{
+        moveNumber: 0,                     // Move number. Starts from zero.
         date: Date.now(),                  // The timestamp when the move occurred
         squareID: null,                    // In which square the move is made (ID). You can find out who made the move squares[squareID]
         squares: Array(9).fill(null),      // The state (null/player object) of the squares on the current move
@@ -23,6 +26,18 @@ const initialGameState: GameStateI = {
     status: GameStatus.Waiting,            // The game's current status at each stage, which affects the game logic
     time: {
         durationSecs: 0,                   // Duration of the game in seconds when it is active (without pauses and status changes)
+    },
+
+    // TODO Temporary. Need to be broken down into game settings and the game process itself.
+    settings: {
+        // History moves
+        history: {
+            sorting: {
+                order: SortTypes.Asc,       // Order of sorting (e.g., ascending, descending)
+                field: "Move number"        // The currently selected sorting field (e.g., move number)
+            },
+            visibility: false,              // Whether history of moves is visible or not
+        },
     }
 };
 
@@ -200,6 +215,21 @@ const gameSlice = createSlice({
             if (container.state.time.durationSecs !== newDuration) {
                 container.state.time.durationSecs = newDuration;
             }
+        },
+
+        // TODO Temporary. It is necessary to break down the game settings and the game process itself into separate slices.
+        toggleHistorySort(container: GameStateContainerI) {
+            // Map sort orders
+            const sortOrder = container.state.settings.history.sorting.order;
+            const sortMap = {
+                [SortTypes.Asc]: SortTypes.Desc,
+                [SortTypes.Desc]: SortTypes.Asc,
+            };
+            container.state.settings.history.sorting.order = sortMap[sortOrder];
+        },
+        toggleHistoryVisibility(container: GameStateContainerI) {
+            const visibility = container.state.settings.history.visibility;
+            container.state.settings.history.visibility = !visibility;
         }
     }
 });
@@ -210,7 +240,11 @@ export const {
     restoreGame,
     togglePause,
     updateGameDuration,
-    newGame
+    newGame,
+
+    //TODO TEMP
+    toggleHistorySort,
+    toggleHistoryVisibility
 } = gameSlice.actions;
 
 export default gameSlice.reducer;
