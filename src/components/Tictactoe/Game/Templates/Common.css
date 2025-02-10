@@ -30,7 +30,7 @@
     display: flex; /* Child element alignment */
 }
 
-/* Game info */
+/* ---Game info--- */
 .t3-layout .game-info {
     flex: 1; /* Ensures the container grows to fill available space */
     display: flex;
@@ -41,7 +41,7 @@
     overflow: hidden;
 }
 
-/* Board container */
+/* ---GAME BOARD container--- */
 .t3-layout .board-container {
     flex: 1;
     display: flex;
@@ -51,4 +51,29 @@
     max-height: calc(100vh - 7.5rem); /* 7.5rem = 120px. Subtracting the height of the menu and timer: 5vh for each */
     height: 100%; /* Always fills the height of the container */
     box-sizing: border-box;
+}
+
+/* ---GAME CONTROLS and ACTION INDICATORS--- */
+
+/* Paused state of the pause button */
+.game-controls .pause-btn.paused:not(.disabled) {
+    background: linear-gradient(145deg, #ff7043, #ff5722);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+}
+
+/* Pause button on hover when paused */
+.game-controls .pause-btn.paused:hover:not(.disabled) {
+    background: linear-gradient(145deg, #ff5722, #f44336); /* Slightly darker red-orange for hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+/* For all indicators */
+.action-indicator {
+    color: #007bff;
+}
+
+/* When game is pausing */
+.action-indicator.pause {
+    color: #ff7043;
 }

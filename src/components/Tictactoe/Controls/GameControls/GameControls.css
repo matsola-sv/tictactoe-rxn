@@ -1,14 +1,10 @@
-/* PAUSE BUTTONS */
-/* Note: :not(.disabled) is necessary to avoid style conflicts with disabled buttons. */
+/* ---PAUSE BUTTONS--- */
 
-/* Disabled state */
-.game-controls .pause-btn.disabled {
-    background-color: #e7f4e7;
-    color: #555;
-    box-shadow: none;
-}
+/* NOTE: Spells for the pause button that are common to both the button and indicator
+   are located in Common.css to avoid duplication. */
 
 /* Active pause button (not disabled) */
+/* Note: :not(.disabled) is necessary to avoid style conflicts with disabled buttons. */
 .game-controls .pause-btn:not(.disabled) {
     background: linear-gradient(145deg, #4caf50, #009688);
     color: white;
@@ -19,18 +15,5 @@
 /* Pause button on hover (not disabled) */
 .game-controls .pause-btn:hover:not(.disabled) {
     background: linear-gradient(145deg, #45a049, #00796b);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Paused state of the pause button */
-.game-controls .pause-btn.paused:not(.disabled) {
-    background: linear-gradient(145deg, #ff9800, #fb8c00);
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Pause button on hover when paused */
-.game-controls .pause-btn.paused:hover:not(.disabled) {
-    background: linear-gradient(145deg, #fb8c00, #f57c00);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }

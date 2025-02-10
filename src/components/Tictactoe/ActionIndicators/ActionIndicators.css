@@ -6,16 +6,6 @@
     margin-right: 0.5em; /* Add right margin for spacing */
 }
 
-/* When game is pausing */
-.action-indicator.pause {
-    color: #ff9800;
-}
-
-/* For all indicators */
-.action-indicator {
-    color: #007bff;
-}
-
 .action-indicator .icon {
     font-size: 1.5rem; /* Icon size relative to parent element */
     margin-left: 0.2em; /* Space between icon and text */
