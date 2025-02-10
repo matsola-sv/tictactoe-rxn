@@ -37,7 +37,7 @@ const MobileGame: FC<GameTemplateProps> = ({board, gameStatus, movesList, movesC
                 </div>
             )}
 
-            <HorizontalControls>
+            <HorizontalControls className={"t3-stopwatch"}>
                 {gameStopwatch}
             </HorizontalControls>
         </>

@@ -4,7 +4,8 @@
     gap: 0.3125rem; /* 5px = 0.3125rem */
 }
 
-/* GAME CONTROLS BUTTONS*/
+/* GAME CONTROLS BUTTONS, STOPWATCH */
+.t3-layout.one-column .t3-stopwatch,
 .t3-layout.one-column .game-controls {
     border-radius: 0.5rem; /* 8px = 0.125rem */
 }

@@ -11,6 +11,7 @@
     align-items: center;
 }
 
+/* Time unit separator */
 .time-viewer .time-separator {
     font-size: 2rem;
     position: relative;
@@ -22,7 +23,7 @@
     font-size: 2rem; /* Size time numbers */
     width: 3rem;
     height: 3rem;
-    border-radius: 10%;
+    border-radius: 12%;
     background-color: #f0f0f0;
     margin-top: 0.2rem;
     display: flex;
@@ -33,14 +34,16 @@
 }
 
 .time-unit .label {
-    font-size: 0.75rem; /* Sizes for unit labels */
-    color: #555;
+    font-size: 0.8rem; /* Sizes for unit labels */
+    color: #5c677d;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
 }
 
 /* Large screens */
 @media screen and (min-width: 1025px) {
     .time-unit .label {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 }
 
@@ -49,18 +52,15 @@
     .time-viewer {
         gap: 0.8rem;
     }
-
     .time-viewer .time-separator {
         font-size: 1.5rem;
         top: 0.4rem;
     }
-
     .time-unit .value {
         font-size: 1.5rem;
         width: 2.5rem;
         height: 2.5rem;
     }
-
     .time-unit .label {
         font-size: 0.65rem;
     }
@@ -71,18 +71,15 @@
     .time-viewer {
         gap: 0.5rem;
     }
-
     .time-viewer .time-separator {
         font-size: 1.2rem;
         top: 0.3rem;
     }
-
     .time-unit .value {
         font-size: 1.2rem;
         width: 2rem;
         height: 2rem;
     }
-
     .time-unit .label {
         font-size: 0.6rem;
     }

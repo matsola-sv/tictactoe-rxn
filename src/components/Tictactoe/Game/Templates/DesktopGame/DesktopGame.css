@@ -35,7 +35,7 @@
 
 /* The horizontal menus on the LEFT (stopwatch, game controls) */
 .t3-layout .game-left .horiz-controls {
-    border-radius: 6px;
+    border-radius: 0.375rem; /* 6px = 0.375rem */
 }
 
 /* GAME STATUS */
