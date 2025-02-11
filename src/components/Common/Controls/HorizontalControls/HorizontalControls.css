@@ -16,7 +16,7 @@
     align-items: center;
     background: linear-gradient(145deg, #2196f3, #1976d2); /* Gradient for normal state */
     color: white;
-    border: 0.1rem solid white;
+    border: 0.1rem solid #1976d2;
     border-radius: 0.25rem;
     padding: 0.5rem 1rem;
     font-weight: bold;

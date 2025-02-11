@@ -1,24 +1,14 @@
 import {FC} from "react";
-
 // Fontawesome icons
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
-import {faClock, faPauseCircle, faSave} from "@fortawesome/free-solid-svg-icons";
-
+import {faPauseCircle, faSave, faStopwatch} from "@fortawesome/free-solid-svg-icons";
+// Models
+import {UIFontAwesomeUIElement} from "../../../models/ui";
 import {GameStatus} from "../../../models/tictactoe/gameStatus";
+// Hooks
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
-
+// Styles
 import "./ActionIndicators.css";
-
-interface Indicator {
-    id: number;
-    isActive: boolean;
-    icon: IconDefinition;
-    className?: string;
-    spin?: boolean;        // To spin animation
-    pulse?: boolean;       // To pulse animation
-    spinPulse?: boolean    // To spin plus pulse animation
-}
 
 /**
  * Only one button is displayed: either the pause indicator or the save indicator, depending on the game state.
@@ -33,10 +23,10 @@ const ActionIndicators: FC = () => {
     const isRunning: boolean = statusGame === GameStatus.Running;
 
     // List of indicators that shows which action is currently being performed (e.g., pause or saving).
-    const indicators: Indicator[] = [
-        { id: 1, isActive: isPaused, icon: faPauseCircle, className: "pause" }, // When game is pausing
-        { id: 2, isActive: isRunning, icon: faClock, spin: true},               // When the stopwatch is running
-        { id: 3, isActive: isSaving, icon: faSave, className: "save" }          // When game is saving
+    const indicators: UIFontAwesomeUIElement[] = [
+        { id: 1, isActive: isPaused, icon: faPauseCircle, className: "pause" },      // When game is pausing
+        { id: 2, isActive: isRunning, icon: faStopwatch, animation: { beat: true }}, // When the stopwatch is running
+        { id: 3, isActive: isSaving, icon: faSave, className: "save" }               // When game is saving
     ]
 
     const hasActions: boolean = indicators.some(
@@ -56,9 +46,15 @@ const ActionIndicators: FC = () => {
                     <div key={indicator.id} className={`action-indicator ${indicator.className}`}>
                         <FontAwesomeIcon
                             icon={indicator.icon}
-                            spin={indicator.spin}
-                            pulse={indicator.pulse}
-                            spinPulse={indicator.spinPulse}
+                            beat={indicator.animation?.beat}
+                            bounce={indicator.animation?.bounce}
+                            beatFade={indicator.animation?.beatFade}
+                            pulse={indicator.animation?.pulse}
+                            spin={indicator.animation?.spin}
+                            spinPulse={indicator.animation?.spinPulse}
+                            shake={indicator.animation?.shake}
+                            fade={indicator.animation?.fade}
+                            flip={indicator.animation?.flip}
                             className="icon"
                         />
                     </div>
