@@ -15,7 +15,8 @@ import NoShoePrintsIcon from "../../../Common/UI/Icons/NoShoePrintsIcon/NoShoePr
 import HorizontalControls from "../../../Common/Controls/HorizontalControls/HorizontalControls";
 import GameButton from "../../Controls/GameButton/GameButton";
 import HistorySort from "../HistorySort/HistorySort";
-import HistoryNavigation from "../HistoryNavigation/HistoryNavigation";
+import HistoryPrevious from "../HistoryNavigation/HistoryPrevious";
+import HistoryNext from "../HistoryNavigation/HistoryNext";
 
 /**
  * Note:
@@ -70,7 +71,8 @@ const HistoryControlsMini: FC = () => {
             )}
 
             <RowContainer placement={UILayoutOption.Right}>
-                <HistoryNavigation/>
+                <HistoryPrevious/>
+                <HistoryNext/>
             </RowContainer>
         </HorizontalControls>
     );

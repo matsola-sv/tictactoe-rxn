@@ -1,6 +1,9 @@
 import {FC} from "react";
+// Models
 import {GameTemplateProps} from "../../GameView/GameView.types";
+// Components
 import HorizontalControls from "../../../../Common/Controls/HorizontalControls/HorizontalControls";
+// CSS
 import "./DesktopGame.css";
 
 const DesktopGame: FC<GameTemplateProps> = ({board, gameControls, gameStopwatch, gameStatus, movesList, movesControls}) => {
@@ -30,7 +33,7 @@ const DesktopGame: FC<GameTemplateProps> = ({board, gameControls, gameStopwatch,
                     {gameStatus}
 
                     <div id="history-moves">
-                        {/* The history move control buttons */}
+                        {/* The history move control buttons (sorting and navigation bar) */}
                         {movesControls}
 
                         {/* The history move list */}
