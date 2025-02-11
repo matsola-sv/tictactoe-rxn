@@ -13,7 +13,7 @@ import {useTypedSelector} from "../../../../hooks/useTypedSelector";
 import {newGame, togglePause} from "../../../../redux/tictactoe/game/gameSlice";
 // Components
 import HorizontalControls from "../../../Common/Controls/HorizontalControls/HorizontalControls";
-import GameButton from "../GameButton/GameButton";
+import IconButton from "../../../Common/Controls/IconButton/IconButton";
 
 import "./GameControls.css";
 
@@ -43,14 +43,14 @@ const GameControls: FC<GameControlsPropsI> = ({isDisabled = false, controlSize =
                 className="game-controls"
                 placement={UILayoutOption.Center}
             >
-                <GameButton
+                <IconButton
                     onClick={handlePause}
                     isDisabled={!canActivePause}
                     icon={isGamePaused ? faPlay : faPause}
                     title={isGamePaused ? "Resume" : "Pause"}
                     className={classNames('pause-btn', {'paused': isGamePaused})}
                 />
-                <GameButton
+                <IconButton
                     title="New Game"
                     icon={faSyncAlt}
                     isDisabled={isDisabled}

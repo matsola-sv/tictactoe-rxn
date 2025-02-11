@@ -4,11 +4,11 @@ import classNames from "classnames";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 // Models
-import {ButtonMouseHandler} from "../../../Common/Controls/Button/Button.type";
+import {ButtonMouseHandler} from "../Button/Button.type";
 // Components
-import Button from "../../../Common/Controls/Button/Button";
+import Button from "../Button/Button";
 
-interface GameButtonProps {
+interface IconButtonProps {
     onClick: ButtonMouseHandler;
     children?: ReactNode;
     icon?: IconDefinition;
@@ -17,7 +17,7 @@ interface GameButtonProps {
     title?: string;
 }
 
-const GameButton: FC<GameButtonProps> = ({isDisabled = false, children = null, onClick, className, title, icon}) => {
+const IconButton: FC<IconButtonProps> = ({isDisabled = false, children = null, onClick, className, title, icon}) => {
     if (!children && !icon) {
         return null;
     }
@@ -45,4 +45,4 @@ const GameButton: FC<GameButtonProps> = ({isDisabled = false, children = null, o
         </Button>
     );
 };
-export default GameButton;
+export default IconButton;

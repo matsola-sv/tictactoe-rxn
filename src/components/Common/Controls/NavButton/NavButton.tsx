@@ -5,7 +5,7 @@ import {faAngleLeft, faAngleRight} from "@fortawesome/free-solid-svg-icons";
 // Models
 import {NavDirection} from "../../../../models/lists";
 // Components
-import GameButton from "../GameButton/GameButton";
+import IconButton from "../IconButton/IconButton";
 
 interface NavButtonProps {
     direction: NavDirection;
@@ -18,7 +18,7 @@ const NavButton: FC<NavButtonProps> = ({ direction, onClick, isDisabled, classNa
     const icon = direction === NavDirection.Back ? faAngleLeft : faAngleRight;
 
     return (
-        <GameButton
+        <IconButton
             icon={icon}
             className={classNames("btn-nav", className)}
             isDisabled={isDisabled}

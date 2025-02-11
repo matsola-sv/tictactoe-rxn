@@ -13,7 +13,7 @@ import {useTypedSelector} from "../../../../hooks/useTypedSelector";
 import RowContainer from "../../../Common/UI/RowContainer/RowContainer";
 import NoShoePrintsIcon from "../../../Common/UI/Icons/NoShoePrintsIcon/NoShoePrintsIcon";
 import HorizontalControls from "../../../Common/Controls/HorizontalControls/HorizontalControls";
-import GameButton from "../../Controls/GameButton/GameButton";
+import IconButton from "../../../Common/Controls/IconButton/IconButton";
 import HistorySort from "../HistorySort/HistorySort";
 import HistoryPrevious from "../HistoryNavigation/HistoryPrevious";
 import HistoryNext from "../HistoryNavigation/HistoryNext";
@@ -35,13 +35,13 @@ const HistoryControlsMini: FC = () => {
     const getToggleHistoryButton = (): ReactElement => {
         if (visibility) {
             return (
-                <GameButton onClick={toggleVisibility}>
+                <IconButton onClick={toggleVisibility}>
                     <NoShoePrintsIcon/>
-                </GameButton>
+                </IconButton>
             );
         }
         return (
-            <GameButton
+            <IconButton
                 icon={faShoePrints}
                 onClick={toggleVisibility}
             />

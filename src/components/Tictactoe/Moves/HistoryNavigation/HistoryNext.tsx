@@ -5,7 +5,7 @@ import {HistoryNavigationProps} from "./types";
 // Hooks
 import useMovesNavigation from "../../../../hooks/tictactoe/useMovesNavigation";
 // Components
-import NavButton from "../../Controls/NavButton/NavButton";
+import NavButton from "../../../Common/Controls/NavButton/NavButton";
 
 const NexButton: FC<HistoryNavigationProps> = ({ className = "" }) => {
     const { goTo, nextMove } = useMovesNavigation();
