@@ -6,7 +6,7 @@ import {faShoePrints} from "@fortawesome/free-solid-svg-icons";
 import {UIElementSize, UILayoutOption} from "../../../../models/ui";
 // Redux
 import {AppDispatch} from "../../../../redux/store";
-import {toggleHistoryVisibility} from "../../../../redux/tictactoe/game/gameSlice";
+import {toggleHistoryVisibility} from "../../../../redux/tictactoe/player/playerSlice";
 // Hooks
 import {useTypedSelector} from "../../../../hooks/useTypedSelector";
 // Components
@@ -25,9 +25,9 @@ import HistoryNext from "../HistoryNavigation/HistoryNext";
  */
 const HistoryControlsMini: FC = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const { visibility } = useTypedSelector(state => state.t3game.state.settings.history);
+    const visibility = useTypedSelector(state => state.t3player.game.history.visibility);
 
-    // To toggle history visibility
+    // To toggle history visibility in Redux
     const toggleVisibility = () => {
         dispatch(toggleHistoryVisibility());
     };
@@ -57,7 +57,8 @@ const HistoryControlsMini: FC = () => {
     return (
         <HorizontalControls
             size={UIElementSize.S}
-            placement={getPlacement()}>
+            placement={getPlacement()}
+        >
             <RowContainer
                 placement={UILayoutOption.Left}
             >

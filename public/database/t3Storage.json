@@ -1,6 +1,10 @@
 {
 	"states": [
 		{
+			"board": {
+				"rows": 3,
+				"cols": 3
+			},
 			"status": "running",
 			"time": {
 				"durationSecs": 25
@@ -39,18 +43,13 @@
 					"squares": [null, null, null, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
 					"winner": null
 				}
-			],
-			"settings": {
-				"history": {
-					"sorting": {
-						"order": "asc",
-						"field": "Move number"
-					},
-					"visibility": false
-				}
-			}
+			]
 		},
 		{
+			"board": {
+				"rows": 3,
+				"cols": 3
+			},
 			"status": "running",
 			"time": {
 				"durationSecs": 120
@@ -134,18 +133,13 @@
 						"winnerLine": [ 3, 4, 5 ]
 					}
 				}
-			],
-			"settings": {
-				"history": {
-					"sorting": {
-						"order": "asc",
-						"field": "Move number"
-					},
-					"visibility": false
-				}
-			}
+			]
 		},
 		{
+			"board": {
+				"rows": 3,
+				"cols": 3
+			},
 			"status": "running",
 			"time": {
 				"durationSecs": 20
@@ -198,16 +192,7 @@
 					"squares": [{ "id": 2,"name": "O"}, null, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
 					"winner": null
 				}
-			],
-			"settings": {
-				"history": {
-					"sorting": {
-						"order": "asc",
-						"field": "Move number"
-					},
-					"visibility": false
-				}
-			}
+			]
 		}
 	]
 }

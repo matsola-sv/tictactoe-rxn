@@ -28,7 +28,10 @@ const GamesPage: FC = () => {
 
     return (
         <div id="t3-game-wrapper" ref={gameRef}>
-            <Game gameState={stateContainer.state}/>
+            <Game
+                gameState={stateContainer.state}
+                boardColumns={stateContainer.state.board.cols}
+            />
         </div>
     );
 }

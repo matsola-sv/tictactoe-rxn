@@ -1,7 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import isEqual from 'fast-deep-equal';
 // Models
-import {SortTypes} from "../../../utils/sorting";
 import {GameStatus} from "../../../models/tictactoe/gameStatus";
 import {GameStateContainerI, GameStateMetaI, MoveActionPayloadI} from "./types";
 import {GameMoveI, GameStateI} from "../../../models/tictactoe/game";
@@ -9,6 +8,11 @@ import {GameMoveI, GameStateI} from "../../../models/tictactoe/game";
 import {getGameStatusByMove, validateMove} from "../../../services/tictactoe/gameLogic";
 
 const initialGameState: GameStateI = {
+    // Ensures that the board size cannot be changed after the game starts!
+    board: {
+        rows: 3,
+        cols: 3
+    },
     // Player with the index (0) goes first
     players: [
         { id: 1, name: "X" },
@@ -26,18 +30,6 @@ const initialGameState: GameStateI = {
     status: GameStatus.Waiting,            // The game's current status at each stage, which affects the game logic
     time: {
         durationSecs: 0,                   // Duration of the game in seconds when it is active (without pauses and status changes)
-    },
-
-    // [Task1: Split the game state](docs/TODO.md#task1-split-the-game-state-tic-tac-toe-into-components-for-game-logic-display-settings-and-user-settings)
-    settings: {
-        // History moves
-        history: {
-            sorting: {
-                order: SortTypes.Asc,       // Order of sorting (e.g., ascending, descending)
-                field: "Move number"        // The currently selected sorting field (e.g., move number)
-            },
-            visibility: false,              // Whether history of moves is visible or not
-        },
     }
 };
 
@@ -215,21 +207,6 @@ const gameSlice = createSlice({
             if (container.state.time.durationSecs !== newDuration) {
                 container.state.time.durationSecs = newDuration;
             }
-        },
-
-        // TODO Temporary. It is necessary to break down the game settings and the game process itself into separate slices.
-        toggleHistorySort(container: GameStateContainerI) {
-            // Map sort orders
-            const sortOrder = container.state.settings.history.sorting.order;
-            const sortMap = {
-                [SortTypes.Asc]: SortTypes.Desc,
-                [SortTypes.Desc]: SortTypes.Asc,
-            };
-            container.state.settings.history.sorting.order = sortMap[sortOrder];
-        },
-        toggleHistoryVisibility(container: GameStateContainerI) {
-            const visibility = container.state.settings.history.visibility;
-            container.state.settings.history.visibility = !visibility;
         }
     }
 });
@@ -241,10 +218,6 @@ export const {
     togglePause,
     updateGameDuration,
     newGame,
-
-    //TODO TEMP
-    toggleHistorySort,
-    toggleHistoryVisibility
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

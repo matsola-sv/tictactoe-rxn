@@ -12,6 +12,7 @@ import {AppDispatch} from "../../../redux/store";
 // Services
 import {calculateWinner, generateMoveNumber, getCurrentPlayer} from "../../../services/tictactoe/gameLogic";
 //Hooks
+import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import useProcessedMoves from "../../../hooks/tictactoe/useProcessedMoves";
 // Components
 import EmptyListMessage from "../../Common/EmptyListMessage/EmptyListMessage";
@@ -22,12 +23,11 @@ import Status from "./Status/Status";
 import HistoryControls from "../Moves/HistoryControls/HistoryControls";
 import HistoryControlsMini from "../Moves/HistoryControlsMini/HistoryControlsMini";
 import HistoryList from "../Moves/HistoryList/HistoryList";
-// CSS
 import GameView from "./GameView/GameView";
 
 interface GamePropsI {
     gameState: GameStateI;
-    boardColumns?: number; // Number of columns on the game board
+    boardColumns: number; // Number of columns on the game board
 }
 
 /**
@@ -35,7 +35,7 @@ interface GamePropsI {
  *  A component that encapsulates the game logic, manages the game state, prepares components for display,
  *  and delegates rendering to GameView, which decides what to render based on device type, screen size, etc.
  */
-const Game: FC<GamePropsI> = ({ gameState, boardColumns = 3 }) =>  {
+const Game: FC<GamePropsI> = ({ gameState, boardColumns }) =>  {
     const fallbackBoard: ReactElement = (
         <EmptyListMessage
             message="It's empty here, like in space. No cells found!"
@@ -54,9 +54,8 @@ const Game: FC<GamePropsI> = ({ gameState, boardColumns = 3 }) =>  {
     const status = gameState.status;                                // Game status
     const initialMillis = gameState.time.durationSecs * 1000;       // Initial mills for stopwatch
 
-    // Game settings
-    // TODO Temporary. Need to be broken down into game settings and the game process itself.
-    const movesSort = gameState.settings.history.sorting;
+    // Player UI state
+    const movesSort = useTypedSelector(state => state.t3player.game.history.sorting);
 
     // Returns a prepared for displaying and sorted history of moves
     const {movesForDisplay, canShowDate: canShowMovesDate} = useProcessedMoves({
@@ -68,9 +67,6 @@ const Game: FC<GamePropsI> = ({ gameState, boardColumns = 3 }) =>  {
     const isStopped: boolean = status === GameStatus.Stopped;       // Checks if the game has stopped
     const isPaused: boolean = status === GameStatus.Paused;         // The game is paused
     const isViewingHistory = status === GameStatus.ViewingHistory;  // Checks if the game is in the process of viewing the history of moves.
-
-    // Local state
-    const isShowGameMenu: boolean = true;
 
     /**
      * Element selection handler on the Board
@@ -205,11 +201,9 @@ const Game: FC<GamePropsI> = ({ gameState, boardColumns = 3 }) =>  {
                 gameControls: ({
                     mobile: <GameControls
                         controlSize={UIElementSize.M}
-                        isDisabled={!isShowGameMenu}
                     />,
                     desktop: <GameControls
                         controlSize={UIElementSize.L}
-                        isDisabled={!isShowGameMenu}
                     />
                 }),
                 gameStopwatch: (

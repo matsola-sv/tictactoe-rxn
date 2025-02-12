@@ -10,7 +10,7 @@ import "./MobileGame.css";
 
 const MobileGame: FC<GameTemplateProps> = ({board, gameStatus, movesList, movesControls, gameControls, gameStopwatch}) => {
     const movesVisibility = useTypedSelector(
-        state => state.t3game.state.settings.history.visibility
+        state => state.t3player.game.history.visibility
     );
     return (
         <>

@@ -15,8 +15,7 @@ import HistoryPrevious from "../HistoryNavigation/HistoryPrevious";
 import "./HistoryControls.css";
 
 const HistoryControls: FC = () => {
-    //TODO TEMP need to be broken down into game settings and the game process itself.
-    const sorting = useTypedSelector(state => state.t3game.state.settings.history.sorting);
+    const sorting = useTypedSelector(state => state.t3player.game.history.sorting);
 
     return (
         <div>

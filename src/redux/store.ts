@@ -1,8 +1,10 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import gameReducer from "./tictactoe/game/gameSlice";
+import playerReducer from "./tictactoe/player/playerSlice";
 
 export const rootReducer = combineReducers({
-    t3game: gameReducer
+    t3game: gameReducer,
+    t3player: playerReducer,
 });
 
 export const store = configureStore({
