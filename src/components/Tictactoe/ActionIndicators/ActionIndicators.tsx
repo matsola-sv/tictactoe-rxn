@@ -1,5 +1,4 @@
 import {FC} from "react";
-import {useMediaQuery} from "react-responsive";
 // Fontawesome icons
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPauseCircle, faSave, faStopwatch} from "@fortawesome/free-solid-svg-icons";
@@ -8,6 +7,7 @@ import {UIFontAwesomeUIElement} from "../../../models/ui";
 import {GameStatus} from "../../../models/tictactoe/gameStatus";
 // Hooks
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import useMediaQueryContext from "../../../hooks/useMediaQueryContext";
 // Styles
 import "./ActionIndicators.css";
 
@@ -17,10 +17,7 @@ import "./ActionIndicators.css";
  */
 const ActionIndicators: FC = () => {
     // Check option is enabled in the browser to reduce or disable animations
-    const isAnimation: boolean = !useMediaQuery({
-        query: '(prefers-reduced-motion: reduce)'
-    });
-
+    const isAnimation: boolean = !useMediaQueryContext().prefersReducedMotion;
     const statusGame: GameStatus = useTypedSelector(
         state => state.t3game.state.status
     );

@@ -1,8 +1,10 @@
 import {useMemo} from "react";
+// Models
 import {GameMoveI} from "../../models/tictactoe/game";
 import {SortTypes} from "../../utils/sorting";
 import {HistoryMoveI} from "../../components/Tictactoe/Moves/HistoryList/HistoryList.types";
-import {useMediaQuery} from "react-responsive";
+// Hooks
+import useMediaQueryContext from "../useMediaQueryContext";
 
 export interface ProcessedMovesConfigI {
     movesHistory: GameMoveI[];
@@ -21,8 +23,8 @@ export interface ProcessedMovesResultI {
  * @param config
  */
 const useProcessedMoves = (config: ProcessedMovesConfigI): ProcessedMovesResultI => {
-    //TODO Temp
-    const isMobile = useMediaQuery({ query: '(max-width: 700px)' });
+    // Determines if the screen width is 480px or smaller
+    const { mobileView } = useMediaQueryContext();
 
     const asc = (prev: GameMoveI, next: GameMoveI) =>
         prev.moveNumber - next.moveNumber;
@@ -43,7 +45,7 @@ const useProcessedMoves = (config: ProcessedMovesConfigI): ProcessedMovesResultI
 
     return {
         movesForDisplay: preparedMoves,
-        canShowDate: !isMobile
+        canShowDate: !mobileView
     };
 };
 export default useProcessedMoves;

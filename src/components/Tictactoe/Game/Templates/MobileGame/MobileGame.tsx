@@ -5,8 +5,9 @@ import {GameTemplateProps} from "../../GameView/GameView.types";
 import {useTypedSelector} from "../../../../../hooks/useTypedSelector";
 // Components
 import HorizontalControls from "../../../../Common/Controls/HorizontalControls/HorizontalControls";
-// CSS
-import "./MobileGame.css";
+// Styles
+import "../Common.css"; // Global styles (used in all display templates)
+import "./MobileGame.css"; // Specific styles for mobile version
 
 const MobileGame: FC<GameTemplateProps> = ({board, gameStatus, movesList, movesControls, gameControls, gameStopwatch}) => {
     const movesVisibility = useTypedSelector(

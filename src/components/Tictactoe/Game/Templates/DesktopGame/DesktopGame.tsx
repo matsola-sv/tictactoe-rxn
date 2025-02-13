@@ -3,8 +3,9 @@ import {FC} from "react";
 import {GameTemplateProps} from "../../GameView/GameView.types";
 // Components
 import HorizontalControls from "../../../../Common/Controls/HorizontalControls/HorizontalControls";
-// CSS
-import "./DesktopGame.css";
+// Styles
+import "../Common.css"; // Global styles (used in all display templates)
+import "./DesktopGame.css"; // Specific styles for desktop version
 
 const DesktopGame: FC<GameTemplateProps> = ({board, gameControls, gameStopwatch, gameStatus, movesList, movesControls}) => {
     return (
