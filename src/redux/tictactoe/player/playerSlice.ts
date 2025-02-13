@@ -2,6 +2,14 @@ import {createSlice} from "@reduxjs/toolkit";
 import {PlayerSettingsStateI} from "./types";
 import {SortTypes} from "../../../utils/sorting";
 
+/**
+ * This represents the user interface state that can be modified by the user, such as:
+ * - Sorting methods
+ * - Element visibility
+ * - Color theme
+ * - Symbol colors for "X" and "O" (if customizable)
+ * - Sound volume
+ */
 const initialPlayerState: PlayerSettingsStateI = {
     game: {
         // History moves UI settings

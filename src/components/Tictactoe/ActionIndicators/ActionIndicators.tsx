@@ -1,4 +1,5 @@
 import {FC} from "react";
+import {useMediaQuery} from "react-responsive";
 // Fontawesome icons
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPauseCircle, faSave, faStopwatch} from "@fortawesome/free-solid-svg-icons";
@@ -15,6 +16,11 @@ import "./ActionIndicators.css";
  * @constructor
  */
 const ActionIndicators: FC = () => {
+    // Check option is enabled in the browser to reduce or disable animations
+    const isAnimation: boolean = !useMediaQuery({
+        query: '(prefers-reduced-motion: reduce)'
+    });
+
     const statusGame: GameStatus = useTypedSelector(
         state => state.t3game.state.status
     );
@@ -46,16 +52,8 @@ const ActionIndicators: FC = () => {
                     <div key={indicator.id} className={`action-indicator ${indicator.className}`}>
                         <FontAwesomeIcon
                             icon={indicator.icon}
-                            beat={indicator.animation?.beat}
-                            bounce={indicator.animation?.bounce}
-                            beatFade={indicator.animation?.beatFade}
-                            pulse={indicator.animation?.pulse}
-                            spin={indicator.animation?.spin}
-                            spinPulse={indicator.animation?.spinPulse}
-                            shake={indicator.animation?.shake}
-                            fade={indicator.animation?.fade}
-                            flip={indicator.animation?.flip}
                             className="icon"
+                            { ...(isAnimation ? indicator.animation: {}) } // If animation is enabled, apply all available animations to the icon
                         />
                     </div>
                 ) : null

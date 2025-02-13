@@ -7,6 +7,10 @@ import {GameMoveI, GameStateI} from "../../../models/tictactoe/game";
 // Services
 import {getGameStatusByMove, validateMove} from "../../../services/tictactoe/gameLogic";
 
+/**
+ * This pertains to a specific game and how it progresses,
+ * such as the current board, player's move, and winner.
+ */
 const initialGameState: GameStateI = {
     // Ensures that the board size cannot be changed after the game starts!
     board: {
