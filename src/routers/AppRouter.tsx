@@ -1,10 +1,7 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import * as ROUTES from "../constants/routes";
-
-import HomePage from "../pages/Home";
 import GamesPage from "../pages/Games";
 import NotFoundPage from "../pages/errors/NotFound";
-import Navigator from "../components/Common/Navigation/Navigator/Navigator";
 
 function AppRouter() {
     return (
@@ -14,11 +11,11 @@ function AppRouter() {
                 v7_relativeSplatPath: true  // Updates relative path behavior for splat routes (*)
             }}
         >
-            <Navigator/>
+            {/*<Navigator/>*/}
             <Routes>
                 <Route path="*" element={<NotFoundPage/>}/>
-                <Route path={ROUTES.HOME} element={<HomePage/>}/>
-                <Route path={ROUTES.GAMES} element={<GamesPage/>}/>
+                <Route path={ROUTES.HOME} element={<GamesPage/>}/>
+                {/*<Route path={ROUTES.GAMES} element={<GamesPage/>}/>*/}
             </Routes>
         </BrowserRouter>
     );
