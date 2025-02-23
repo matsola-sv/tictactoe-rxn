@@ -16,11 +16,19 @@ const SOURCE_URL = "/database/t3Storage.json";
  */
 const getData = async <T>(url: string, type?: string): Promise<T> => {
     const response = await fetch(url);
+
+    if (!response.ok) {
+        return Promise.reject(
+            new Error(`HTTP error! Status: ${response.status}`)
+        );
+    }
     const data = await response.json();
 
     if (type) {
         if (!(type in data)) {
-            throw new Error(`Undefined "${type}" in data!`);
+            return Promise.reject(
+                new Error(`Undefined "${type}" in data!`)
+            );
         }
         return data[type];
     }
