@@ -53,7 +53,7 @@ const Status: FC<StatusPropsI> = ({gameState}) => {
     };
 
     return (
-        <div id="t3-status-wrapper">
+        <div className="t3-status-wrapper">
             <ActionIndicators/>
             <div className="t3-status__body">
                 {renderStatus()}

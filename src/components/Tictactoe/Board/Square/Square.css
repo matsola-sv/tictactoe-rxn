@@ -18,8 +18,8 @@
       This issue is particularly noticeable when the font size increases or decreases unevenly between rows of squares.
       SOLUTION: Fixed with `min-height` for stable height and responsive font size with `clamp()`.
     */
+    min-height: 3.125rem; /* Min height (50px=3.125rem) for cell stability */
     font-size: clamp(1rem, 5vw, 2rem); /* Responsive: min 1rem, based on screen width (5vw - 5% of the viewport's width), max 2rem */
-    min-height: 6.25rem; /* Min height (100px=6.25rem) for cell stability */
     line-height: 1; /* Fixing row height to prevent height changes */
     overflow: hidden; /* Avoids cell enlargement due to content */
     user-select: none; /* Disables text selection */

@@ -6,18 +6,20 @@ interface MediaQueryProps {
 }
 
 interface MediaQueryContextType {
-    mobileView: boolean;
-    tabletPlusView: boolean;
-    tabletOrMobileView: boolean;
+    mobileMView: boolean;          // Mobile medium screen (<= 424px)
+    tabletMView: boolean;          // Tablet medium screen (600px - 768px)
+    tabletMUpView: boolean;        // Screens 600px and wider (tabletM and larger)
+    lowHeightView: boolean;        // Low-height screen (<= 480px)
     prefersReducedMotion: boolean; // Checking if the "Reduce Motion" option is enabled in the browser to reduce or disable animations.
 }
 
 export const MediaQueryContext = createContext<MediaQueryContextType | null>(null);
 
 const mediaQueries = {
-    mobile: '(max-width: 480px)',
-    tabletOrMobile: '(max-width: 768px)',
-    tabletPlus: '(min-width: 769px)',
+    mobileM: '(max-width: 424px)',
+    tabletMUp: '(min-width: 600px)',
+    tabletM: '(min-width: 600px) and (max-width: 768px)',
+    lowHeight: '(max-height: 480px)',
     prefersReducedMotion: '(prefers-reduced-motion: reduce)',
 };
 
@@ -26,17 +28,19 @@ const mediaQueries = {
  * For this, it uses the useMedia hook from the use-media library
  */
 const MediaQueryProvider: FC<MediaQueryProps> = ({children}) => {
-    const mobileView = useMedia(mediaQueries.mobile);
-    const tabletOrMobileView = useMedia(mediaQueries.tabletOrMobile);
-    const tabletPlusView = useMedia(mediaQueries.tabletPlus);
+    const mobileMView = useMedia(mediaQueries.mobileM);
+    const tabletMUpView = useMedia(mediaQueries.tabletMUp);
+    const tabletMView = useMedia(mediaQueries.tabletM);
+    const lowHeightView = useMedia(mediaQueries.lowHeight);
     const prefersReducedMotion = useMedia(mediaQueries.prefersReducedMotion);
 
     const value = useMemo(() => ({
-        mobileView,
-        tabletPlusView,
-        tabletOrMobileView,
+        mobileMView,
+        tabletMUpView,
+        tabletMView,
+        lowHeightView,
         prefersReducedMotion
-    }), [mobileView, tabletOrMobileView, tabletPlusView, prefersReducedMotion]);
+    }), [mobileMView, tabletMUpView, tabletMView, lowHeightView, prefersReducedMotion]);
 
     return (
         <MediaQueryContext.Provider value={value}>

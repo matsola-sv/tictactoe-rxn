@@ -39,7 +39,7 @@ const IconButton: FC<IconButtonProps> = ({isDisabled = false, children = null, o
             onClick={onClick}
             ariaLabel={title}
             isDisabled={isDisabled}
-            className={classNames('game-btn', className)}
+            className={classNames(className)}
         >
             {getContent()}
         </Button>

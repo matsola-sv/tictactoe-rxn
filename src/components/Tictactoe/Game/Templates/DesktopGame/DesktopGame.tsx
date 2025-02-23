@@ -11,29 +11,29 @@ const DesktopGame: FC<GameTemplateProps> = ({board, gameControls, gameStopwatch,
     return (
         <>
             {/* Left column */}
-            <div className="game-left">
-                <div className="controls-wrapper">
+            <div className="t3-layout__left">
+                <div className="t3-layout__left-game-controls">
                     {/* The game controls buttons */}
                     {gameControls}
                 </div>
 
-                <div className="board-container">
+                <div className="t3-layout__game-board">
                     {/* The game board */}
                     {board}
                 </div>
 
-                <HorizontalControls>
+                <HorizontalControls className="t3-layout__left-stopwatch">
                     {gameStopwatch}
                 </HorizontalControls>
             </div>
 
             {/* Right column */}
-            <div className="game-right">
-                <div className="game-info">
+            <div className="t3-layout__right">
+                <div className="t3-layout__game-info">
                     {/* The game status element */}
                     {gameStatus}
 
-                    <div id="history-moves">
+                    <div className="t3-layout__right-moves">
                         {/* The history move control buttons (sorting and navigation bar) */}
                         {movesControls}
 

@@ -23,8 +23,8 @@ export interface ProcessedMovesResultI {
  * @param config
  */
 const useProcessedMoves = (config: ProcessedMovesConfigI): ProcessedMovesResultI => {
-    // Determines if the screen width is 480px or smaller
-    const { mobileView } = useMediaQueryContext();
+    // Screen sizes: mobile (max-width: 424px) and compact tablet (600px-768px)
+    const { mobileMView, tabletMView } = useMediaQueryContext();
 
     const asc = (prev: GameMoveI, next: GameMoveI) =>
         prev.moveNumber - next.moveNumber;
@@ -45,7 +45,7 @@ const useProcessedMoves = (config: ProcessedMovesConfigI): ProcessedMovesResultI
 
     return {
         movesForDisplay: preparedMoves,
-        canShowDate: !mobileView
+        canShowDate: !(mobileMView || tabletMView), // Show date for large mobile screens and medium or larger tablets
     };
 };
 export default useProcessedMoves;

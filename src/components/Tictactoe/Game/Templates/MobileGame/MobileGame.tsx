@@ -21,24 +21,24 @@ const MobileGame: FC<GameTemplateProps> = ({board, gameStatus, movesList, movesC
             {/* The game status element */}
             {gameStatus}
 
-            <div className="board-container">
+            <div className="t3-layout__game-board">
                 {/* The game board */}
                 {board}
             </div>
 
             {/* The history move control buttons */}
-            <div id="t3-moves-controls-mobile">
+            <div className="t3-moves-controls-mob">
                 {movesControls}
             </div>
 
             {movesVisibility && (
-                <div className="game-info">
+                <div className="t3-layout__game-info">
                     {/* The history move list */}
                     {movesList}
                 </div>
             )}
 
-            <HorizontalControls className={"t3-stopwatch"}>
+            <HorizontalControls className={"t3-layout__stopwatch"}>
                 {gameStopwatch}
             </HorizontalControls>
         </>

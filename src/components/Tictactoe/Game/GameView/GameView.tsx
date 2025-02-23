@@ -6,26 +6,32 @@ import {GameViewProps} from "./GameView.types";
 import useMediaQueryContext from "../../../../hooks/useMediaQueryContext";
 // Components
 import Preloader from "../../../Common/UI/Preloader/Preloader";
-
 // Lazy loading of template components
 const MobileGame = lazy(() => import("../Templates/MobileGame/MobileGame"));
 const DesktopGame = lazy(() => import("../Templates/DesktopGame/DesktopGame"));
 
 const GameView: FC<GameViewProps> = ({ components }) => {
-    // Determines if the screen size is larger than a tablet (769px and above)
-    const { tabletPlusView } = useMediaQueryContext();
+    // Screens: compact tablet (600-768px), tablet+ (min-width: 600px), and low height (max-height: 480px)
+    const { tabletMView, tabletMUpView, lowHeightView } = useMediaQueryContext();
+    const { desktop: desktopControls, mobile: mobileControls } = components.gameControls;
+
+    // Two-columns layout for smaller screens with compact elements due to limited space.
+    const isDesktopCompact = tabletMView || (tabletMUpView && lowHeightView);
     const layoutClass: string = classNames('t3-layout', {
-        "one-column": !tabletPlusView,
-        "two-columns": tabletPlusView
+        "t3-layout--1-column": !tabletMUpView,
+        "t3-layout--2-columns": tabletMUpView,
+
+        // Two-columns layout for smaller screens with compact elements due to limited space.
+        "t3-layout--2-columns--sm": isDesktopCompact
     });
 
     return (
         <Suspense fallback={<Preloader/>}>
             <div className="t3-container">
                 <div className={layoutClass}>
-                    {tabletPlusView ? (
+                    {tabletMUpView ? (
                         <DesktopGame
-                            gameControls={components.gameControls.desktop}
+                            gameControls={isDesktopCompact ? mobileControls : desktopControls}
                             gameStopwatch={components.gameStopwatch}
                             gameStatus={components.gameStatus}
                             board={components.board}
