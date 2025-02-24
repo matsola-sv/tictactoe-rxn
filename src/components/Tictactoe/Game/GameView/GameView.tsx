@@ -22,10 +22,10 @@ const GameView: FC<GameViewProps> = ({ components }) => {
         "t3-box--desk": tabletMUpView, // For wider screens (laptop, large tablets, desktops etc.)
     });
     const layoutClass: string = classNames('t3-layout', {
-        "t3-layout--1-column": !tabletMUpView,
-        "t3-layout--2-columns": tabletMUpView,
+        "t3-layout--1-col": !tabletMUpView,
+        "t3-layout--2-cols": tabletMUpView,
         // Two-columns layout for smaller screens with compact elements due to limited space.
-        "t3-layout--2-columns--sm": isDesktopCompact
+        "t3-layout--2-cols--sm": isDesktopCompact
     });
 
     return (

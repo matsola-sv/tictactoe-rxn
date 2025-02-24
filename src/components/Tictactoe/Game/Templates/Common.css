@@ -52,24 +52,24 @@
 }
 
 /** ---MOVES LIST. For mobile and short height screens--- **/
-/** .t3-layout--2-columns--sm - 2 columns layout for smaller screens with compact elements due to limited space. **/
+/** .t3-layout--2-cols--sm - 2 columns layout for smaller screens with compact elements due to limited space. **/
 
 /* Styling for each move in the history list */
-.t3-layout--1-column .history-list li,
-.t3-layout--2-columns--sm .history-list li {
+.t3-layout--1-col .history-list li,
+.t3-layout--2-cols--sm .history-list li {
     font-size: 0.875rem; /* 14px = 0.875rem */
     margin: 0.6rem 0 0.6rem 0.3125rem;
     padding: 0.4rem 1rem 0.4rem 3.3rem;
 }
 
-.t3-layout--1-column .move-date,
-.t3-layout--2-columns--sm .move-date {
+.t3-layout--1-col .move-date,
+.t3-layout--2-cols--sm .move-date {
     font-size: 0.8125rem; /* 13px = 0.8125rem */
 }
 
 /* Change appearance of the move history counter (before each list item) */
-.t3-layout--1-column .history-list li::before,
-.t3-layout--2-columns--sm .history-list li::before {
+.t3-layout--1-col .history-list li::before,
+.t3-layout--2-cols--sm .history-list li::before {
     --size: 1.25rem;
     font-size: 0.95rem;
     border-radius: 20%;

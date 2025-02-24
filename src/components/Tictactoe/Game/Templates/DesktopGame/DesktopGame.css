@@ -6,7 +6,7 @@
 }
 
 /* Game layout container with two columns */
-.t3-layout--2-columns {
+.t3-layout--2-cols {
     /*margin: 0.625rem;*/ /* 10px */
     flex-direction: row;
     gap: 0.625rem; /* 10px = 0.625rem. Space between columns */

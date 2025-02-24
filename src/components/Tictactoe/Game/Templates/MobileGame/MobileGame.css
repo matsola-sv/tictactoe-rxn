@@ -6,35 +6,35 @@
     padding: 0.3125rem; /* 5px */
 }
 
-.t3-layout--1-column {
+.t3-layout--1-col {
     flex-direction: column;
     gap: 0.3125rem; /* 5px = 0.3125rem. Space between columns */
 }
 
 /* GAME CONTROLS BUTTONS, STOPWATCH */
 .t3-layout__stopwatch,
-.t3-layout--1-column .game-controls {
+.t3-layout--1-col .game-controls {
     border-radius: 0.5rem; /* 8px = 0.125rem */
 }
 
 /* GAME STATUS */
 /* For all game statuses */
-.t3-layout--1-column .t3-status {
+.t3-layout--1-col .t3-status {
     border-radius: 0.375rem 0; /* 0.375rem = 6px */
 }
 
 /* For the viewing history status */
-.t3-layout--1-column .t3-status--vh {
+.t3-layout--1-col .t3-status--vh {
     border-radius: 0.5rem 0; /* 0.5rem = 8px */
 }
 
 /* For the status within a game status */
-.t3-layout--1-column .t3-status-vh__inline {
+.t3-layout--1-col .t3-status-vh__inline {
     border-radius: 0.3125rem; /* 5px = 0.3125rem */
 }
 
 /* GAME INFO */
-.t3-layout--1-column .t3-layout__game-info {
+.t3-layout--1-col .t3-layout__game-info {
     padding: 0;
     border-radius: 0.625rem 0 0.625rem 0.625rem; /* 10px = 0.625rem */
 }
