@@ -17,17 +17,20 @@ const GameView: FC<GameViewProps> = ({ components }) => {
 
     // Two-columns layout for smaller screens with compact elements due to limited space.
     const isDesktopCompact = tabletMView || (tabletMUpView && lowHeightView);
+    const containerClass: string = classNames("t3-box", {
+        "t3-box--mob": !tabletMUpView, // For compact screens (mobiles, tablets etc.)
+        "t3-box--desk": tabletMUpView, // For wider screens (laptop, large tablets, desktops etc.)
+    });
     const layoutClass: string = classNames('t3-layout', {
         "t3-layout--1-column": !tabletMUpView,
         "t3-layout--2-columns": tabletMUpView,
-
         // Two-columns layout for smaller screens with compact elements due to limited space.
         "t3-layout--2-columns--sm": isDesktopCompact
     });
 
     return (
         <Suspense fallback={<Preloader/>}>
-            <div className="t3-container">
+            <div className={containerClass}>
                 <div className={layoutClass}>
                     {tabletMUpView ? (
                         <DesktopGame

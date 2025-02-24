@@ -6,17 +6,16 @@
     Important: If padding, margin, or borders change in .game-container, their impact on the container's height needs to be considered.
     In this case, we use calc() to subtract 10px of padding from each side.
     If padding changes or borders are added, this calculation must be adjusted accordingly.
+    For example: height: calc(100vh - 1.25rem); // Subtract padding from each side: 0.625rem left and 0.625rem right (10px each)
 */
-.t3-container {
-    height: calc(100vh - 1.25rem); /* Subtract padding from each side: 0.625rem left and 0.625rem right (10px each) */
+.t3-box {
+    height: calc(100dvh); /* Dynamic viewport height (dvh) that accounts for height changes when the top bar disappears */
 }
 
 /* Game container */
-.t3-container {
+.t3-box {
     display: flex; /* Using flexbox to arrange the left and right columns side by side */
     flex-direction: row; /* Left and right columns will be in a single row */
-    margin: 0.625rem; /* 10px */
-    padding: 0.625rem; /* 10px */
     box-sizing: border-box; /* Include padding and borders in the size calculation */
     box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2); /* 0.25rem = 4px. Shadow for the container */
     user-select: none; /* Disables text selection */
@@ -24,7 +23,7 @@
 }
 
 /* Game layout container */
-.t3-container .t3-layout {
+.t3-box .t3-layout {
     width: 100%; /* Ensure it takes full width of the parent */
     height: 100%; /* Match the height of the container */
     display: flex; /* Child element alignment */
