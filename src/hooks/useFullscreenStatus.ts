@@ -11,12 +11,12 @@ const useFullscreenStatus = (): FullscreenStatusResult => {
 
     // Initialize isFullscreen with the current value, as the fullscreenchange event
     // will not trigger on remount if no state change occurs.
-    const [isFullscreen, setIsFullscreen] = useState<boolean>(isGlobalFullscreen);
+    const [isFullscreen, setIsFullscreen] = useState<boolean>(isGlobalFullscreen());
 
     // Subscribe to fullscreen change once after the component renders
     useEffect(() => {
         const handleFullscreenChange = () => {
-            setIsFullscreen(isGlobalFullscreen);
+            setIsFullscreen(isGlobalFullscreen());
         };
 
         document.addEventListener('fullscreenchange', handleFullscreenChange);
