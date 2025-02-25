@@ -14,7 +14,8 @@ import {newGame, togglePause} from "../../../../redux/tictactoe/game/gameSlice";
 // Components
 import HorizontalControls from "../../../Common/Controls/HorizontalControls/HorizontalControls";
 import IconButton from "../../../Common/Controls/IconButton/IconButton";
-
+import FullscreenToggle from "../../../Common/Controls/FullscreenToggle/FullscreenToggle";
+// Styles
 import "./GameControls.css";
 
 interface GameControlsPropsI {
@@ -36,6 +37,7 @@ const GameControls: FC<GameControlsPropsI> = ({isDisabled = false, controlSize =
     const handleNewGame: ButtonMouseHandler = () => {
         dispatch(newGame());
     };
+
     return (
         <>
             <HorizontalControls
@@ -57,6 +59,7 @@ const GameControls: FC<GameControlsPropsI> = ({isDisabled = false, controlSize =
                     onClick={handleNewGame}
                     className="new-game-btn"
                 />
+                <FullscreenToggle/>
             </HorizontalControls>
         </>
     );
