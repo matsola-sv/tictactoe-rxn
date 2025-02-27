@@ -6,3 +6,8 @@
 - **Browsers:** Chrome (not in Opera/Edge)
 - **Workarounds Tried:** Blurring on `mouseup` (didn’t fully fix)
 - **Next Steps:** Investigate Chrome's focus handling
+
+## 2. Safari browser not working fullscreen show/close
+- **Issue:** document.documentElement and the "fullscreenchange" event don't work in Safari.
+   - It might be necessary to use document.documentElement.webkitExitFullscreen
+   - and subscribe to the "webkitfullscreenchange" event.

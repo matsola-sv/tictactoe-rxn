@@ -1,4 +1,5 @@
 import {GameStateI} from "../../models/tictactoe/game";
+import {getPublicUrl} from "../../utils/url";
 
 /**
  * Service for working with game states: retrieving and saving game states.
@@ -7,7 +8,7 @@ import {GameStateI} from "../../models/tictactoe/game";
 /**
  * URL to data source
  */
-const SOURCE_URL = "/database/t3Storage.json";
+const T3_DB_URL = getPublicUrl("/database/t3Storage.json");
 
 /**
  * Get data from the storage by type
@@ -41,7 +42,7 @@ const getData = async <T>(url: string, type?: string): Promise<T> => {
  * @param gameID Ідентифікатор гри
  */
 export const getGameStates = async <T>(gameID: T): Promise<GameStateI[]> => {
-    return getData<GameStateI[]>(SOURCE_URL, "states");
+    return getData<GameStateI[]>(T3_DB_URL, "states");
 };
 
 /**

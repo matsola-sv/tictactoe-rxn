@@ -1,11 +1,15 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import * as ROUTES from "../constants/routes";
+// Pages
 import GamesPage from "../pages/Games";
+// Components
 import NotFoundPage from "../pages/errors/NotFound";
+// Utils and services
+import {getPublicUrl} from "../utils/url";
 
 function AppRouter() {
     return (
-        <BrowserRouter
+        <BrowserRouter basename={getPublicUrl()}
             future={{
                 v7_startTransition: true,   // Enables React`s transition API for Router v7
                 v7_relativeSplatPath: true  // Updates relative path behavior for splat routes (*)
