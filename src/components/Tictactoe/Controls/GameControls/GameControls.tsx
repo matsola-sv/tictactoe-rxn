@@ -59,7 +59,7 @@ const GameControls: FC<GameControlsPropsI> = ({isDisabled = false, controlSize =
                     onClick={handleNewGame}
                     className="new-game-btn"
                 />
-                <FullscreenToggle/>
+                <FullscreenToggle isHideIfUnsupported={true} />
             </HorizontalControls>
         </>
     );

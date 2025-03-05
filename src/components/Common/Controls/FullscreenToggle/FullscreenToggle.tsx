@@ -9,8 +9,22 @@ import useFullscreen from "../../../../hooks/fullscreen/useFullscreen";
 // Components
 import IconButton from "../IconButton/IconButton";
 
-const FullscreenToggle: FC<FullscreenToggleProps> = ({isDisabled, buttonClass, labels = {enter: "Full screen", exit: "Exit full screen"}}) => {
+const FullscreenToggle: FC<FullscreenToggleProps> = (props) => {
+    const {
+        buttonClass,
+        isDisabled = false,
+        isHideIfUnsupported = false,
+        labels = {
+            enter: "Full screen",
+            exit: "Exit full screen"
+        }
+    } = props;
+
     const { isFullscreen, toggleFullscreen, isFullscreenSupported } = useFullscreen();
+
+    if (isHideIfUnsupported && !isFullscreenSupported) {
+        return null;
+    }
 
     return (
         <IconButton

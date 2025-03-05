@@ -18,6 +18,9 @@ export interface FullscreenStateMap<T> {
 }
 
 export interface FullscreenToggleProps {
+    // Hides the fullscreen toggle button if the browser does not support fullscreen.
+    // If false or not provided, the button remains visible but disabled.
+    isHideIfUnsupported?: boolean;
     isDisabled?: boolean;
     labels?: FullscreenStateMap<string>;
     buttonClass?: string;
