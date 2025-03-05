@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/tictactoe-rxn/static/css/main.d77ca3cc.css",
+    "main.css": "/tictactoe-rxn/static/css/main.2040a03f.css",
     "main.js": "/tictactoe-rxn/static/js/main.688b8f38.js",
     "static/js/453.74d1034f.chunk.js": "/tictactoe-rxn/static/js/453.74d1034f.chunk.js",
     "static/css/474.e6870807.chunk.css": "/tictactoe-rxn/static/css/474.e6870807.chunk.css",
@@ -10,7 +10,7 @@
     "static/media/lock.png": "/tictactoe-rxn/static/media/lock.7cff88ba63e71dbae409.png",
     "static/media/logo.svg": "/tictactoe-rxn/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/tictactoe-rxn/index.html",
-    "main.d77ca3cc.css.map": "/tictactoe-rxn/static/css/main.d77ca3cc.css.map",
+    "main.2040a03f.css.map": "/tictactoe-rxn/static/css/main.2040a03f.css.map",
     "main.688b8f38.js.map": "/tictactoe-rxn/static/js/main.688b8f38.js.map",
     "453.74d1034f.chunk.js.map": "/tictactoe-rxn/static/js/453.74d1034f.chunk.js.map",
     "474.e6870807.chunk.css.map": "/tictactoe-rxn/static/css/474.e6870807.chunk.css.map",
@@ -19,7 +19,7 @@
     "920.599d42fb.chunk.js.map": "/tictactoe-rxn/static/js/920.599d42fb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d77ca3cc.css",
+    "static/css/main.2040a03f.css",
     "static/js/main.688b8f38.js"
   ]
 }
