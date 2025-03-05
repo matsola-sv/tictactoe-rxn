@@ -1,5 +1,10 @@
+html, body {
+    height: 100%; /* Ensures that html and body take up the full height of the window */
+}
+
 body {
-    margin: 0;
+    margin: 0; /* Removes default browser margin */
+    min-height: 100%; /* Ensures body is at least the full height of the viewport */
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

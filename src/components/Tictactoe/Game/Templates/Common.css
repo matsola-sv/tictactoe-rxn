@@ -9,8 +9,10 @@
     For example: height: calc(100vh - 1.25rem); // Subtract padding from each side: 0.625rem left and 0.625rem right (10px each)
 */
 .t3-box {
-    height: calc(100dvh); /* Dynamic viewport height (dvh) that accounts for height changes when the top bar disappears */
+    height: 100vh; /* For older browsers */
+    height: calc(100dvh); /* New browsers. Dynamic viewport height (dvh) that accounts for height changes when the top bar disappears */
 }
+
 
 /* Game container */
 .t3-box {
