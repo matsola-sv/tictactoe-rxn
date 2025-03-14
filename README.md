@@ -5,27 +5,27 @@ Simple Tic-Tac-Toe game built with [React, TypeScript, and Redux].
 
 ### Desktop version
 
-![Screenshot](public/screenshots/Screenshot 2025-03-14 205434.png)
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot1.png)
 
-![Screenshot](public/screenshots/Screenshot 2025-03-14 204605.png)
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot2.png)
 
-![Screenshot](public/screenshots/Screenshot 2025-03-14 204346.png)
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot3.png)
 
-![Screenshot](public/screenshots/Screenshot 2025-03-14 204243.png)
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot4.png)
 
-![Screenshot](public/screenshots/Screenshot 2025-03-14 210125.png)
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot3.png)
 
 ### Mobile version
 
-![Screenshot](public/screenshots/Screenshot 2025-03-14 214547.png)
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot-mobile1.png)
 
-![Screenshot](public/screenshots/Screenshot 2025-03-14 214710.png)
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot-mobile2.png)
 
-![Screenshot](public/screenshots/Screenshot 2025-03-14 214739.png)
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot-mobile3.png)
 
-![Screenshot](public/screenshots/Screenshot 2025-03-14 214818.png)
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot-mobile4.png)
 
-![Screenshot](public/screenshots/Screenshot 2025-03-14 214924.png)
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot-mobile5.png)
 
 
 ## Run Locally
