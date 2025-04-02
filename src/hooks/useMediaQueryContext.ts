@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {MediaQueryContext} from "../components/Providers/MediaQueryProvider/MediaQueryProvider";
+import {MediaQueryContext} from "components/Providers/MediaQueryProvider/MediaQueryProvider";
 
 /**
  * Custom hook for accessing media query context values,

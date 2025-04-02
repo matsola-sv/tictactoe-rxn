@@ -1,11 +1,11 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import isEqual from 'fast-deep-equal';
 // Models
-import {GameStatus} from "../../../models/tictactoe/gameStatus";
+import {GameStatus} from "models/tictactoe/gameStatus";
 import {GameStateContainerI, GameStateMetaI, MoveActionPayloadI} from "./types";
-import {GameMoveI, GameStateI} from "../../../models/tictactoe/game";
+import {GameMoveI, GameStateI} from "models/tictactoe/game";
 // Services
-import {getGameStatusByMove, validateMove} from "../../../services/tictactoe/gameLogic";
+import {getGameStatusByMove, validateMove} from "services/tictactoe/gameLogic";
 
 /**
  * This pertains to a specific game and how it progresses,

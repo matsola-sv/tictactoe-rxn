@@ -1,13 +1,13 @@
 import {FC} from "react";
 // Models
-import {GameTemplateProps} from "../../GameView/GameView.types";
+import {GameTemplateProps} from "components/Tictactoe/Game/GameView/GameView.types";
 // Hooks
-import {useTypedSelector} from "../../../../../hooks/useTypedSelector";
+import {useTypedSelector} from "hooks/useTypedSelector";
 // Components
-import HorizontalControls from "../../../../Common/Controls/HorizontalControls/HorizontalControls";
+import HorizontalControls from "components/Common/Controls/HorizontalControls/HorizontalControls";
 // Styles
-import "../Common.css"; // Global styles (used in all display templates)
-import "./MobileGame.css"; // Specific styles for mobile version
+import "components/Tictactoe/Game/Templates/Common.css"; // Global styles (used in all display templates)
+import "components/Tictactoe/Game/Templates/MobileGame/MobileGame.css"; // Specific styles for mobile version
 
 const MobileGame: FC<GameTemplateProps> = ({board, gameStatus, movesList, movesControls, gameControls, gameStopwatch}) => {
     const movesVisibility = useTypedSelector(

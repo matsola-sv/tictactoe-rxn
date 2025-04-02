@@ -1,14 +1,14 @@
 import React, {FC, ReactElement} from "react";
 import classNames from 'classnames';
 // Models
-import {BoardElHandlerType, BoardPropsI, SquareType} from "./Board.types";
+import {BoardElHandlerType, BoardPropsI, SquareType} from "components/Tictactoe/Board/Board.types";
 // Components
-import BoardRow from "./Row/Row";
-import Square from "./Square/Square";
-import SquareContent from "./Square/Content/SquareContent";
-import EmptyListMessage from "../../Common/EmptyListMessage/EmptyListMessage";
+import BoardRow from "components/Tictactoe/Board/Row/Row";
+import Square from "components/Tictactoe/Board/Square/Square";
+import SquareContent from "components/Tictactoe/Board/Square/Content/SquareContent";
+import EmptyListMessage from "components/Common/EmptyListMessage/EmptyListMessage";
 
-import "./Board.css";
+import "components/Tictactoe/Board/Board.css";
 
 const Board: FC<BoardPropsI> = (props) => {
     const {

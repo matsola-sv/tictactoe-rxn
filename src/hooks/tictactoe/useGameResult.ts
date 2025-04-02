@@ -1,5 +1,5 @@
-import {GameMoveState, GameStateI, WinnerState} from "../../models/tictactoe/game";
-import {GameStatus} from "../../models/tictactoe/gameStatus";
+import {GameMoveState, GameStateI, WinnerState} from "models/tictactoe/game";
+import {GameStatus} from "models/tictactoe/gameStatus";
 
 export interface GameResultConfigI {
     gameState: GameStateI

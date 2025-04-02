@@ -1,5 +1,5 @@
-import {PlayerI} from "../player";
-import {GameStatus} from "./gameStatus";
+import {PlayerI} from "models/player";
+import {GameStatus} from "models/tictactoe/gameStatus";
 
 export interface WinnerI {
     player: PlayerI;

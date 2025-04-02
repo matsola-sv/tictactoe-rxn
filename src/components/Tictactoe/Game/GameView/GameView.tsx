@@ -1,14 +1,14 @@
 import {FC, lazy, Suspense} from "react";
 import classNames from "classnames";
 // Models
-import {GameViewProps} from "./GameView.types";
+import {GameViewProps} from "components/Tictactoe/Game/GameView/GameView.types";
 // Hooks
-import useMediaQueryContext from "../../../../hooks/useMediaQueryContext";
+import useMediaQueryContext from "hooks/useMediaQueryContext";
 // Components
-import Preloader from "../../../Common/UI/Preloader/Preloader";
+import Preloader from "components/Common/UI/Preloader/Preloader"; // Lazy loading of template components
 // Lazy loading of template components
-const MobileGame = lazy(() => import("../Templates/MobileGame/MobileGame"));
-const DesktopGame = lazy(() => import("../Templates/DesktopGame/DesktopGame"));
+const MobileGame = lazy(() => import("components/Tictactoe/Game/Templates/MobileGame/MobileGame"));
+const DesktopGame = lazy(() => import("components/Tictactoe/Game/Templates/DesktopGame/DesktopGame"));
 
 const GameView: FC<GameViewProps> = ({ components }) => {
     // Screens: compact tablet (600-768px), tablet+ (min-width: 600px), and low height (max-height: 480px)

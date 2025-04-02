@@ -1,7 +1,7 @@
 import {forwardRef} from "react";
 import classNames from "classnames";
-import {MovesHistoryHandlerI} from "../HistoryList.types";
-import './Move.css';
+import {MovesHistoryHandlerI} from "components/Tictactoe/Moves/HistoryList/HistoryList.types";
+import 'components/Tictactoe/Moves/HistoryList/Move/Move.css';
 
 export interface MovePropsI {
     id: number;

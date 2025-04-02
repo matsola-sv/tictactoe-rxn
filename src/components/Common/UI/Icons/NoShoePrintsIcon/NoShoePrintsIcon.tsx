@@ -5,7 +5,7 @@ import classNames from "classnames";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faShoePrints, faSlash} from "@fortawesome/free-solid-svg-icons";
 
-import "./NoShoePrintsIcon.css";
+import "components/Common/UI/Icons/NoShoePrintsIcon/NoShoePrintsIcon.css";
 
 interface NoShoePrintsIconProps {
     className?: string;

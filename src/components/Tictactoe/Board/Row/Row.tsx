@@ -1,5 +1,5 @@
 import React, {FC, ReactElement, ReactNode} from "react";
-import './Row.css';
+import 'components/Tictactoe/Board/Row/Row.css';
 
 export type BoardRowProps = {
     squares?: ReactElement[],

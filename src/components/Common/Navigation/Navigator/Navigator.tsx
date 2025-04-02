@@ -1,9 +1,9 @@
 import {FC} from "react";
 import {Link} from "react-router-dom";
 // Routers
-import * as ROUTES from "../../../../constants/routes";
+import * as ROUTES from "constants/routes";
 // Styles
-import './Navigator.css';
+import 'components/Common/Navigator/Navigator.css';
 
 /**
  * Since the basename is already set in BrowserRouter,

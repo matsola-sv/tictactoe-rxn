@@ -1,5 +1,5 @@
 import {FC, ReactElement} from "react";
-import "./SortLabel.css";
+import "components/Common/List/SortBar/SortLabel/SortLabel.css";
 
 interface SortLabelProps {
     label?: string | ReactElement;

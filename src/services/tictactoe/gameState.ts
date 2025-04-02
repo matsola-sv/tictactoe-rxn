@@ -1,5 +1,5 @@
-import {GameStateI} from "../../models/tictactoe/game";
-import {getPublicUrl} from "../../utils/url";
+import {GameStateI} from "models/tictactoe/game";
+import {getPublicUrl} from "utils/url";
 
 /**
  * Service for working with game states: retrieving and saving game states.

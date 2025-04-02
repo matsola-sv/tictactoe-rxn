@@ -1,5 +1,5 @@
 import {FC} from "react";
-import "./EmptyListMessage.css";
+import "components/Common/EmptyListMessage/EmptyListMessage.css";
 
 interface EmptyListMessageProps {
     message?: string;

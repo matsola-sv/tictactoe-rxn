@@ -1,6 +1,6 @@
 import {ReactElement} from "react";
 import classNames from "classnames";
-import {ButtonPropsI} from "./Button.type";
+import {ButtonPropsI} from "components/Common/Controls/Button/Button.type";
 
 /**
  * Button component that handles optional click events with custom data.

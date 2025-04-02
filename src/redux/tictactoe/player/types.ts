@@ -1,4 +1,4 @@
-import {SortTypes} from "../../../utils/sorting";
+import {SortTypes} from "utils/sorting";
 
 export interface PlayerSettingsStateI {
     game: {

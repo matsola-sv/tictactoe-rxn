@@ -3,20 +3,20 @@ import {useDispatch} from "react-redux";
 // Fontawesome icons
 import {faShoePrints} from "@fortawesome/free-solid-svg-icons";
 // Models
-import {UIElementSize, UILayoutOption} from "../../../../models/ui";
+import {UIElementSize, UILayoutOption} from "models/ui";
 // Redux
 import {AppDispatch} from "../../../../redux/store";
 import {toggleHistoryVisibility} from "../../../../redux/tictactoe/player/playerSlice";
 // Hooks
-import {useTypedSelector} from "../../../../hooks/useTypedSelector";
+import {useTypedSelector} from "hooks/useTypedSelector";
 // Components
-import RowContainer from "../../../Common/UI/RowContainer/RowContainer";
-import NoShoePrintsIcon from "../../../Common/UI/Icons/NoShoePrintsIcon/NoShoePrintsIcon";
-import HorizontalControls from "../../../Common/Controls/HorizontalControls/HorizontalControls";
-import IconButton from "../../../Common/Controls/IconButton/IconButton";
-import HistorySort from "../HistorySort/HistorySort";
-import HistoryPrevious from "../HistoryNavigation/HistoryPrevious";
-import HistoryNext from "../HistoryNavigation/HistoryNext";
+import RowContainer from "components/Common/UI/RowContainer/RowContainer";
+import NoShoePrintsIcon from "components/Common/UI/Icons/NoShoePrintsIcon/NoShoePrintsIcon";
+import HorizontalControls from "components/Common/Controls/HorizontalControls/HorizontalControls";
+import IconButton from "components/Common/Controls/IconButton/IconButton";
+import HistorySort from "components/Tictactoe/Moves/HistorySort/HistorySort";
+import HistoryPrevious from "components/Tictactoe/Moves/HistoryNavigation/HistoryPrevious";
+import HistoryNext from "components/Tictactoe/Moves/HistoryNavigation/HistoryNext";
 
 /**
  * Note:

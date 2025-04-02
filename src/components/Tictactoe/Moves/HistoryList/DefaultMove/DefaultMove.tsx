@@ -1,6 +1,6 @@
 import {FC} from "react";
 import classNames from "classnames";
-import {MovesHistoryHandlerI} from "../HistoryList.types";
+import {MovesHistoryHandlerI} from "components/Tictactoe/Moves/HistoryList/HistoryList.types";
 
 interface DefaultMovePropsI {
     selected: boolean;

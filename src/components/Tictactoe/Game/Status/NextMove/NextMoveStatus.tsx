@@ -1,6 +1,6 @@
 import React, {FC} from "react";
-import {PlayerI} from "../../../../../models/player";
-import "./NextMove.css";
+import {PlayerI} from "models/player";
+import "components/Tictactoe/Game/Status/NextMove/NextMove.css";
 
 type NextStatusPropsI = {
     player: PlayerI

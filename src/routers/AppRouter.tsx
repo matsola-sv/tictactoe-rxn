@@ -1,11 +1,11 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import * as ROUTES from "../constants/routes";
+import * as ROUTES from "constants/routes";
 // Pages
-import GamesPage from "../pages/Games";
+import GamesPage from "pages/Games";
 // Components
-import NotFoundPage from "../pages/errors/NotFound";
+import NotFoundPage from "pages/errors/NotFound";
 // Utils and services
-import {getPublicUrl} from "../utils/url";
+import {getPublicUrl} from "utils/url";
 
 function AppRouter() {
     return (

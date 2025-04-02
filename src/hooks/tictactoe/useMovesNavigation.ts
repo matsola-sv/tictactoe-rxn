@@ -1,12 +1,12 @@
 import {useDispatch} from "react-redux";
 // Models
-import {NavDirection} from "../../models/lists";
+import {NavDirection} from "models/lists";
 // Redux
 import {AppDispatch} from "../../redux/store";
 import {goToMove} from "../../redux/tictactoe/game/gameSlice";
 // Hooks and Services
-import {getMovesPagination} from "../../services/tictactoe/gameLogic";
-import {useTypedSelector} from "../useTypedSelector";
+import {getMovesPagination} from "services/tictactoe/gameLogic";
+import {useTypedSelector} from "hooks/useTypedSelector";
 
 export interface useMovesNavigationResultI {
     goTo: (direction: NavDirection) => void;

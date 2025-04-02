@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useState} from "react";
-import Time from "../utils/time";
+import Time from "utils/time";
 
 export interface StopwatchConfig {
     autoStart?: boolean,                                          // If set to true stopwatch will auto start

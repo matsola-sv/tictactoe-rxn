@@ -4,9 +4,9 @@ import classNames from "classnames";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 // Models
-import {ButtonMouseHandler} from "../Button/Button.type";
+import {ButtonMouseHandler} from "components/Common/Controls/Button/Button.type";
 // Components
-import Button from "../Button/Button";
+import Button from "components/Common/Controls/Button/Button";
 
 interface IconButtonProps {
     onClick: ButtonMouseHandler;

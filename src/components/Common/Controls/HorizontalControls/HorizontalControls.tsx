@@ -1,11 +1,11 @@
 import {FC, ReactNode} from "react";
 import classNames from "classnames";
 // Models
-import {UIElementSize, UILayoutOption as Placement} from "../../../../models/ui";
+import {UIElementSize, UILayoutOption as Placement} from "models/ui";
 // Components
-import RowContainer from "../../UI/RowContainer/RowContainer";
+import RowContainer from "components/Common/UI/RowContainer/RowContainer";
 // Styles
-import "./HorizontalControls.css";
+import "components/Common/Controls/HorizontalControls/HorizontalControls.css";
 
 interface HorizontalControlsProps {
     children: ReactNode;         // Elements you want to display on the panel. It can also be an array of ReactElements

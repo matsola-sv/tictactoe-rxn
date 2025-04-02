@@ -3,11 +3,11 @@ import classNames from "classnames";
 // Fontawesome
 import {faCompress, faExpand} from "@fortawesome/free-solid-svg-icons";
 // Models
-import {FullscreenToggleProps} from "./FullscreenToggle.types";
+import {FullscreenToggleProps} from "components/Common/Controls/FullscreenToggle/FullscreenToggle.types";
 // Hooks
-import useFullscreen from "../../../../hooks/fullscreen/useFullscreen";
+import useFullscreen from "hooks/fullscreen/useFullscreen";
 // Components
-import IconButton from "../IconButton/IconButton";
+import IconButton from "components/Common/Controls/IconButton/IconButton";
 
 const FullscreenToggle: FC<FullscreenToggleProps> = (props) => {
     const {

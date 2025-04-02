@@ -1,7 +1,10 @@
 import React, {FC, MouseEvent, ReactElement, useCallback} from "react";
-import {ButtonMouseHandler} from "../../../Common/Controls/Button/Button.type";
-import Button from "../../../Common/Controls/Button/Button";
-import './Square.css';
+// Models
+import {ButtonMouseHandler} from "components/Common/Controls/Button/Button.type";
+// Components
+import Button from "components/Common/Controls/Button/Button";
+// Styles
+import 'components/Tictactoe/Board/Square/Square.css';
 
 export type SquareHandlerType = ButtonMouseHandler;
 

@@ -1,16 +1,20 @@
 import {FC, ReactElement, useLayoutEffect, useRef} from "react";
 import {useDispatch} from "react-redux";
 // Models
-import {HistoryListProps, HistoryMoveI, MovesHistoryHandlerI} from "./HistoryList.types";
+import {
+    HistoryListProps,
+    HistoryMoveI,
+    MovesHistoryHandlerI
+} from "components/Tictactoe/Moves/HistoryList/HistoryList.types";
 // Redux
 import {AppDispatch} from "../../../../redux/store";
 import {goToMove} from "../../../../redux/tictactoe/game/gameSlice";
 // Components
-import EmptyListMessage from "../../../Common/EmptyListMessage/EmptyListMessage";
-import DefaultMove from "./DefaultMove/DefaultMove";
-import Move from "./Move/Move";
+import EmptyListMessage from "components/Common/EmptyListMessage/EmptyListMessage";
+import DefaultMove from "components/Tictactoe/Moves/HistoryList/DefaultMove/DefaultMove";
+import Move from "components/Tictactoe/Moves/HistoryList/Move/Move";
 
-import "./HistoryList.css";
+import "components/Tictactoe/Moves/HistoryList/HistoryList.css";
 
 const HistoryList: FC<HistoryListProps> = ({ moves, currentMove, canShowDate = true, fallbackComponent = (<EmptyListMessage/>)}) => {
     const dispatch = useDispatch<AppDispatch>();

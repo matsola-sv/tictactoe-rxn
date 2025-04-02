@@ -4,7 +4,7 @@ import {FC, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faInfoCircle} from "@fortawesome/free-solid-svg-icons";
 
-import "./InfoTooltip.css";
+import "components/Common/UI/InfoTooltip/InfoTooltip.css";
 
 interface InfoTooltipProps {
     text: string;

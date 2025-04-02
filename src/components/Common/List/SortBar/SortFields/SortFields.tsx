@@ -1,6 +1,6 @@
 import {FC} from "react";
 import classNames from "classnames";
-import "./SortFields.css";
+import "components/Common/List/SortBar/SortFields/SortFields.css";
 
 interface SortFieldsProps {
     fields: string[];    // List of sortable fields

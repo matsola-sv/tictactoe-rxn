@@ -1,5 +1,5 @@
 import {FC} from "react";
-import Button from "../../Controls/Button/Button";
+import Button from "components/Common/Controls/Button/Button";
 
 interface ErrorFallbackProps {
     error: Error,

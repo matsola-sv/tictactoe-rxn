@@ -1,8 +1,8 @@
-import {PlayerI} from "../../models/player";
-import {ValidationResult} from "../../models/common";
-import {PaginationDetails} from "../../models/lists";
-import {GameStatus} from "../../models/tictactoe/gameStatus";
-import {GameMoveI, GameStateI, SquareState, WinnerState} from "../../models/tictactoe/game";
+import {PlayerI} from "models/player";
+import {ValidationResult} from "models/common";
+import {PaginationDetails} from "models/lists";
+import {GameStatus} from "models/tictactoe/gameStatus";
+import {GameMoveI, GameStateI, SquareState, WinnerState} from "models/tictactoe/game";
 
 /**
  * Determines the current player based on the game's state and current move.

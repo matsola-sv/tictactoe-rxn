@@ -1,15 +1,14 @@
 import {FC, useCallback} from "react";
 import {useDispatch} from "react-redux";
 // Models
-import {SortTypes} from "../../../../utils/sorting";
-import {SortHandler} from "../../../../models/lists";
+import {SortTypes} from "utils/sorting";
+import {SortHandler} from "models/lists";
 // Redux
 import {AppDispatch} from "../../../../redux/store";
 import {toggleHistorySort} from "../../../../redux/tictactoe/player/playerSlice";
 // Hooks
-import {useTypedSelector} from "../../../../hooks/useTypedSelector";
-// Components
-import SortButtons from "../../../Common/List/SortBar/SortButtons/SortButtons";
+import {useTypedSelector} from "hooks/useTypedSelector"; // Components
+import SortButtons from "components/Common/List/SortBar/SortButtons/SortButtons";
 
 const HistorySort: FC = () => {
     const dispatch = useDispatch<AppDispatch>();

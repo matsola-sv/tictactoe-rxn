@@ -1,5 +1,5 @@
 import {FC} from "react";
-import "./Message.css";
+import "components/Common/Error/Message/Message.css";
 
 interface ErrorMessageProps {
     error: Error;

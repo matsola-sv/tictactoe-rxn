@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import "./SquareContent.css";
+import "components/Tictactoe/Board/Square/Content/SquareContent.css";
 
 interface SquareContentProps {
     value: string | null;

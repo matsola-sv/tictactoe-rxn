@@ -1,5 +1,5 @@
-import {GameMoveI, GameStateI as GameState} from "../../../models/tictactoe/game";
-import {GameStatus} from "../../../models/tictactoe/gameStatus";
+import {GameMoveI, GameStateI as GameState} from "models/tictactoe/game";
+import {GameStatus} from "models/tictactoe/gameStatus";
 
 /**
  * Game meta-data.

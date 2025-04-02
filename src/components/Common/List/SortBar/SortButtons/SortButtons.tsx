@@ -4,10 +4,10 @@ import classNames from "classnames";
 import {faSortAmountDown, faSortAmountUp} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 // Models
-import {SortTypes} from "../../../../../utils/sorting";
-import {ButtonMouseHandler} from "../../../Controls/Button/Button.type";
+import {SortTypes} from "utils/sorting";
+import {ButtonMouseHandler} from "components/Common/Controls/Button/Button.type";
 // Components
-import Button from "../../../Controls/Button/Button";
+import Button from "components/Common/Controls/Button/Button";
 
 interface SortButtonsProps {
     sortOrder: SortTypes; // Sorting direction (ascending/descending)

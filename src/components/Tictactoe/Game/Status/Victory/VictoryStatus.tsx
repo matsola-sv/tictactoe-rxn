@@ -1,6 +1,6 @@
 import {FC} from "react";
-import {PlayerI} from "../../../../../models/player";
-import "./Victory.css";
+import {PlayerI} from "models/player";
+import "components/Tictactoe/Game/Status/Victory/Victory.css";
 
 type VictoryStatusProps = {
     player: PlayerI

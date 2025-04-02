@@ -1,5 +1,5 @@
 import {FC} from "react";
-import BackButton from "../../components/Common/Navigation/Back/Back";
+import BackButton from "components/Common/Navigation/Back/Back";
 
 const NotFoundPage: FC = () => {
     return (

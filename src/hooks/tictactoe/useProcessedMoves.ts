@@ -1,10 +1,10 @@
 import {useMemo} from "react";
 // Models
-import {GameMoveI} from "../../models/tictactoe/game";
-import {SortTypes} from "../../utils/sorting";
-import {HistoryMoveI} from "../../components/Tictactoe/Moves/HistoryList/HistoryList.types";
+import {GameMoveI} from "models/tictactoe/game";
+import {SortTypes} from "utils/sorting";
+import {HistoryMoveI} from "components/Tictactoe/Moves/HistoryList/HistoryList.types";
 // Hooks
-import useMediaQueryContext from "../useMediaQueryContext";
+import useMediaQueryContext from "hooks/useMediaQueryContext";
 
 export interface ProcessedMovesConfigI {
     movesHistory: GameMoveI[];

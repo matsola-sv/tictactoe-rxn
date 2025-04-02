@@ -1,17 +1,17 @@
 import {FC, useEffect} from "react";
 // Models
-import {GameStatus} from "../../../models/tictactoe/gameStatus";
+import {GameStatus} from "models/tictactoe/gameStatus";
 // Hooks
-import {useTypedSelector} from "../../../hooks/useTypedSelector";
-import useStopwatch from "../../../hooks/useStopwatch";
+import {useTypedSelector} from "hooks/useTypedSelector";
+import useStopwatch from "hooks/useStopwatch";
 // Redux
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "../../../redux/store";
 import {updateGameDuration} from "../../../redux/tictactoe/game/gameSlice";
 // Components
-import TimeViewer from "../../Common/Clock/TimeViewer/TimeViewer";
+import TimeViewer from "components/Common/Clock/TimeViewer/TimeViewer";
 // Styles
-import "./GameStopwatch.css";
+import "components/Tictactoe/GameStopwatch/GameStopwatch.css";
 
 interface GameStopwatchProps {
     initialMillis?: number;

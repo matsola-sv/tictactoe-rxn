@@ -1,11 +1,11 @@
 import {FC} from "react";
 // Models
-import {GameTemplateProps} from "../../GameView/GameView.types";
+import {GameTemplateProps} from "components/Tictactoe/Game/GameView/GameView.types";
 // Components
-import HorizontalControls from "../../../../Common/Controls/HorizontalControls/HorizontalControls";
+import HorizontalControls from "components/Common/Controls/HorizontalControls/HorizontalControls";
 // Styles
-import "../Common.css"; // Global styles (used in all display templates)
-import "./DesktopGame.css"; // Specific styles for desktop version
+import "components/Tictactoe/Game/Templates/Common.css"; // Global styles (used in all display templates)
+import "components/Tictactoe/Game/Templates/DesktopGame/DesktopGame.css"; // Specific styles for desktop version
 
 const DesktopGame: FC<GameTemplateProps> = ({board, gameControls, gameStopwatch, gameStatus, movesList, movesControls}) => {
     return (

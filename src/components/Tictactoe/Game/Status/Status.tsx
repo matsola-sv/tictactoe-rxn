@@ -1,18 +1,18 @@
 import {FC, ReactElement} from "react";
 // Models
-import {GameStateI} from "../../../../models/tictactoe/game";
-import {GameStatus} from "../../../../models/tictactoe/gameStatus";
+import {GameStateI} from "models/tictactoe/game";
+import {GameStatus} from "models/tictactoe/gameStatus";
 // Hooks and services
-import useGameResult, {GameResultI} from "../../../../hooks/tictactoe/useGameResult";
-import {getCurrentPlayer} from "../../../../services/tictactoe/gameLogic";
+import useGameResult, {GameResultI} from "hooks/tictactoe/useGameResult";
+import {getCurrentPlayer} from "services/tictactoe/gameLogic";
 // Components
-import ActionIndicators from "../../ActionIndicators/ActionIndicators";
-import DrawStatus from "./Draw/DrawStatus";
-import NextMoveStatus from "./NextMove/NextMoveStatus";
-import VictoryStatus from "./Victory/VictoryStatus";
-import ViewingHistory from "./ViewingHistory/ViewingHistoryStatus";
+import ActionIndicators from "components/Tictactoe/ActionIndicators/ActionIndicators";
+import DrawStatus from "components/Tictactoe/Game/Status/Draw/DrawStatus";
+import NextMoveStatus from "components/Tictactoe/Game/Status/NextMove/NextMoveStatus";
+import VictoryStatus from "components/Tictactoe/Game/Status/Victory/VictoryStatus";
+import ViewingHistory from "components/Tictactoe/Game/Status/ViewingHistory/ViewingHistoryStatus";
 
-import "./Status.css";
+import "components/Tictactoe/Game/Status/Status.css";
 
 interface StatusPropsI {
     gameState: GameStateI;

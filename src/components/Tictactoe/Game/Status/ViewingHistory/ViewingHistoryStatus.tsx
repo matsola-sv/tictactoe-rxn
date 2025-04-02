@@ -1,6 +1,6 @@
 import {FC, ReactElement} from "react";
-import InfoTooltip from "../../../../Common/UI/InfoTooltip/InfoTooltip";
-import "./ViewingHistory.css";
+import InfoTooltip from "components/Common/UI/InfoTooltip/InfoTooltip";
+import "components/Tictactoe/Game/Status/ViewingHistory/ViewingHistory.css";
 
 interface ViewingHistoryPropsI {
     statusComponent: ReactElement;  // Component that is passed to display game status

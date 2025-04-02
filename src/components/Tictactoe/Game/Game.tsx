@@ -1,29 +1,29 @@
 import {FC, ReactElement, useMemo} from "react";
 import {useDispatch} from "react-redux";
 // Models
-import {PlayerI} from "../../../models/player";
-import {UIElementSize} from "../../../models/ui";
-import {GameStatus} from "../../../models/tictactoe/gameStatus";
-import {BoardElHandlerType, SquareType} from "../Board/Board.types";
-import {GameMoveI, GameMoveState, GameStateI, SquareState, WinnerState} from "../../../models/tictactoe/game";
+import {PlayerI} from "models/player";
+import {UIElementSize} from "models/ui";
+import {GameStatus} from "models/tictactoe/gameStatus";
+import {BoardElHandlerType, SquareType} from "components/Tictactoe/Board/Board.types";
+import {GameMoveI, GameMoveState, GameStateI, SquareState, WinnerState} from "models/tictactoe/game";
 // Redux
 import {makeMove as reduxMakeMove} from "../../../redux/tictactoe/game/gameSlice";
 import {AppDispatch} from "../../../redux/store";
 // Services
-import {calculateWinner, generateMoveNumber, getCurrentPlayer} from "../../../services/tictactoe/gameLogic";
+import {calculateWinner, generateMoveNumber, getCurrentPlayer} from "services/tictactoe/gameLogic";
 //Hooks
-import {useTypedSelector} from "../../../hooks/useTypedSelector";
-import useProcessedMoves from "../../../hooks/tictactoe/useProcessedMoves";
+import {useTypedSelector} from "hooks/useTypedSelector";
+import useProcessedMoves from "hooks/tictactoe/useProcessedMoves";
 // Components
-import EmptyListMessage from "../../Common/EmptyListMessage/EmptyListMessage";
-import GameControls from "../Controls/GameControls/GameControls";
-import GameStopwatch from "../GameStopwatch/GameStopwatch";
-import Board from "../Board/Board";
-import Status from "./Status/Status";
-import HistoryControls from "../Moves/HistoryControls/HistoryControls";
-import HistoryControlsMini from "../Moves/HistoryControlsMini/HistoryControlsMini";
-import HistoryList from "../Moves/HistoryList/HistoryList";
-import GameView from "./GameView/GameView";
+import EmptyListMessage from "components/Common/EmptyListMessage/EmptyListMessage";
+import GameControls from "components/Tictactoe/Controls/GameControls/GameControls";
+import GameStopwatch from "components/Tictactoe/GameStopwatch//GameStopwatch";
+import Board from "components/Tictactoe/Board/Board";
+import Status from "components/Tictactoe/Game/Status/Status";
+import HistoryControls from "components/Tictactoe/Moves/HistoryControls/HistoryControls";
+import HistoryControlsMini from "components/Tictactoe/Moves/HistoryControlsMini/HistoryControlsMini";
+import HistoryList from "components/Tictactoe/Moves/HistoryList/HistoryList";
+import GameView from "components/Tictactoe/Game/GameView/GameView";
 
 interface GamePropsI {
     gameState: GameStateI;

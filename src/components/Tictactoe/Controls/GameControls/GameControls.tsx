@@ -4,19 +4,19 @@ import classNames from "classnames";
 // Fontawesome icons
 import {faPause, faPlay, faSyncAlt} from "@fortawesome/free-solid-svg-icons";
 // Models
-import {UIElementSize, UILayoutOption} from "../../../../models/ui";
-import {GameStatus} from "../../../../models/tictactoe/gameStatus";
-import {ButtonMouseHandler} from "../../../Common/Controls/Button/Button.type";
+import {UIElementSize, UILayoutOption} from "models/ui";
+import {GameStatus} from "models/tictactoe/gameStatus";
 // Redux
+import {ButtonMouseHandler} from "components/Common/Controls/Button/Button.type";
 import {AppDispatch} from "../../../../redux/store";
-import {useTypedSelector} from "../../../../hooks/useTypedSelector";
+import {useTypedSelector} from "hooks/useTypedSelector";
 import {newGame, togglePause} from "../../../../redux/tictactoe/game/gameSlice";
 // Components
-import HorizontalControls from "../../../Common/Controls/HorizontalControls/HorizontalControls";
-import IconButton from "../../../Common/Controls/IconButton/IconButton";
-import FullscreenToggle from "../../../Common/Controls/FullscreenToggle/FullscreenToggle";
+import HorizontalControls from "components/Common/Controls/HorizontalControls/HorizontalControls";
+import IconButton from "components/Common/Controls/IconButton/IconButton";
+import FullscreenToggle from "components/Common/Controls/FullscreenToggle/FullscreenToggle";
 // Styles
-import "./GameControls.css";
+import "components/Tictactoe/Controls/GameControls/GameControls.css";
 
 interface GameControlsPropsI {
     isDisabled?: boolean;       // The menu is inactive, but it is displayed

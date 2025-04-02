@@ -3,13 +3,13 @@ import {FC} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPauseCircle, faSave, faStopwatch} from "@fortawesome/free-solid-svg-icons";
 // Models
-import {UIFontAwesomeUIElement} from "../../../models/ui";
-import {GameStatus} from "../../../models/tictactoe/gameStatus";
+import {UIFontAwesomeUIElement} from "models/ui";
+import {GameStatus} from "models/tictactoe/gameStatus";
 // Hooks
-import {useTypedSelector} from "../../../hooks/useTypedSelector";
-import useMediaQueryContext from "../../../hooks/useMediaQueryContext";
+import {useTypedSelector} from "hooks/useTypedSelector";
+import useMediaQueryContext from "hooks/useMediaQueryContext";
 // Styles
-import "./ActionIndicators.css";
+import "components/Tictactoe/ActionIndicators/ActionIndicators.css";
 
 /**
  * Only one button is displayed: either the pause indicator or the save indicator, depending on the game state.

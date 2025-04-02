@@ -1,9 +1,9 @@
 import React, {FC} from "react";
 // Components
-import AppRouter from "../../routers/AppRouter";
-import MediaQueryProvider from "../Providers/MediaQueryProvider/MediaQueryProvider";
+import AppRouter from "routers/AppRouter";
+import MediaQueryProvider from "components/Providers/MediaQueryProvider/MediaQueryProvider";
 // Styles
-import './App.css';
+import 'components/App/App.css';
 
 const App: FC = () => {
     return (

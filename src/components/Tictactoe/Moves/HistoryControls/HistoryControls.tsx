@@ -1,18 +1,18 @@
 import {FC} from "react";
 // Models
-import {UIElementSize, UILayoutOption} from "../../../../models/ui";
+import {UIElementSize, UILayoutOption} from "models/ui";
 // Hooks
-import {useTypedSelector} from "../../../../hooks/useTypedSelector";
+import {useTypedSelector} from "hooks/useTypedSelector";
 // Components
-import RowContainer from "../../../Common/UI/RowContainer/RowContainer";
-import HorizontalControls from "../../../Common/Controls/HorizontalControls/HorizontalControls";
-import SortLabel from "../../../Common/List/SortBar/SortLabel/SortLabel";
-import SortFields from "../../../Common/List/SortBar/SortFields/SortFields";
-import HistorySort from "../HistorySort/HistorySort";
-import HistoryNext from "../HistoryNavigation/HistoryNext";
-import HistoryPrevious from "../HistoryNavigation/HistoryPrevious";
+import RowContainer from "components/Common/UI/RowContainer/RowContainer";
+import HorizontalControls from "components/Common/Controls/HorizontalControls/HorizontalControls";
+import SortLabel from "components/Common/List/SortBar/SortLabel/SortLabel";
+import SortFields from "components/Common/List/SortBar/SortFields/SortFields";
+import HistorySort from "components/Tictactoe/Moves/HistorySort/HistorySort";
+import HistoryNext from "components/Tictactoe/Moves/HistoryNavigation/HistoryNext";
+import HistoryPrevious from "components/Tictactoe/Moves/HistoryNavigation/HistoryPrevious";
 // Styles
-import "./HistoryControls.css";
+import "components/Tictactoe/Moves/HistoryControls/HistoryControls.css";
 
 const HistoryControls: FC = () => {
     const sorting = useTypedSelector(state => state.t3player.game.history.sorting);

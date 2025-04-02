@@ -1,16 +1,16 @@
 import {useDispatch} from "react-redux";
 import {useCallback, useEffect, useState} from "react";
-
-import {AsyncStateI} from "../../models/common";
+// Models
+import {AsyncStateI} from "models/common";
 import {GameStateContainerI} from "../../redux/tictactoe/game/types";
-
+// Redux
 import {restoreGame} from "../../redux/tictactoe/game/gameSlice";
 import {AppDispatch} from "../../redux/store";
-
-import {useTypedSelector} from "../useTypedSelector";
-
-import {normalizeError} from "../../utils/error";
-import {getLastGameState} from "../../services/tictactoe/gameState";
+// Hooks
+import {useTypedSelector} from "hooks/useTypedSelector";
+// Utils and Services
+import {normalizeError} from "utils/error";
+import {getLastGameState} from "services/tictactoe/gameState";
 
 export interface GameStateResultI extends AsyncStateI {
     stateContainer: GameStateContainerI

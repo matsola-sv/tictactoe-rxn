@@ -1,5 +1,9 @@
 import {useEffect, useState} from "react";
-import {DocumentElementWithFullscreen, DocumentWithFullscreen, FullscreenResult} from "./useFullscreen.types";
+import {
+    DocumentElementWithFullscreen,
+    DocumentWithFullscreen,
+    FullscreenResult
+} from "hooks/fullscreen/useFullscreen.types";
 
 /**
  * Check for the availability of fullscreen methods in the browser

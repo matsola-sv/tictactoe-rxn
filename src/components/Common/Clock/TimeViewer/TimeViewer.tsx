@@ -1,7 +1,6 @@
 import {FC} from "react";
-import TimeUnit from "../TimeUnit/TimeUnit";
-
-import './TimeViewer.css';
+import TimeUnit from "components/Common/Clock/TimeUnit/TimeUnit";
+import 'components/Common/Clock/TimeViewer/TimeViewer.css';
 
 interface StopwatchProps {
     hours: number,

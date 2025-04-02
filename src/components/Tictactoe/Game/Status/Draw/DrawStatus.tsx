@@ -1,5 +1,5 @@
 import {FC} from "react";
-import "./Draw.css";
+import "components/Tictactoe/Game/Status/Draw/Draw.css";
 
 type DrawStatusProps = {
     value?: string

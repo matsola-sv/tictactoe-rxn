@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {PlayerSettingsStateI} from "./types";
-import {SortTypes} from "../../../utils/sorting";
+import {SortTypes} from "utils/sorting";
 
 /**
  * This represents the user interface state that can be modified by the user, such as:
