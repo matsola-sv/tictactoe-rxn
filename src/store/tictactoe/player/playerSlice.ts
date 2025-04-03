@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {PlayerSettingsStateI} from "./types";
+import {PlayerSettingsStateI} from "store/tictactoe/player/types";
 import {SortTypes} from "utils/sorting";
 
 /**

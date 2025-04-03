@@ -6,8 +6,8 @@ import {useTypedSelector} from "hooks/useTypedSelector";
 import useStopwatch from "hooks/useStopwatch";
 // Redux
 import {useDispatch} from "react-redux";
-import {AppDispatch} from "../../../redux/store";
-import {updateGameDuration} from "../../../redux/tictactoe/game/gameSlice";
+import {AppDispatch} from "store";
+import {updateGameDuration} from "store/tictactoe/game/gameSlice";
 // Components
 import TimeViewer from "components/Common/Clock/TimeViewer/TimeViewer";
 // Styles

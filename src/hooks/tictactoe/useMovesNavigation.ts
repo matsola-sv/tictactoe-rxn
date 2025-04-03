@@ -2,8 +2,8 @@ import {useDispatch} from "react-redux";
 // Models
 import {NavDirection} from "models/lists";
 // Redux
-import {AppDispatch} from "../../redux/store";
-import {goToMove} from "../../redux/tictactoe/game/gameSlice";
+import {AppDispatch} from "store";
+import {goToMove} from "store/tictactoe/game/gameSlice";
 // Hooks and Services
 import {getMovesPagination} from "services/tictactoe/gameLogic";
 import {useTypedSelector} from "hooks/useTypedSelector";

@@ -7,8 +7,8 @@ import {GameStatus} from "models/tictactoe/gameStatus";
 import {BoardElHandlerType, SquareType} from "components/Tictactoe/Board/Board.types";
 import {GameMoveI, GameMoveState, GameStateI, SquareState, WinnerState} from "models/tictactoe/game";
 // Redux
-import {makeMove as reduxMakeMove} from "../../../redux/tictactoe/game/gameSlice";
-import {AppDispatch} from "../../../redux/store";
+import {makeMove as reduxMakeMove} from "store/tictactoe/game/gameSlice";
+import {AppDispatch} from "store";
 // Services
 import {calculateWinner, generateMoveNumber, getCurrentPlayer} from "services/tictactoe/gameLogic";
 //Hooks

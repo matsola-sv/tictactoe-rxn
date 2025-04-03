@@ -4,8 +4,8 @@ import {useDispatch} from "react-redux";
 import {SortTypes} from "utils/sorting";
 import {SortHandler} from "models/lists";
 // Redux
-import {AppDispatch} from "../../../../redux/store";
-import {toggleHistorySort} from "../../../../redux/tictactoe/player/playerSlice";
+import {AppDispatch} from "store";
+import {toggleHistorySort} from "store/tictactoe/player/playerSlice";
 // Hooks
 import {useTypedSelector} from "hooks/useTypedSelector"; // Components
 import SortButtons from "components/Common/List/SortBar/SortButtons/SortButtons";

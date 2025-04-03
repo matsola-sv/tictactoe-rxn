@@ -7,8 +7,8 @@ import {
     MovesHistoryHandlerI
 } from "components/Tictactoe/Moves/HistoryList/HistoryList.types";
 // Redux
-import {AppDispatch} from "../../../../redux/store";
-import {goToMove} from "../../../../redux/tictactoe/game/gameSlice";
+import {AppDispatch} from "store";
+import {goToMove} from "store/tictactoe/game/gameSlice";
 // Components
 import EmptyListMessage from "components/Common/EmptyListMessage/EmptyListMessage";
 import DefaultMove from "components/Tictactoe/Moves/HistoryList/DefaultMove/DefaultMove";

@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import isEqual from 'fast-deep-equal';
 // Models
 import {GameStatus} from "models/tictactoe/gameStatus";
-import {GameStateContainerI, GameStateMetaI, MoveActionPayloadI} from "./types";
+import {GameStateContainerI, GameStateMetaI, MoveActionPayloadI} from "store/tictactoe/game/types";
 import {GameMoveI, GameStateI} from "models/tictactoe/game";
 // Services
 import {getGameStatusByMove, validateMove} from "services/tictactoe/gameLogic";

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import {Provider} from "react-redux";
 import reportWebVitals from 'reportWebVitals';
 // Redux store
-import {store} from "./redux/store";
+import {index} from "store";
 // Components
 import App from 'components/App/App';
 // Styles
@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <React.StrictMode>
-        <Provider store={store}>
+        <Provider store={index}>
             <App/>
         </Provider>
     </React.StrictMode>

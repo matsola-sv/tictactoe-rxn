@@ -5,8 +5,8 @@ import {faShoePrints} from "@fortawesome/free-solid-svg-icons";
 // Models
 import {UIElementSize, UILayoutOption} from "models/ui";
 // Redux
-import {AppDispatch} from "../../../../redux/store";
-import {toggleHistoryVisibility} from "../../../../redux/tictactoe/player/playerSlice";
+import {AppDispatch} from "store";
+import {toggleHistoryVisibility} from "store/tictactoe/player/playerSlice";
 // Hooks
 import {useTypedSelector} from "hooks/useTypedSelector";
 // Components

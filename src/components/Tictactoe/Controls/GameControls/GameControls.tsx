@@ -8,9 +8,9 @@ import {UIElementSize, UILayoutOption} from "models/ui";
 import {GameStatus} from "models/tictactoe/gameStatus";
 // Redux
 import {ButtonMouseHandler} from "components/Common/Controls/Button/Button.type";
-import {AppDispatch} from "../../../../redux/store";
+import {AppDispatch} from "store";
 import {useTypedSelector} from "hooks/useTypedSelector";
-import {newGame, togglePause} from "../../../../redux/tictactoe/game/gameSlice";
+import {newGame, togglePause} from "store/tictactoe/game/gameSlice";
 // Components
 import HorizontalControls from "components/Common/Controls/HorizontalControls/HorizontalControls";
 import IconButton from "components/Common/Controls/IconButton/IconButton";

@@ -2,10 +2,10 @@ import {useDispatch} from "react-redux";
 import {useCallback, useEffect, useState} from "react";
 // Models
 import {AsyncStateI} from "models/common";
-import {GameStateContainerI} from "../../redux/tictactoe/game/types";
+import {GameStateContainerI} from "store/tictactoe/game/types";
 // Redux
-import {restoreGame} from "../../redux/tictactoe/game/gameSlice";
-import {AppDispatch} from "../../redux/store";
+import {restoreGame} from "store/tictactoe/game/gameSlice";
+import {AppDispatch} from "store";
 // Hooks
 import {useTypedSelector} from "hooks/useTypedSelector";
 // Utils and Services
