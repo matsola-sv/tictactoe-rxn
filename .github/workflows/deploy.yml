@@ -1,0 +1,45 @@
+name: Deploy to GitHub Pages
+
+on:
+    push:
+        branches: [master]
+
+permissions:
+    contents: write
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 'lts/*'
+                  cache: 'npm'
+
+            - name: Install dependencies
+              # Faster and more reliable than npm install for CI/CD
+              run: npm ci
+
+            - name: Build project
+              run: npm run build
+
+            # Archives each build for easier error tracking.
+            - name: Archive Production Build
+              uses: actions/upload-artifact@v4
+              with:
+                  name: production-build
+                  path: build
+
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v4
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./build
+                  publish_branch: gh-pages
+                  force_orphan: true
+                  enable_jekyll: false
