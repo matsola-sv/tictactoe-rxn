@@ -205,7 +205,7 @@ const Game: FC<GamePropsI> = ({ gameState, boardColumns }) => {
 	// so it's not necessary to include it in the dependencies.
 	const squaresDisplay = useMemo<SquareType[]>(
 		prepareSquaresDisplay,
-		[moveHistory, move], // eslint-disable-line react-hooks/exhaustive-deps
+		[moveHistory, move], // eslint-disable-line
 	);
 
 	return (

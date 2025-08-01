@@ -37,10 +37,11 @@ const getData = async <T>(url: string, type?: string): Promise<T> => {
  * Get all states of a specific Game
  * @param gameID
  */
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+/* eslint-disable */
 export const getGameStates = async <T>(gameID: T): Promise<GameStateI[]> => {
 	return getData<GameStateI[]>(T3_DB_URL, 'states');
 };
+/* eslint-enable */
 
 /**
  * Get the last state of the Game

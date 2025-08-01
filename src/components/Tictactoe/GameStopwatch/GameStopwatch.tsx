@@ -31,7 +31,7 @@ const GameStopwatch: FC<GameStopwatchProps> = ({ initialMillis = 0 }) => {
 		if (currentMillis !== initialMillis) {
 			reset(false, initialMillis);
 		}
-	}, [initialMillis]); // eslint-disable-line react-hooks/exhaustive-deps
+	}, [initialMillis]); // eslint-disable-line
 
 	// Control the stopwatch when changing statuses
 	// Exclude 'secondsStamp' from dependencies as it's updated only when the game status changes
@@ -50,7 +50,7 @@ const GameStopwatch: FC<GameStopwatchProps> = ({ initialMillis = 0 }) => {
 
 		// Update the game duration in seconds, storing the current time in state
 		dispatch(updateGameDuration(secondsStamp));
-	}, [gameStatus, pause, start, reset]); // eslint-disable-line react-hooks/exhaustive-deps
+	}, [gameStatus, pause, start, reset]); // eslint-disable-line
 
 	return (
 		<TimeViewer
