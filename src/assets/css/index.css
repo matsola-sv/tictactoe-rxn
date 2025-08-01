@@ -1,37 +1,38 @@
-html, body {
-    height: 100%; /* Ensures that html and body take up the full height of the window */
+html,
+body {
+	height: 100%; /* Ensures that html and body take up the full height of the window */
 }
 
 body {
-    margin: 0; /* Removes default browser margin */
-    min-height: 100%; /* Ensures body is at least the full height of the viewport */
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+	margin: 0; /* Removes default browser margin */
+	min-height: 100%; /* Ensures body is at least the full height of the viewport */
+	font-family:
+		-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+		'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.locked-element, .un-clickable {
-    pointer-events: none; /* Disables interaction with the element */
-    cursor: not-allowed; /* Indicates that the square is not interactive */
+.locked-element,
+.un-clickable {
+	pointer-events: none; /* Disables interaction with the element */
+	cursor: not-allowed; /* Indicates that the square is not interactive */
 }
 
 .locked-element::before {
-    content: ""; /* Adds an empty element to the pseudo-element */
-    background-image: url('/public/images/lock.png');
-    background-size: contain; /* Resizes the image to fit the square, maintaining proportions */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block; /* Explicitly displays the pseudo-element */
+	content: ''; /* Adds an empty element to the pseudo-element */
+	background-image: url('/public/images/lock.png');
+	background-size: contain; /* Resizes the image to fit the square, maintaining proportions */
+	background-position: center; /* Centers the image */
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: block; /* Explicitly displays the pseudo-element */
 }

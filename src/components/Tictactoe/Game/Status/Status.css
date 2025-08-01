@@ -1,21 +1,21 @@
 .t3-status-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    user-select: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	user-select: none;
 }
 
 .t3-status__body {
-    width: 100%;
-    text-align: center;
-    white-space: normal; /* Allow text wrapping */
+	width: 100%;
+	text-align: center;
+	white-space: normal; /* Allow text wrapping */
 }
 
 .t3-status--next,
 .t3-status--draw,
 .t3-status--victory {
-    padding: 0.3125rem; /* 0.3125rem = 5px */
-    transition: all 0.3s ease;
+	padding: 0.3125rem; /* 0.3125rem = 5px */
+	transition: all 0.3s ease;
 }
 
 /* NOTE: Write media queries from larger to smaller screens
@@ -23,14 +23,14 @@
 
 /* Laptops, desktop and large monitors */
 @media (min-width: 480px) {
-    .t3-status__body {
-        font-size: 1.125rem; /* 18px in rem */
-    }
+	.t3-status__body {
+		font-size: 1.125rem; /* 18px in rem */
+	}
 }
 
 /* Mobiles */
 @media (max-width: 479px) {
-    .t3-status__body {
-        font-size: 1rem;
-    }
+	.t3-status__body {
+		font-size: 1rem;
+	}
 }

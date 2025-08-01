@@ -1,5 +1,5 @@
-import {GameMoveI, GameStateI as GameState} from "models/tictactoe/game";
-import {GameStatus} from "models/tictactoe/gameStatus";
+import { GameMoveI, GameStateI as GameState } from 'models/tictactoe/game';
+import { GameStatus } from 'models/tictactoe/gameStatus';
 
 /**
  * Game meta-data.
@@ -12,16 +12,16 @@ import {GameStatus} from "models/tictactoe/gameStatus";
  *   allows returning to the previous game status after exiting the history view mode.
  */
 export interface GameStateMetaI {
-    isRestored: boolean;
-    previousStatus: GameStatus;
+	isRestored: boolean;
+	previousStatus: GameStatus;
 }
 
 export interface GameStateContainerI {
-    meta: GameStateMetaI;
-    state: GameState;
+	meta: GameStateMetaI;
+	state: GameState;
 }
 
 export interface MoveActionPayloadI {
-    currentMove: number;
-    history: GameMoveI[];
+	currentMove: number;
+	history: GameMoveI[];
 }

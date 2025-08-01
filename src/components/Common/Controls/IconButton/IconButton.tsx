@@ -1,48 +1,55 @@
-import {FC, ReactNode} from "react";
-import classNames from "classnames";
+import { FC, ReactNode } from 'react';
+import classNames from 'classnames';
 // Fontawesome
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 // Models
-import {ButtonMouseHandler} from "components/Common/Controls/Button/Button.type";
+import { ButtonMouseHandler } from 'components/Common/Controls/Button/Button.type';
 // Components
-import Button from "components/Common/Controls/Button/Button";
+import Button from 'components/Common/Controls/Button/Button';
 
 interface IconButtonProps {
-    onClick: ButtonMouseHandler;
-    children?: ReactNode;
-    icon?: IconDefinition;
-    isDisabled?: boolean;
-    className?: string;
-    title?: string;
+	onClick: ButtonMouseHandler;
+	children?: ReactNode;
+	icon?: IconDefinition;
+	isDisabled?: boolean;
+	className?: string;
+	title?: string;
 }
 
-const IconButton: FC<IconButtonProps> = ({isDisabled = false, children = null, onClick, className, title, icon}) => {
-    if (!children && !icon) {
-        return null;
-    }
+const IconButton: FC<IconButtonProps> = ({
+	isDisabled = false,
+	children = null,
+	onClick,
+	className,
+	title,
+	icon,
+}) => {
+	if (!children && !icon) {
+		return null;
+	}
 
-    const getContent = (): ReactNode => {
-        if (icon) {
-            return (
-                <FontAwesomeIcon
-                    icon={icon}
-                    title={title}
-                />
-            );
-        }
-        return children;
-    };
+	const getContent = (): ReactNode => {
+		if (icon) {
+			return (
+				<FontAwesomeIcon
+					icon={icon}
+					title={title}
+				/>
+			);
+		}
+		return children;
+	};
 
-    return (
-        <Button
-            onClick={onClick}
-            ariaLabel={title}
-            isDisabled={isDisabled}
-            className={classNames(className)}
-        >
-            {getContent()}
-        </Button>
-    );
+	return (
+		<Button
+			onClick={onClick}
+			ariaLabel={title}
+			isDisabled={isDisabled}
+			className={classNames(className)}
+		>
+			{getContent()}
+		</Button>
+	);
 };
 export default IconButton;

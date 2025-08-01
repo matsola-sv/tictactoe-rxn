@@ -1,34 +1,40 @@
 /* Square */
 .square {
-    width: 100%;
-    height: 100%;
-    display: flex; /* Use flexbox to align content inside the square */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    margin: 0; /* NOTE: Important to avoid unwanted spacing between squares */
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    box-sizing: border-box; /* Includes padding and borders in width and height */
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    cursor: pointer; /* Change the cursor to indicate it's clickable */
-    /*
+	width: 100%;
+	height: 100%;
+	display: flex; /* Use flexbox to align content inside the square */
+	justify-content: center; /* Center content horizontally */
+	align-items: center; /* Center content vertically */
+	margin: 0; /* NOTE: Important to avoid unwanted spacing between squares */
+	font-weight: bold;
+	text-align: center;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	box-sizing: border-box; /* Includes padding and borders in width and height */
+	transition:
+		background-color 0.3s ease,
+		transform 0.2s ease;
+	cursor: pointer; /* Change the cursor to indicate it's clickable */
+	/*
       PROBLEM: Dynamic font-size with `clamp(16px, calc(5vw + 1vh), 32px)` causes inconsistent resizing of square height.
       This issue is particularly noticeable when the font size increases or decreases unevenly between rows of squares.
       SOLUTION: Fixed with `min-height` for stable height and responsive font size with `clamp()`.
     */
-    min-height: 3.125rem; /* Min height (50px=3.125rem) for cell stability */
-    font-size: clamp(1rem, 5vw, 2rem); /* Responsive: min 1rem, based on screen width (5vw - 5% of the viewport's width), max 2rem */
-    line-height: 1; /* Fixing row height to prevent height changes */
-    overflow: hidden; /* Avoids cell enlargement due to content */
-    user-select: none; /* Disables text selection */
+	min-height: 3.125rem; /* Min height (50px=3.125rem) for cell stability */
+	font-size: clamp(
+		1rem,
+		5vw,
+		2rem
+	); /* Responsive: min 1rem, based on screen width (5vw - 5% of the viewport's width), max 2rem */
+	line-height: 1; /* Fixing row height to prevent height changes */
+	overflow: hidden; /* Avoids cell enlargement due to content */
+	user-select: none; /* Disables text selection */
 }
 
 /* Focused square (for better visual indication) */
 .square:focus {
-    box-shadow: 0 0 10px rgba(0, 200, 0, 0.5);
-    outline: none; /* Remove the default focus outline for a cleaner appearance */
+	box-shadow: 0 0 10px rgba(0, 200, 0, 0.5);
+	outline: none; /* Remove the default focus outline for a cleaner appearance */
 }
 
 /**
@@ -36,37 +42,37 @@
    (e.g., a square that has been clicked but is not part of the winning line)
  */
 .square.opened:not(.selected, .selected-line) {
-    background-color: #e7f4e7;
-    color: #555;
+	background-color: #e7f4e7;
+	color: #555;
 }
 
 /* Selected (active) square */
 .square.selected {
-    background: linear-gradient(145deg, #4caf50, #009688);
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+	background: linear-gradient(145deg, #4caf50, #009688);
+	color: white;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Highlighted line (e.g., part of the winning line) */
 .square.selected-line {
-    background: linear-gradient(135deg, #ff9e9e, #fbd5d5); /* Softer red gradient */
-    color: #333;
-    box-shadow: 0 0 8px rgba(255, 158, 158, 0.5); /* Softer glow effect */
+	background: linear-gradient(135deg, #ff9e9e, #fbd5d5); /* Softer red gradient */
+	color: #333;
+	box-shadow: 0 0 8px rgba(255, 158, 158, 0.5); /* Softer glow effect */
 }
 
 /* Inactive square (default), cannot be clicked */
 .square.locked-element {
-    position: relative; /* Ensures that the overlay is positioned correctly */
+	position: relative; /* Ensures that the overlay is positioned correctly */
 }
 
 .square.locked-element::before {
-    opacity: 0.4; /* Transparency for the frozen effect */
-    z-index: 1; /* Ensures the element is above other elements */
+	opacity: 0.4; /* Transparency for the frozen effect */
+	z-index: 1; /* Ensures the element is above other elements */
 }
 
 /* Responsive font sizes for small screens */
 @media (max-width: 768px) {
-    .square {
-        font-size: clamp(1rem, 6vw, 2rem);
-    }
+	.square {
+		font-size: clamp(1rem, 6vw, 2rem);
+	}
 }

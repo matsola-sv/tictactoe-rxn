@@ -1,21 +1,28 @@
-import {FC} from "react";
-import classNames from "classnames";
-import {MovesHistoryHandlerI} from "components/Tictactoe/Moves/HistoryList/HistoryList.types";
+import { FC } from 'react';
+import classNames from 'classnames';
+import { MovesHistoryHandlerI } from 'components/Tictactoe/Moves/HistoryList/HistoryList.types';
 
 interface DefaultMovePropsI {
-    selected: boolean;
-    onClick: MovesHistoryHandlerI;
-    details?: string;                // Move details text
+	selected: boolean;
+	onClick: MovesHistoryHandlerI;
+	details?: string; // Move details text
 }
 
-const DefaultMove: FC<DefaultMovePropsI> = ({ selected = false, details = "start", onClick }) => {
-    const clickHandler = () => onClick(0);
+const DefaultMove: FC<DefaultMovePropsI> = ({
+	selected = false,
+	details = 'start',
+	onClick,
+}) => {
+	const clickHandler = () => onClick(0);
 
-    return (
-        <li className={classNames({"selected" : selected})} onClick={clickHandler}>
-            <span className="move-action">Go to game </span>
-            <span className="move-details">{details}</span>
-        </li>
-    );
-}
+	return (
+		<li
+			className={classNames({ selected: selected })}
+			onClick={clickHandler}
+		>
+			<span className='move-action'>Go to game </span>
+			<span className='move-details'>{details}</span>
+		</li>
+	);
+};
 export default DefaultMove;

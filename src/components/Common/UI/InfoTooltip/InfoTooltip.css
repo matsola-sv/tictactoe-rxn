@@ -1,59 +1,59 @@
 .info-tooltip {
-    position: relative;
-    display: inline-block; /* Defines the element as inline-block for correct display */
-    cursor: pointer;
-    color: #007bff;
+	position: relative;
+	display: inline-block; /* Defines the element as inline-block for correct display */
+	cursor: pointer;
+	color: #007bff;
 }
 
 /* Tooltip text */
 .info-tooltip .tooltip-text {
-    visibility: hidden; /* Hide tooltip by default */
-    opacity: 0;
-    position: absolute;
-    top: 110%; /* Position the tooltip below the element */
-    left: 50%; /* Center the tooltip horizontally */
-    transform: translateX(-50%); /* Center the tooltip relative to its width */
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    border-radius: 0.25rem;
-    padding: 0.625rem;
-    max-width: 90vw; /* 90% of the window width */
-    min-width: 9.375rem;
-    width: auto;
-    white-space: normal; /* Text can wrap */
-    word-wrap: break-word; /* Word wrap if necessary */
-    line-height: 1.4; /* Line height for better readability */
-    z-index: 1000;
-    transition: opacity 0.3s ease-in-out; /* Smooth transition for visibility */
-    overflow-wrap: break-word; /* Word wrapping when necessary */
-    text-align: center;
-    pointer-events: none;
-    box-sizing: border-box; /* Includes padding and border in element width and height */
+	visibility: hidden; /* Hide tooltip by default */
+	opacity: 0;
+	position: absolute;
+	top: 110%; /* Position the tooltip below the element */
+	left: 50%; /* Center the tooltip horizontally */
+	transform: translateX(-50%); /* Center the tooltip relative to its width */
+	background-color: rgba(0, 0, 0, 0.8);
+	color: white;
+	border-radius: 0.25rem;
+	padding: 0.625rem;
+	max-width: 90vw; /* 90% of the window width */
+	min-width: 9.375rem;
+	width: auto;
+	white-space: normal; /* Text can wrap */
+	word-wrap: break-word; /* Word wrap if necessary */
+	line-height: 1.4; /* Line height for better readability */
+	z-index: 1000;
+	transition: opacity 0.3s ease-in-out; /* Smooth transition for visibility */
+	overflow-wrap: break-word; /* Word wrapping when necessary */
+	text-align: center;
+	pointer-events: none;
+	box-sizing: border-box; /* Includes padding and border in element width and height */
 }
 
 /* Tooltip arrow */
 .info-tooltip .tooltip-text::after {
-    content: ''; /* Empty content for the arrow */
-    position: absolute;
-    top: -0.5rem; /* Position the arrow */
-    left: 50%; /* Center the arrow horizontally */
-    transform: translateX(-50%); /* Center the arrow relative to the tooltip */
-    width: 0;
-    height: 0;
-    border-left: 0.3125rem solid transparent;
-    border-right: 0.3125rem solid transparent;
-    border-bottom: 0.625rem solid rgba(0, 0, 0, 0.8);
+	content: ''; /* Empty content for the arrow */
+	position: absolute;
+	top: -0.5rem; /* Position the arrow */
+	left: 50%; /* Center the arrow horizontally */
+	transform: translateX(-50%); /* Center the arrow relative to the tooltip */
+	width: 0;
+	height: 0;
+	border-left: 0.3125rem solid transparent;
+	border-right: 0.3125rem solid transparent;
+	border-bottom: 0.625rem solid rgba(0, 0, 0, 0.8);
 }
 
 /* Show tooltip on hover */
 .info-tooltip:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
+	visibility: visible;
+	opacity: 1;
 }
 
 /* Change text color on hover */
 .info-tooltip:hover {
-    color: #0056b3;
+	color: #0056b3;
 }
 
 /* NOTE: Write media queries from larger to smaller screens
@@ -61,28 +61,28 @@ to avoid unnecessary overrides and ensure code efficiency.*/
 
 /* Icon size for screens larger than 1200px */
 @media (min-width: 1200px) {
-    .info-tooltip {
-        font-size: 1.3125rem; /* Icon size for larger screens */
-    }
+	.info-tooltip {
+		font-size: 1.3125rem; /* Icon size for larger screens */
+	}
 }
 
 /* Icon size for screens up to 1199px */
 @media (max-width: 1199px) {
-    .info-tooltip {
-        font-size: 1.25rem; /* Icon size for smaller screens */
-    }
+	.info-tooltip {
+		font-size: 1.25rem; /* Icon size for smaller screens */
+	}
 }
 
 /* Tooltip text size for screens larger than 480px */
 @media (min-width: 480px) {
-    .tooltip-text {
-        font-size: 0.85rem; /* Default text size for screens above 479px */
-    }
+	.tooltip-text {
+		font-size: 0.85rem; /* Default text size for screens above 479px */
+	}
 }
 
 /* Tooltip text size for screens smaller than 479px */
 @media (max-width: 479px) {
-    .tooltip-text {
-        font-size: 0.8rem; /* Smaller text size for very small screens */
-    }
+	.tooltip-text {
+		font-size: 0.8rem; /* Smaller text size for very small screens */
+	}
 }

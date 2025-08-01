@@ -1,70 +1,70 @@
 /* Main container for the viewing history element */
 .t3-status--vh {
-    border: 0.1rem solid #ddd;
-    max-width: 100%;
-    font-family: Arial, sans-serif;
-    display: flex; /* Using flexbox for alignment */
-    align-items: center; /* Vertical alignment */
-    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
+	border: 0.1rem solid #ddd;
+	max-width: 100%;
+	font-family: Arial, sans-serif;
+	display: flex; /* Using flexbox for alignment */
+	align-items: center; /* Vertical alignment */
+	box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+	background-color: #f9f9f9;
 }
 
 .t3-status-vh__header {
-    font-weight: bold;
-    color: #333;
-    display: flex; /* Using flexbox for alignment */
-    align-items: center; /* Vertical alignment */
-    gap: 0.5rem; /* Space between items */
-    white-space: nowrap; /* Prevent text wrapping */
+	font-weight: bold;
+	color: #333;
+	display: flex; /* Using flexbox for alignment */
+	align-items: center; /* Vertical alignment */
+	gap: 0.5rem; /* Space between items */
+	white-space: nowrap; /* Prevent text wrapping */
 }
 
 /* Status that is displayed inline */
 .t3-status-vh__inline {
-    display: flex; /* Using flexbox for alignment */
-    align-items: center; /* Vertical alignment */
-    flex: 1; /* Stretch to fill available width */
-    gap: 0.5rem; /* Space between items */
-    white-space: nowrap; /* Prevent text wrapping */
-    overflow: hidden;
-    text-overflow: ellipsis; /* Add ellipsis for overflowed content */
-    justify-content: center; /* Horizontal centering */
+	display: flex; /* Using flexbox for alignment */
+	align-items: center; /* Vertical alignment */
+	flex: 1; /* Stretch to fill available width */
+	gap: 0.5rem; /* Space between items */
+	white-space: nowrap; /* Prevent text wrapping */
+	overflow: hidden;
+	text-overflow: ellipsis; /* Add ellipsis for overflowed content */
+	justify-content: center; /* Horizontal centering */
 }
 
 /* Aligning the elements inside the status */
 .t3-status-vh__inline > * {
-    flex: 1;/* Stretch to fill available width */
-    text-align: center;
-    display: flex; /* Using flexbox for alignment */
-    justify-content: center; /* Horizontal alignment */
-    align-items: center; /* Vertical alignment */
-    min-width: 0; /* Disable minimum width for flex items */
+	flex: 1; /* Stretch to fill available width */
+	text-align: center;
+	display: flex; /* Using flexbox for alignment */
+	justify-content: center; /* Horizontal alignment */
+	align-items: center; /* Vertical alignment */
+	min-width: 0; /* Disable minimum width for flex items */
 }
 
 /* Laptops, desktop and large monitors */
 @media (min-width: 769px) {
-    .t3-status--vh {
-        padding: 0.5rem;
-        gap: 0.75rem;
-    }
-    .t3-status-vh__header {
-        font-size: 0.9375rem; /* 0.9375rem = 15px */
-    }
-    .t3-status-vh__inline {
-        font-size: 1.0625rem; /* 0.9375rem = 17px */
-    }
+	.t3-status--vh {
+		padding: 0.5rem;
+		gap: 0.75rem;
+	}
+	.t3-status-vh__header {
+		font-size: 0.9375rem; /* 0.9375rem = 15px */
+	}
+	.t3-status-vh__inline {
+		font-size: 1.0625rem; /* 0.9375rem = 17px */
+	}
 }
 
 /* Mobiles (small and large) */
 @media (max-width: 768px) {
-    .t3-status--vh {
-        padding: 0.5rem 1rem;
-        gap: 1rem; /* Space between items */
-    }
-    .t3-status-vh__header {
-        font-size: 0.9rem;
-    }
-    /* Overriding the sizes of other statuses that may be displayed inside the history view for proper rendering on small screens */
-    .t3-status-vh__inline {
-        font-size: 1rem; /* 0.9375rem = 16px */
-    }
+	.t3-status--vh {
+		padding: 0.5rem 1rem;
+		gap: 1rem; /* Space between items */
+	}
+	.t3-status-vh__header {
+		font-size: 0.9rem;
+	}
+	/* Overriding the sizes of other statuses that may be displayed inside the history view for proper rendering on small screens */
+	.t3-status-vh__inline {
+		font-size: 1rem; /* 0.9375rem = 16px */
+	}
 }

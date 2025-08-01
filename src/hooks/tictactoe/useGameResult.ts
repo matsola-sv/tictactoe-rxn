@@ -1,13 +1,13 @@
-import {GameMoveState, GameStateI, WinnerState} from "models/tictactoe/game";
-import {GameStatus} from "models/tictactoe/gameStatus";
+import { GameMoveState, GameStateI, WinnerState } from 'models/tictactoe/game';
+import { GameStatus } from 'models/tictactoe/gameStatus';
 
 export interface GameResultConfigI {
-    gameState: GameStateI
+	gameState: GameStateI;
 }
 
 export interface GameResultI {
-    winner: WinnerState;    // The winner of the game (or null if there is none)
-    isDraw: boolean;        // Flag indicating whether the game is a draw
+	winner: WinnerState; // The winner of the game (or null if there is none)
+	isDraw: boolean; // Flag indicating whether the game is a draw
 }
 
 /**
@@ -17,18 +17,18 @@ export interface GameResultI {
  * @param config
  */
 const useGameResult = (config: GameResultConfigI): GameResultI => {
-    const status: GameStatus = config.gameState.status;
+	const status: GameStatus = config.gameState.status;
 
-    // Get the current move from the history
-    const getMove = (): GameMoveState => {
-        const moveID: number = config.gameState.currentMove
-        return config.gameState.history[moveID] ?? null;
-    }
+	// Get the current move from the history
+	const getMove = (): GameMoveState => {
+		const moveID: number = config.gameState.currentMove;
+		return config.gameState.history[moveID] ?? null;
+	};
 
-    return {
-        winner: getMove()?.winner ?? null,
-        // Check if game is stopped and no winner, indicating a draw
-        isDraw: status === GameStatus.Stopped && !getMove()?.winner,
-    };
+	return {
+		winner: getMove()?.winner ?? null,
+		// Check if game is stopped and no winner, indicating a draw
+		isDraw: status === GameStatus.Stopped && !getMove()?.winner,
+	};
 };
 export default useGameResult;

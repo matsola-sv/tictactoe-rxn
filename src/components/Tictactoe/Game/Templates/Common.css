@@ -9,48 +9,51 @@
     For example: height: calc(100vh - 1.25rem); // Subtract padding from each side: 0.625rem left and 0.625rem right (10px each)
 */
 .t3-box {
-    height: 100vh; /* For older browsers */
-    height: calc(100dvh); /* New browsers. Dynamic viewport height (dvh) that accounts for height changes when the top bar disappears */
+	height: 100vh; /* For older browsers */
+	height: calc(
+		100dvh
+	); /* New browsers. Dynamic viewport height (dvh) that accounts for height changes when the top bar disappears */
 }
-
 
 /* Game container */
 .t3-box {
-    display: flex; /* Using flexbox to arrange the left and right columns side by side */
-    flex-direction: row; /* Left and right columns will be in a single row */
-    box-sizing: border-box; /* Include padding and borders in the size calculation */
-    box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2); /* 0.25rem = 4px. Shadow for the container */
-    user-select: none; /* Disables text selection */
-    touch-action: manipulation; /* Disables zoom and other manipulations on elements */
+	display: flex; /* Using flexbox to arrange the left and right columns side by side */
+	flex-direction: row; /* Left and right columns will be in a single row */
+	box-sizing: border-box; /* Include padding and borders in the size calculation */
+	box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2); /* 0.25rem = 4px. Shadow for the container */
+	user-select: none; /* Disables text selection */
+	touch-action: manipulation; /* Disables zoom and other manipulations on elements */
 }
 
 /* Game layout container */
 .t3-box .t3-layout {
-    width: 100%; /* Ensure it takes full width of the parent */
-    height: 100%; /* Match the height of the container */
-    display: flex; /* Child element alignment */
+	width: 100%; /* Ensure it takes full width of the parent */
+	height: 100%; /* Match the height of the container */
+	display: flex; /* Child element alignment */
 }
 
 /* ---Game info--- */
 .t3-layout__game-info {
-    flex: 1; /* Ensures the container grows to fill available space */
-    display: flex;
-    flex-direction: column; /* Arranges child elements in a vertical column */
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-    overflow: hidden;
+	flex: 1; /* Ensures the container grows to fill available space */
+	display: flex;
+	flex-direction: column; /* Arranges child elements in a vertical column */
+	border: 1px solid #ddd;
+	box-sizing: border-box;
+	overflow: hidden;
 }
 
 /* ---Game board container--- */
 .t3-layout__game-board {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    max-height: calc(100vh - 7.5rem); /* 7.5rem = 120px. Subtracting the height of the menu and timer: 5vh for each */
-    height: 100%; /* Always fills the height of the container */
-    box-sizing: border-box;
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	max-height: calc(
+		100vh - 7.5rem
+	); /* 7.5rem = 120px. Subtracting the height of the menu and timer: 5vh for each */
+	height: 100%; /* Always fills the height of the container */
+	box-sizing: border-box;
 }
 
 /** ---MOVES LIST. For mobile and short height screens--- **/
@@ -59,46 +62,50 @@
 /* Styling for each move in the history list */
 .t3-layout--1-col .history-list li,
 .t3-layout--2-cols--sm .history-list li {
-    font-size: 0.875rem; /* 14px = 0.875rem */
-    margin: 0.6rem 0 0.6rem 0.3125rem;
-    padding: 0.4rem 1rem 0.4rem 3.3rem;
+	font-size: 0.875rem; /* 14px = 0.875rem */
+	margin: 0.6rem 0 0.6rem 0.3125rem;
+	padding: 0.4rem 1rem 0.4rem 3.3rem;
 }
 
 .t3-layout--1-col .move-date,
 .t3-layout--2-cols--sm .move-date {
-    font-size: 0.8125rem; /* 13px = 0.8125rem */
+	font-size: 0.8125rem; /* 13px = 0.8125rem */
 }
 
 /* Change appearance of the move history counter (before each list item) */
 .t3-layout--1-col .history-list li::before,
 .t3-layout--2-cols--sm .history-list li::before {
-    --size: 1.25rem;
-    font-size: 0.95rem;
-    border-radius: 20%;
+	--size: 1.25rem;
+	font-size: 0.95rem;
+	border-radius: 20%;
 }
 
 /* ---GAME CONTROLS and ACTION INDICATORS--- */
 
 /* Paused state of the pause button */
 .game-controls .pause-btn.paused:not(.disabled) {
-    background: linear-gradient(145deg, #ff7043, #ff5722);
-    border-color: #ff5722;
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+	background: linear-gradient(145deg, #ff7043, #ff5722);
+	border-color: #ff5722;
+	color: white;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
 }
 
 /* Pause button on hover when paused */
 .game-controls .pause-btn.paused:hover:not(.disabled) {
-    background: linear-gradient(145deg, #ff5722, #f44336); /* Slightly darker red-orange for hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+	background: linear-gradient(
+		145deg,
+		#ff5722,
+		#f44336
+	); /* Slightly darker red-orange for hover */
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
 }
 
 /* For all indicators */
 .action-indicator {
-    color: #007bff;
+	color: #007bff;
 }
 
 /* When game is pausing */
 .action-indicator.pause {
-    color: #ff7043;
+	color: #ff7043;
 }

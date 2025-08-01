@@ -1,4 +1,4 @@
 .board-row {
-    display: flex; /* Flexible display for rows */
-    width: 100%; /* Full width for even distribution of squares */
+	display: flex; /* Flexible display for rows */
+	width: 100%; /* Full width for even distribution of squares */
 }

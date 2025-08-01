@@ -1,49 +1,52 @@
 .sort-fields {
-    display: flex;
-    flex-wrap: wrap; /* Wrap elements if there's not enough space */
-    gap: 5px; /* Spacing between elements */
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-width: 100%; /* Prevent overflow */
+	display: flex;
+	flex-wrap: wrap; /* Wrap elements if there's not enough space */
+	gap: 5px; /* Spacing between elements */
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	max-width: 100%; /* Prevent overflow */
 }
 
 .sort-field {
-    background-color: #f7f7f7;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 0.875rem; /* 0.875rem = 14px */
-    white-space: nowrap; /* Prevent text wrapping */
-    color: #333;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-    user-select: none; /* Disables text selection */
+	background-color: #f7f7f7;
+	padding: 5px 10px;
+	border-radius: 4px;
+	font-size: 0.875rem; /* 0.875rem = 14px */
+	white-space: nowrap; /* Prevent text wrapping */
+	color: #333;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease,
+		box-shadow 0.3s ease;
+	user-select: none; /* Disables text selection */
 }
 
 .sort-field.active {
-    color: #ff5722;
-    background-color: #ffebee;
-    font-weight: bold;
-    box-shadow: 0 0 4px rgba(255, 87, 34, 0.5);
+	color: #ff5722;
+	background-color: #ffebee;
+	font-weight: bold;
+	box-shadow: 0 0 4px rgba(255, 87, 34, 0.5);
 }
 
 /* For screens between 768px and 1200px */
 @media (min-width: 768px) and (max-width: 1199px) {
-    .sort-field {
-        font-size: 0.875rem; /* 0.875rem = 14px */
-    }
+	.sort-field {
+		font-size: 0.875rem; /* 0.875rem = 14px */
+	}
 }
 
 /* For screens from 480px to 768px */
 @media (max-width: 768px) {
-    .sort-field  {
-        font-size: 0.8125rem; /* 0.8125rem = 13px */
-    }
+	.sort-field {
+		font-size: 0.8125rem; /* 0.8125rem = 13px */
+	}
 }
 
 /* For very small screens */
 @media (max-width: 480px) {
-    .sort-field  {
-        font-size: 0.6875rem; /* 0.6875rem = 11px */
-    }
+	.sort-field {
+		font-size: 0.6875rem; /* 0.6875rem = 11px */
+	}
 }

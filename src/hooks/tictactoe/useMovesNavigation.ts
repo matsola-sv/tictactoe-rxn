@@ -1,17 +1,17 @@
-import {useDispatch} from "react-redux";
+import { useDispatch } from 'react-redux';
 // Models
-import {NavDirection} from "models/lists";
+import { NavDirection } from 'models/lists';
 // Redux
-import {AppDispatch} from "store";
-import {goToMove} from "store/tictactoe/game/gameSlice";
+import { AppDispatch } from 'store';
+import { goToMove } from 'store/tictactoe/game/gameSlice';
 // Hooks and Services
-import {getMovesPagination} from "services/tictactoe/gameLogic";
-import {useTypedSelector} from "hooks/useTypedSelector";
+import { getMovesPagination } from 'services/tictactoe/gameLogic';
+import { useTypedSelector } from 'hooks/useTypedSelector';
 
 export interface useMovesNavigationResultI {
-    goTo: (direction: NavDirection) => void;
-    prevMove: number | null; // The previous move number
-    nextMove: number | null; // The next move number
+	goTo: (direction: NavDirection) => void;
+	prevMove: number | null; // The previous move number
+	nextMove: number | null; // The next move number
 }
 
 /**
@@ -22,16 +22,16 @@ export interface useMovesNavigationResultI {
  * - `nextMove`: The next available move (or `null` if not available).
  */
 const useMovesNavigation = (): useMovesNavigationResultI => {
-    const dispatch = useDispatch<AppDispatch>();
-    const gameState = useTypedSelector(state => state.t3game.state);
-    const { nextItem: nextMove, prevItem: prevMove } = getMovesPagination(gameState);
+	const dispatch = useDispatch<AppDispatch>();
+	const gameState = useTypedSelector((state) => state.t3game.state);
+	const { nextItem: nextMove, prevItem: prevMove } = getMovesPagination(gameState);
 
-    // Go to nav direction
-    const goTo = (direction: NavDirection) => {
-        const moveOffset = direction === NavDirection.Next ? 1 : -1;
-        dispatch(goToMove(gameState.currentMove + moveOffset));
-    };
+	// Go to nav direction
+	const goTo = (direction: NavDirection) => {
+		const moveOffset = direction === NavDirection.Next ? 1 : -1;
+		dispatch(goToMove(gameState.currentMove + moveOffset));
+	};
 
-    return { goTo, prevMove, nextMove };
+	return { goTo, prevMove, nextMove };
 };
 export default useMovesNavigation;

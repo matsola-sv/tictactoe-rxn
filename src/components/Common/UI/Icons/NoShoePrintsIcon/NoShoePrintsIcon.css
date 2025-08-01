@@ -1,14 +1,14 @@
 .no-shoe-icon {
-    position: relative;
+	position: relative;
 }
 
 /** Diagonal red line icons */
 .no-shoe-icon__crossed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: red;
-    transform: rotate(90deg);
-    width: 100%;
-    height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: red;
+	transform: rotate(90deg);
+	width: 100%;
+	height: 100%;
 }

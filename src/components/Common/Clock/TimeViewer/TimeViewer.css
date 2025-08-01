@@ -1,86 +1,86 @@
 .time-viewer {
-    display: flex;
-    justify-content: center;
-    gap: 1rem; /* Distance between time blocks */
-    user-select: none; /* Disables text selection in time viewer */
+	display: flex;
+	justify-content: center;
+	gap: 1rem; /* Distance between time blocks */
+	user-select: none; /* Disables text selection in time viewer */
 }
 
 .time-viewer .time-unit {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 /* Time unit separator */
 .time-viewer .time-separator {
-    font-size: 2rem;
-    position: relative;
-    top: 0.5rem;
-    padding: 0 0.5rem;
+	font-size: 2rem;
+	position: relative;
+	top: 0.5rem;
+	padding: 0 0.5rem;
 }
 
 .time-unit .value {
-    font-size: 2rem; /* Size time numbers */
-    width: 3rem;
-    height: 3rem;
-    border-radius: 12%;
-    background-color: #f0f0f0;
-    margin-top: 0.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease; /* Additionally for smooth size changes */
+	font-size: 2rem; /* Size time numbers */
+	width: 3rem;
+	height: 3rem;
+	border-radius: 12%;
+	background-color: #f0f0f0;
+	margin-top: 0.2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease; /* Additionally for smooth size changes */
 }
 
 .time-unit .label {
-    font-size: 0.8rem; /* Sizes for unit labels */
-    color: #5c677d;
-    text-transform: uppercase;
-    letter-spacing: 0.05rem;
+	font-size: 0.8rem; /* Sizes for unit labels */
+	color: #5c677d;
+	text-transform: uppercase;
+	letter-spacing: 0.05rem;
 }
 
 /* Large screens */
 @media screen and (min-width: 1025px) {
-    .time-unit .label {
-        font-size: 1rem;
-    }
+	.time-unit .label {
+		font-size: 1rem;
+	}
 }
 
 /* Tablet */
 @media screen and (max-width: 768px) {
-    .time-viewer {
-        gap: 0.8rem;
-    }
-    .time-viewer .time-separator {
-        font-size: 1.5rem;
-        top: 0.4rem;
-    }
-    .time-unit .value {
-        font-size: 1.5rem;
-        width: 2.5rem;
-        height: 2.5rem;
-    }
-    .time-unit .label {
-        font-size: 0.65rem;
-    }
+	.time-viewer {
+		gap: 0.8rem;
+	}
+	.time-viewer .time-separator {
+		font-size: 1.5rem;
+		top: 0.4rem;
+	}
+	.time-unit .value {
+		font-size: 1.5rem;
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+	.time-unit .label {
+		font-size: 0.65rem;
+	}
 }
 
 /* Mobile */
 @media screen and (max-width: 480px) {
-    .time-viewer {
-        gap: 0.5rem;
-    }
-    .time-viewer .time-separator {
-        font-size: 1.2rem;
-        top: 0.3rem;
-    }
-    .time-unit .value {
-        font-size: 1.2rem;
-        width: 2rem;
-        height: 2rem;
-    }
-    .time-unit .label {
-        font-size: 0.6rem;
-    }
+	.time-viewer {
+		gap: 0.5rem;
+	}
+	.time-viewer .time-separator {
+		font-size: 1.2rem;
+		top: 0.3rem;
+	}
+	.time-unit .value {
+		font-size: 1.2rem;
+		width: 2rem;
+		height: 2rem;
+	}
+	.time-unit .label {
+		font-size: 0.6rem;
+	}
 }

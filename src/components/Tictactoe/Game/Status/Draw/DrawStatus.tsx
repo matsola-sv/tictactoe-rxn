@@ -1,15 +1,11 @@
-import {FC} from "react";
-import "components/Tictactoe/Game/Status/Draw/Draw.css";
+import { FC } from 'react';
+import 'components/Tictactoe/Game/Status/Draw/Draw.css';
 
 type DrawStatusProps = {
-    value?: string
-}
+	value?: string;
+};
 
-const DrawStatus: FC<DrawStatusProps> = ({ value = "Draw in tic-tac-toe game" }) => {
-    return (
-        <div className="t3-status t3-status--draw">
-            {value}
-        </div>
-    );
-}
+const DrawStatus: FC<DrawStatusProps> = ({ value = 'Draw in tic-tac-toe game' }) => {
+	return <div className='t3-status t3-status--draw'>{value}</div>;
+};
 export default DrawStatus;

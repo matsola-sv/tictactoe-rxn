@@ -1,6 +1,6 @@
-import {ReactElement} from "react";
-import classNames from "classnames";
-import {ButtonPropsI} from "components/Common/Controls/Button/Button.type";
+import { ReactElement } from 'react';
+import classNames from 'classnames';
+import { ButtonPropsI } from 'components/Common/Controls/Button/Button.type';
 
 /**
  * Button component that handles optional click events with custom data.
@@ -25,36 +25,35 @@ import {ButtonPropsI} from "components/Common/Controls/Button/Button.type";
  * @param props The properties for the Button component.
  * @constructor
  */
-const Button = <T = void>(props: ButtonPropsI<T>): ReactElement | null => {
-    const {
-        onClick,
-        onMouseEnter,
-        onMouseLeave,
-        children,
-        className,
-        ariaLabel,
-        isActive = true,
-        isDisabled = false
-    } = props;
+const Button = <T = void,>(props: ButtonPropsI<T>): ReactElement | null => {
+	const {
+		onClick,
+		onMouseEnter,
+		onMouseLeave,
+		children,
+		className,
+		ariaLabel,
+		isActive = true,
+		isDisabled = false,
+	} = props;
 
-    if (!isActive) {
-        return null;
-    }
+	if (!isActive) {
+		return null;
+	}
 
-    const classes = classNames(`btn ${className}`,
-        {'disabled': isDisabled}
-    );
+	const classes = classNames(`btn ${className}`, { disabled: isDisabled });
 
-    return (
-        <button disabled={isDisabled}
-                className={classes}
-                aria-label={ariaLabel}
-                onClick={onClick}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-        >
-            {children}
-        </button>
-    );
+	return (
+		<button
+			disabled={isDisabled}
+			className={classes}
+			aria-label={ariaLabel}
+			onClick={onClick}
+			onMouseEnter={onMouseEnter}
+			onMouseLeave={onMouseLeave}
+		>
+			{children}
+		</button>
+	);
 };
 export default Button;
