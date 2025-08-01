@@ -3,7 +3,7 @@ import * as ROUTES from "constants/routes";
 // Pages
 import GamesPage from "pages/Games";
 // Components
-import NotFoundPage from "pages/errors_temp/NotFound";
+import NotFoundPage from "pages/Errors/NotFound";
 // Utils and services
 import { getPublicUrl } from "utils/url";
 
