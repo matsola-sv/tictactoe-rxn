@@ -1,0 +1,9 @@
+node_modules/
+build/ 
+coverage/
+*.log 
+*.tgz 
+
+# Public static assets (no formatting needed)
+public/database/
+public/images/
