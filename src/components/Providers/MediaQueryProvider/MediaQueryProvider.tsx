@@ -1,9 +1,5 @@
-import React, { createContext, FC, ReactNode, useMemo } from 'react';
+import { createContext, FC, ReactNode, useMemo } from 'react';
 import { useMedia } from 'use-media';
-
-interface MediaQueryProps {
-	children: ReactNode;
-}
 
 interface MediaQueryContextType {
 	mobileMView: boolean; // Mobile medium screen (<= 424px)
@@ -11,6 +7,10 @@ interface MediaQueryContextType {
 	tabletMUpView: boolean; // Screens 600px and wider (tabletM and larger)
 	lowHeightView: boolean; // Low-height screen (<= 480px)
 	prefersReducedMotion: boolean; // Checking if the "Reduce Motion" option is enabled in the browser to reduce or disable animations.
+}
+
+export interface MediaQueryProps {
+	children: ReactNode;
 }
 
 export const MediaQueryContext = createContext<MediaQueryContextType | null>(null);
