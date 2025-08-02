@@ -1,0 +1,198 @@
+{
+	"states": [
+		{
+			"board": {
+				"rows": 3,
+				"cols": 3
+			},
+			"status": "running",
+			"time": {
+				"durationSecs": 25
+			},
+			"players": [
+				{ "id": 1, "name": "X" },
+				{ "id": 2, "name": "O" }
+			],
+			"currentMove": 3,
+			"history": [
+				{
+					"moveNumber": 0,
+					"date": 1721685694625,
+					"squareID": null,
+					"squares": [null, null, null, null, null, null, null, null, null],
+					"winner": null
+				},
+				{
+					"moveNumber": 1,
+					"date": 1721685695891,
+					"squareID": 7,
+					"squares": [null, null, null, null, null, null, null,{"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"moveNumber": 2,
+					"date": 1721685696250,
+					"squareID": 6,
+					"squares": [null, null, null, null, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"moveNumber": 3,
+					"date": 1721685696664,
+					"squareID": 3,
+					"squares": [null, null, null, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				}
+			]
+		},
+		{
+			"board": {
+				"rows": 3,
+				"cols": 3
+			},
+			"status": "running",
+			"time": {
+				"durationSecs": 120
+			},
+			"players": [
+				{ "id": 1, "name": "X" },
+				{ "id": 2, "name": "O" }
+			],
+			"currentMove": 9,
+			"history": [
+				{
+					"moveNumber": 0,
+					"date": 1721685694625,
+					"squareID": null,
+					"squares": [null, null, null, null, null, null, null, null, null],
+					"winner": null
+				},
+				{
+					"moveNumber": 1,
+					"date": 1721685695891,
+					"squareID": 7,
+					"squares": [null, null, null, null, null, null, null,{"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"moveNumber": 2,
+					"date": 1721685696250,
+					"squareID": 6,
+					"squares": [null, null, null, null, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"moveNumber": 3,
+					"date": 1721685696664,
+					"squareID": 3,
+					"squares": [null, null, null, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"moveNumber": 4,
+					"date": 1721685708694,
+					"squareID": 0,
+					"squares": [{ "id": 2,"name": "O"}, null, null, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"moveNumber": 5,
+					"date": 1721685709072,
+					"squareID": 2,
+					"squares": [{ "id": 2,"name": "O"}, null, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"moveNumber": 6,
+					"date": 1721685709406,
+					"squareID": 8,
+					"squares": [{ "id": 2,"name": "O"}, null, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, {"id": 2,"name": "O"}],
+					"winner": null
+				},
+				{
+					"moveNumber": 7,
+					"date": 1721685709782,
+					"squareID": 5,
+					"squares": [{ "id": 2,"name": "O"}, null, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, null, {"id": 1,"name": "X"}, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, {"id": 2,"name": "O"}],
+					"winner": null
+				},
+				{
+					"moveNumber": 8,
+					"date": 1721685710120,
+					"squareID": 1,
+					"squares": [{ "id": 2,"name": "O"}, { "id": 2,"name": "O"}, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, null, {"id": 1,"name": "X"}, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, {"id": 2,"name": "O"}],
+					"winner": null
+				},
+				{
+					"moveNumber": 9,
+					"date": 1721685710526,
+					"squareID": 1,
+					"squares": [{ "id": 2,"name": "O"}, { "id": 2,"name": "O"}, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, {"id": 2,"name": "O"}],
+					"winner": {
+						"player": { "id": 1, "name": "X" },
+						"winnerLine": [ 3, 4, 5 ]
+					}
+				}
+			]
+		},
+		{
+			"board": {
+				"rows": 3,
+				"cols": 3
+			},
+			"status": "running",
+			"time": {
+				"durationSecs": 20
+			},
+			"players": [
+				{ "id": 1, "name": "X" },
+				{ "id": 2, "name": "O" }
+			],
+			"currentMove": 5,
+			"history": [
+				{
+					"moveNumber": 0,
+					"date": 1721685694625,
+					"squareID": null,
+					"squares": [null, null, null, null, null, null, null, null, null],
+					"winner": null
+				},
+				{
+					"moveNumber": 1,
+					"date": 1721685695891,
+					"squareID": 7,
+					"squares": [null, null, null, null, null, null, null,{"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"moveNumber": 2,
+					"date": 1721685696250,
+					"squareID": 6,
+					"squares": [null, null, null, null, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"moveNumber": 3,
+					"date": 1721685696664,
+					"squareID": 3,
+					"squares": [null, null, null, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"moveNumber": 4,
+					"date": 1721685708694,
+					"squareID": 0,
+					"squares": [{ "id": 2,"name": "O"}, null, null, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				},
+				{
+					"moveNumber": 5,
+					"date": 1721685709072,
+					"squareID": 2,
+					"squares": [{ "id": 2,"name": "O"}, null, {"id": 1,"name": "X"}, {"id": 1,"name": "X"}, null, null, {"id": 2,"name": "O"}, {"id": 1,"name": "X"}, null],
+					"winner": null
+				}
+			]
+		}
+	]
+}
