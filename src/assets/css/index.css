@@ -1,3 +1,19 @@
+/*---------------------------------*/
+/* Normalize Block
+   Reset or normalize and unification default browser styles
+   - normalize.css
+   - box-sizing
+---------------------------------*/
+
+@import 'normalize.css';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+/*---------------------------------*/
+
 html,
 body {
 	height: 100%; /* Ensures that html and body take up the full height of the window */
